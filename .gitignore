@@ -2,3 +2,5 @@ core/*
 vendor/*
 sites/*/files
 sites/*/settings*.php
+modules/contrib
+themes/contrib
