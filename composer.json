@@ -1,0 +1,11 @@
+{
+    "name": "lastcallmedia/drupal-scaffold",
+    "description": "Scaffolding for an enterprise scale Drupal build",
+    "authors": [
+        {
+            "name": "Rob Bayliss",
+            "email": "rob@lastcallmedia.com"
+        }
+    ],
+    "require": {}
+}
