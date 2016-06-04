@@ -1,2 +1,4 @@
 core/*
 vendor/*
+sites/*/files
+sites/*/settings*.php
