@@ -5,7 +5,6 @@ Setup
 -----
 
 1. Run the following command to clone this project down.  Replace PROJECTNAME with the name of the folder you want to create for the project.
-
   ```
   composer create-project lastcallmedia/drupal-scaffold:dev-master PROJECTNAME --repository='{"type": "vcs", "url": "git@bitbucket.org:lastcall/d8-scaffolding-project.git"}'
   ```
@@ -22,5 +21,3 @@ You can use composer to bring in modules and themes.  Just run:
 composer require drupal/ctools
 ```
 Contributed modules and themes are .gitignored by default, meaning you need to run composer install each time you clone the repository down.
-
-
