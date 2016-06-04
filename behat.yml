@@ -1,0 +1,19 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+    Drupal\DrupalExtension:
+      blackbox: ~
+      drush:
+        binary: vendor/bin/drush
+        alias: ~
+        root: .
+imports:
+  - behat.local.yml

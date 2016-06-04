@@ -4,6 +4,7 @@ sites/*/settings*.php
 
 # Build tools
 node_modules/*
+behat.local.yml
 
 # Extras required for a composer build
 core/*

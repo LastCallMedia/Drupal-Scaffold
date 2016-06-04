@@ -1,0 +1,7 @@
+# This is a default behat local yml file. It can be copied to behat.local.yml
+# and any
+default:
+  extensions:
+    Behat\MinkExtension:
+      # Set base_url to the url you use to access the site locally.
+      base_url: 'http://localhost/scaffold'

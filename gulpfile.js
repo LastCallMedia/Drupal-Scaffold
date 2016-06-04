@@ -17,6 +17,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var mergeStream = require('merge-stream');
+var behat = require('gulp-behat');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -52,7 +53,8 @@ gulp.task('install:bower', 'Run bower install', function () {
 /**
  * Check tasks
  *
- * Add steps here to run during checking/testing of the app.
+ * Add steps here to run during checking phase of the app.
+ * Check steps should not require a database to function.
  */
 gulp.task('check', 'Run static code analysis', ['check:phpcs', 'check:eslint']);
 gulp.task('check:phplint', 'Lint PHP code', function () {
@@ -75,6 +77,18 @@ gulp.task('check:eslint', 'Check JS style', function () {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
+});
+
+/**
+ * Test tasks
+ *
+ * Add steps here to run during the test phase.
+ * Test steps may require a database and/or web server to function.
+ */
+gulp.task('test', 'Run all testing steps', ['test:behat']);
+gulp.task('test:behat', 'Run Behat tests', function() {
+  return gulp.src('behat.yml')
+    .pipe(behat(''));
 });
 
 /**
