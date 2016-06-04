@@ -2,6 +2,9 @@
 sites/*/files
 sites/*/settings*.php
 
+# Build tools
+node_modules/*
+
 # Extras required for a composer build
 core/*
 vendor/*
