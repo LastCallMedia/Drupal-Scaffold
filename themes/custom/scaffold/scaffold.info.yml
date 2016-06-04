@@ -1,0 +1,10 @@
+name: Scaffold
+type: theme
+core: 8.x
+package: _projectpackage_
+description: "Foundation 6 theme for _projectname_"
+
+libraries:
+  - scaffold/global
+
+

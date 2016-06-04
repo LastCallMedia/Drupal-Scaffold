@@ -1,0 +1,12 @@
+# CSS/JS packages declared here.
+global:
+  version: 1
+  css:
+    theme:
+      dist/css/scaffold.css: {}
+  js:
+    dist/js/libs.js: {}
+    dist/js/scaffold.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

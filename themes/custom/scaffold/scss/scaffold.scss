@@ -1,0 +1,12 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+@import "global";
+@import "../bower_components/foundation-sites/scss/foundation";
+
+// Put remote font imports here.
+// @import url($google-fonts);
+
+@include foundation-everything();
+
+

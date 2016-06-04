@@ -1,0 +1,19 @@
+{
+  "name": "scaffold",
+  "authors": [
+    "Rob Bayliss <rob@lastcallmedia.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.3"
+  }
+}
