@@ -1,0 +1,20 @@
+{
+  "name": "scaffold",
+  "version": "1.0.0",
+  "description": "Scaffolding project for Drupal sites",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "child-process-promise": "^2.0.2",
+    "exec-chainable": "0.0.3",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-help": "^1.6.1",
+    "gulp-phpcs": "^1.1.1",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
