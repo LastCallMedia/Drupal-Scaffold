@@ -1,6 +1,10 @@
-core/*
-vendor/*
+# Default Drupal core excludes
 sites/*/files
 sites/*/settings*.php
+
+# Extras required for a composer build
+core/*
+vendor/*
 modules/contrib
 themes/contrib
+
