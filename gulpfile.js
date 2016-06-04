@@ -41,7 +41,7 @@ gulp.task('install', 'Run all install steps', ['install:composer', 'install:bowe
 gulp.task('install:composer', 'Run composer install', function (cb) {
   return exec('composer install');
 });
-gulp.task('install:bower', 'Run bower install', function() {
+gulp.task('install:bower', 'Run bower install', function () {
   var bower = __dirname + '/node_modules/.bin/bower';
   return exec(bower + ' install', {
     cwd: config.bowerJsonDirectory
