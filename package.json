@@ -4,13 +4,20 @@
   "description": "Scaffolding project for Drupal sites",
   "main": "gulpfile.js",
   "dependencies": {
+    "bower": "^1.7.9",
     "child-process-promise": "^2.0.2",
     "exec-chainable": "0.0.3",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
     "gulp-eslint": "^2.0.0",
     "gulp-help": "^1.6.1",
+    "gulp-minify": "0.0.12",
     "gulp-phpcs": "^1.1.1",
-    "gulp-phplint": "^0.1.0"
+    "gulp-phplint": "^0.1.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "merge-stream": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
