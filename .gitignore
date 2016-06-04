@@ -10,4 +10,6 @@ core/*
 vendor/*
 modules/contrib
 themes/contrib
+!modules/contrib/README.md
+!themes/contrib/README.md
 
