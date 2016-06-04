@@ -10,6 +10,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-help": "^1.6.1",
     "gulp-phpcs": "^1.1.1",
+    "gulp-phplint": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {

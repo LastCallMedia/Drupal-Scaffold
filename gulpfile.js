@@ -10,6 +10,7 @@ var gulp = require('gulp-help')(require('gulp'));
 var exec = require('child-process-promise').exec;
 var phpcs = require('gulp-phpcs');
 var eslint = require('gulp-eslint');
+var phplint = require('gulp-phplint');
 
 /**
  * Install tasks
@@ -28,7 +29,11 @@ gulp.task('install:composer', 'Run composer install', function (cb) {
  * Add steps here to run during checking/testing of the app.
  */
 gulp.task('check', 'Run static code analysis checks', ['check:phpcs', 'check:eslint']);
-
+gulp.task('check:phplint', 'Lint PHP code', function() {
+  return gulp.src(['{modules,themes}/custom/**/*.{php,inc,module,theme,inc}'])
+    .pipe(phplint())
+    .pipe(phplint.reporter('fail'));
+});
 gulp.task('check:phpcs', 'Check Drupal code style', function () {
   return gulp.src(['{modules,themes}/custom/**/*.{php,inc,module,theme,inc}'])
     .pipe(phpcs({
