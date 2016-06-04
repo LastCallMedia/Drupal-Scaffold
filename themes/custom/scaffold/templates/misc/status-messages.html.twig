@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Theme override for status messages.
+ *
+ * Displays status, error, and warning messages, grouped by type.
+ *
+ * An invisible heading identifies the messages for assistive technology.
+ * Sighted users see a colored box. See http://www.w3.org/TR/WCAG-TECHS/H69.html
+ * for info.
+ *
+ * Add an ARIA label to the contentinfo area so that assistive technology
+ * user agents will better describe this landmark.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - display: (optional) May have a value of 'status' or 'error' when only
+ *   displaying messages of that specific type.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ */
+#}
+{% for type, messages in message_list %}
+
+  {# need to override attributes differently for each item in message list #}
+
+  {# the `|without` filter is the only way I can find to *copy* an array in twig #}
+  {% set current_attributes = attributes|without() %}
+
+  {% if type == 'error' %}
+
+    {% do current_attributes.addClass (['callout', 'small', 'alert']) %}
+
+  {% elseif type == 'status' %}
+
+    {% do current_attributes.addClass (['callout', 'small', 'success']) %}
+
+  {% else %}
+
+    {#
+     # use the "secondary" class so a generic callout doesn't
+     # look like an error
+     #}
+    {% do current_attributes.addClass (['callout', 'small', 'secondary']) %}
+
+  {% endif %}
+
+  <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ current_attributes|without('role', 'aria-label') }}>
+    {% if type == 'error' %}
+      <div role="alert">
+    {% endif %}
+      {% if status_headings[type] %}
+        <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+      {% endif %}
+      {% if messages|length > 1 %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        {{ messages|first }}
+      {% endif %}
+    {% if type == 'error' %}
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}
