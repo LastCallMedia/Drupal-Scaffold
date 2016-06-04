@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "abb45e3a808ed30b5b5de66048a27c50",
-    "content-hash": "0fec4cb1947fa1b89350e6089f7ab2c0",
+    "hash": "58be3c9a0838aa7ba2acacd56fa6c4ac",
+    "content-hash": "ca219b599a862d972fb5b3eb3645ba7c",
     "packages": [
         {
             "name": "composer/semver",
@@ -468,6 +468,42 @@
             "time": "2014-09-09 13:34:57"
         },
         {
+            "name": "drupal/coder",
+            "version": "8.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/coder",
+                "reference": "a5b5f6b5769393a016da0d106a3b33f932c73331"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.7.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "squizlabs/php_codesniffer": ">=2.5.1",
+                "symfony/yaml": ">=2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Coder is a library to review Drupal code.",
+            "homepage": "https://www.drupal.org/project/coder",
+            "keywords": [
+                "code review",
+                "phpcs",
+                "standards"
+            ],
+            "time": "2016-03-27 09:53:21"
+        },
+        {
             "name": "drupal/core",
             "version": "8.1.2",
             "source": {
@@ -634,46 +670,6 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "time": "2016-06-01 23:31:24"
-        },
-        {
-            "name": "drupal/ctools",
-            "version": "dev-8.x-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/ctools",
-                "reference": "c14a5eee970c3d0aab02e88f6c6a4d18091439b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha26.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "replace": {
-                "drupal/ctools_block": "self.version",
-                "drupal/ctools_views": "self.version"
-            },
-            "suggest": {
-                "drupal/block": "Required by drupal/ctools_views",
-                "drupal/core": "Required by drupal/ctools_block, drupal/ctools_views",
-                "drupal/views": "Required by drupal/ctools_views"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-3.x": "8.3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
-            "homepage": "https://www.drupal.org/project/ctools",
-            "time": "2016-05-06 18:51:13"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -1201,6 +1197,84 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "reference": "fb72ed32f8418db5e7770be1653e62e0d6f5dd3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/fb72ed32f8418db5e7770be1653e62e0d6f5dd3d",
+                "reference": "fb72ed32f8418db5e7770be1653e62e0d6f5dd3d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "bin": [
+                "scripts/phpcs",
+                "scripts/phpcbf"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "CodeSniffer.php",
+                    "CodeSniffer/CLI.php",
+                    "CodeSniffer/Exception.php",
+                    "CodeSniffer/File.php",
+                    "CodeSniffer/Fixer.php",
+                    "CodeSniffer/Report.php",
+                    "CodeSniffer/Reporting.php",
+                    "CodeSniffer/Sniff.php",
+                    "CodeSniffer/Tokens.php",
+                    "CodeSniffer/Reports/",
+                    "CodeSniffer/Tokenizers/",
+                    "CodeSniffer/DocGenerators/",
+                    "CodeSniffer/Standards/AbstractPatternSniff.php",
+                    "CodeSniffer/Standards/AbstractScopeSniff.php",
+                    "CodeSniffer/Standards/AbstractVariableSniff.php",
+                    "CodeSniffer/Standards/IncorrectPatternException.php",
+                    "CodeSniffer/Standards/Generic/Sniffs/",
+                    "CodeSniffer/Standards/MySource/Sniffs/",
+                    "CodeSniffer/Standards/PEAR/Sniffs/",
+                    "CodeSniffer/Standards/PSR1/Sniffs/",
+                    "CodeSniffer/Standards/PSR2/Sniffs/",
+                    "CodeSniffer/Standards/Squiz/Sniffs/",
+                    "CodeSniffer/Standards/Zend/Sniffs/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "http://www.squizlabs.com/php-codesniffer",
+            "keywords": [
+                "phpcs",
+                "standards"
+            ],
+            "time": "2016-05-30 22:24:32"
         },
         {
             "name": "stack/builder",
@@ -2716,9 +2790,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "drupal/ctools": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

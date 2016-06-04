@@ -14,7 +14,9 @@
         }
     ],
     "require": {
-        "drupal/core": "^8.1"
+        "drupal/core": "^8.1",
+        
+        "drupal/coder": "^8.2"
     },
     "extra": {
         "installer-paths": {
