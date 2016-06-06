@@ -29,7 +29,11 @@ class PatternManager {
     if (class_exists($class)) {
       $instance = new $class();
       if ($instance instanceof PatternProviderInterface) {
-        return $instance->getPatterns();
+        $patterns = $instance->getPatterns();
+        uasort($patterns, function(Pattern $a, Pattern $b) {
+          return strnatcasecmp($a->getName(), $b->getName());
+        });
+        return $patterns;
       }
     }
     return [];

@@ -42,6 +42,7 @@ class Patterns implements PatternProviderInterface {
     $patterns[] = $this->getButtonsPattern();
     $patterns[] = $this->getFormsPattern();
     $patterns[] = $this->getPagerPattern();
+    $patterns[] = $this->getTablePattern();
     return $patterns;
   }
 
@@ -177,6 +178,17 @@ class Patterns implements PatternProviderInterface {
     return Pattern::atom('forms', 'Forms', $elements);
   }
 
+  private function getTablePattern() {
+    return Pattern::atom('table', 'Tables', [
+      '#type' => 'table',
+      '#header' => ['Column 1', 'Column 2', 'Column 3'],
+      '#rows' => [
+        ['Row 1', 'Row 1', 'Row 1'],
+        ['Row 2', 'Row 2', 'Row 2'],
+      ]
+    ]);
+  }
+
   private function getPagerPattern() {
     pager_default_initialize(50, 5, 2);
     return Pattern::molecule('pager', 'Pager', [
@@ -184,5 +196,4 @@ class Patterns implements PatternProviderInterface {
       '#element' => 2,
     ]);
   }
-
 }
