@@ -18,6 +18,19 @@ use Drupal\pattern_lib\PatternProviderInterface;
  */
 class Patterns implements PatternProviderInterface {
 
+  protected static $sizes = [
+    'tiny',
+    'small',
+    'large',
+  ];
+  protected static $colors = [
+    'primary',
+    'secondary',
+    'success',
+    'alert',
+    'warning',
+  ];
+
   /**
    * {@inheritdoc}
    */
@@ -47,6 +60,9 @@ class Patterns implements PatternProviderInterface {
     ]);
   }
 
+  /**
+   * OL and UL.
+   */
   private function getListsPattern() {
     return Pattern::atom('lists', 'Lists', [
       'ordered' => [
@@ -57,21 +73,29 @@ class Patterns implements PatternProviderInterface {
       'unordered' => [
         '#theme' => 'item_list',
         '#items' => ['Item 1', 'Item 2', 'Item 3'],
-      ]
+      ],
     ]);
   }
 
+  /**
+   * Buttons.
+   */
   private function getButtonsPattern() {
     $buttons = [];
-    $variants = ['tiny', 'small', '', 'large', 'expanded', 'small expanded', 'secondary', 'success', 'alert', 'warning', 'disabled'];
-    foreach($variants as $variant) {
+    $hollow_colors = array_map(function ($color) {
+      return $color . ' hollow';
+    }, self::$colors);
+    $variants = array_merge(
+      self::$colors,
+      $hollow_colors,
+      self::$sizes,
+      ['expanded', 'expanded small']
+    );
+    foreach ($variants as $variant) {
       $buttons[] = [
         '#type' => 'button',
         '#value' => 'Button ' . $variant,
-        '#attributes' => ['class' => [
-          'button',
-          $variant
-        ]]
+        '#attributes' => ['class' => ['button', $variant]],
       ];
     }
     return Pattern::atom('buttons', 'Buttons', $buttons);

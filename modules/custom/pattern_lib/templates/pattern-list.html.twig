@@ -4,4 +4,15 @@
   <li><a href="{{ url('pattern.view', { patternId: pattern.getId() }) }}">{{ pattern.getName() }}</a></li>
 {% endfor %}
 </ul>
-
+<h3>Molecules</h3>
+<ul>
+  {% for pattern in patterns.molecule %}
+    <li><a href="{{ url('pattern.view', { patternId: pattern.getId() }) }}">{{ pattern.getName() }}</a></li>
+  {% endfor %}
+</ul>
+<h3>Elements</h3>
+<ul>
+  {% for pattern in patterns.element %}
+    <li><a href="{{ url('pattern.view', { patternId: pattern.getId() }) }}">{{ pattern.getName() }}</a></li>
+  {% endfor %}
+</ul>
