@@ -6,7 +6,15 @@ use Drupal\pattern_lib\Pattern;
 use Drupal\pattern_lib\PatternProviderInterface;
 
 /**
- * Style element declarations for this theme.
+ * Style pattern declarations for this theme.
+ *
+ * Patterns are discrete pieces of HTML that can be reused across the site.
+ * You can use this class to build a living style guide that updates as your
+ * templates and CSS changes.
+ *
+ * Patterns are either atoms, molecules, or elements.
+ * @see http://demo.patternlab.io/
+ *
  */
 class Patterns implements PatternProviderInterface {
 

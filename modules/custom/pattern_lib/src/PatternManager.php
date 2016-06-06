@@ -25,7 +25,7 @@ class PatternManager {
    */
   public function getPatterns() {
     $themeName = $this->themeManager->getActiveTheme()->getName();
-    $class = "Drupal\\$themeName\\Patterns";
+    $class = "Drupal\\$themeName\\Style\\Patterns";
     if (class_exists($class)) {
       $instance = new $class();
       if ($instance instanceof PatternProviderInterface) {
