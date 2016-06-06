@@ -63,25 +63,14 @@ class Patterns implements PatternProviderInterface {
 
   private function getButtonsPattern() {
     $buttons = [];
-    $sizes = ['tiny', 'small', '', 'large', 'expanded', 'small expanded'];
-    foreach($sizes as $size) {
+    $variants = ['tiny', 'small', '', 'large', 'expanded', 'small expanded', 'secondary', 'success', 'alert', 'warning', 'disabled'];
+    foreach($variants as $variant) {
       $buttons[] = [
         '#type' => 'button',
-        '#value' => 'Button ' . $size,
+        '#value' => 'Button ' . $variant,
         '#attributes' => ['class' => [
           'button',
-          $size
-        ]]
-      ];
-    }
-    $colors = ['secondary', 'success', 'alert', 'warning', 'disabled'];
-    foreach($colors as $color) {
-      $buttons[] = [
-        '#type' => 'button',
-        '#value' => 'Button ' . $color,
-        '#attributes' => ['class' => [
-          'button',
-          $color
+          $variant
         ]]
       ];
     }
