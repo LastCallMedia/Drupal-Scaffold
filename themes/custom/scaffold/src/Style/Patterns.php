@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\scaffold;
+namespace Drupal\scaffold\Style;
 
 use Drupal\pattern_lib\Pattern;
 use Drupal\pattern_lib\PatternProviderInterface;
