@@ -1,0 +1,7 @@
+<h3>Atoms</h3>
+<ul>
+{% for pattern in patterns.atom %}
+  <li><a href="{{ url('pattern.view', { patternId: pattern.getId() }) }}">{{ pattern.getName() }}</a></li>
+{% endfor %}
+</ul>
+

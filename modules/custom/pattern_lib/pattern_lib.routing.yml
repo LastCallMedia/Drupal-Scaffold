@@ -1,0 +1,15 @@
+pattern.index:
+  path: '/patterns'
+  defaults:
+    _controller: '\Drupal\pattern_lib\Controller\PatternController::indexAction'
+    _title: 'Patterns'
+  requirements:
+    _permission: 'access content'
+
+pattern.view:
+  path: '/patterns/{patternId}'
+  defaults:
+    _controller: '\Drupal\pattern_lib\Controller\PatternController::patternAction'
+    _title: 'Pattern'
+  requirements:
+    _permission: 'access content'

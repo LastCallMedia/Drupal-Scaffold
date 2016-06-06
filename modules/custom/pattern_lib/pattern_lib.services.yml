@@ -1,0 +1,5 @@
+services:
+  pattern_lib.manager:
+    class: Drupal\pattern_lib\PatternManager
+    arguments: ['@theme.manager']
+

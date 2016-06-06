@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Pattern library module hooks.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function pattern_lib_theme() {
+  return [
+    'pattern_list' => [
+      'variables' => [
+        'patterns' => [],
+        'renderPatterns' => TRUE,
+      ],
+    ],
+  ];
+}
