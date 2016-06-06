@@ -86,7 +86,7 @@ gulp.task('check:eslint', 'Check JS style', function () {
  * Test steps may require a database and/or web server to function.
  */
 gulp.task('test', 'Run all testing steps', ['test:behat']);
-gulp.task('test:behat', 'Run Behat tests', function() {
+gulp.task('test:behat', 'Run Behat tests', function () {
   return gulp.src('behat.yml')
     .pipe(behat(''));
 });
