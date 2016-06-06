@@ -4,12 +4,12 @@ pattern.index:
     _controller: '\Drupal\pattern_lib\Controller\PatternController::indexAction'
     _title: 'Patterns'
   requirements:
-    _permission: 'access content'
+    _permission: 'access patterns'
 
 pattern.view:
   path: '/patterns/{patternId}'
   defaults:
     _controller: '\Drupal\pattern_lib\Controller\PatternController::patternAction'
-    _title: 'Pattern'
+    _title_callback: '\Drupal\pattern_lib\Controller\PatternController::patternTitle'
   requirements:
-    _permission: 'access content'
+    _permission: 'access patterns'

@@ -13,8 +13,8 @@ use Drupal\pattern_lib\PatternProviderInterface;
  * templates and CSS changes.
  *
  * Patterns are either atoms, molecules, or elements.
- * @see http://demo.patternlab.io/
  *
+ * @see http://demo.patternlab.io/
  */
 class Patterns implements PatternProviderInterface {
 
