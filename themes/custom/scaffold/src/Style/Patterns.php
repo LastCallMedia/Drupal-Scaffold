@@ -36,12 +36,12 @@ class Patterns implements PatternProviderInterface {
   private function getTypeographyPattern() {
     $markup = '';
     foreach (range(1, 5) as $i) {
-      $markup .= '<h' . $i . '>Header ' . $i . '</h' . $i . '>';
+      $markup .= "<h{$i}>Header $i</h{$i}>\n";
     }
-    $markup .= '<div><a href="#">Link</a></div>';
-    $markup .= '<div><p>This is paragraph text!</p></div>';
-    $markup .= '<div><blockquote>Blockquotes are the best. <cite>Abraham Lincoln</cite></blockquote></div>';
-    $markup .= '<div><hr /></div>';
+    $markup .= "<div><a href=\"#\">Link</a></div>\n";
+    $markup .= "<div><p>This is paragraph text!</p></div>\n";
+    $markup .= "<div><blockquote>Blockquotes are the best. <cite>Abraham Lincoln</cite></blockquote></div>\n";
+    $markup .= "<div><hr /></div>\n";
     return Pattern::atom('typography', 'Typography', [
       '#markup' => $markup,
     ]);
