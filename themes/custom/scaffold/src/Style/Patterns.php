@@ -40,6 +40,8 @@ class Patterns implements PatternProviderInterface {
     $patterns[] = $this->getTypeographyPattern();
     $patterns[] = $this->getListsPattern();
     $patterns[] = $this->getButtonsPattern();
+    $patterns[] = $this->getFormsPattern();
+    $patterns[] = $this->getPagerPattern();
     return $patterns;
   }
 
@@ -112,6 +114,74 @@ class Patterns implements PatternProviderInterface {
         'warning' => ['Warning Message'],
         'error' => ['Error Message'],
       ],
+    ]);
+  }
+
+  private function getFormsPattern() {
+    $elements[] = [
+      '#type' => 'textfield',
+      '#title' => 'Textfield',
+    ];
+    $elements[] = [
+      '#type' => 'email',
+      '#title' => 'E-Mail',
+    ];
+    $elements[] = [
+      '#type' => 'password',
+      '#title' => 'Password',
+    ];
+    $elements[] = [
+      '#type' => 'search',
+      '#title' => 'Search',
+    ];
+    $elements[] = [
+      '#type' => 'number',
+      '#title' => 'Number',
+    ];
+    $elements[] = [
+      '#type' => 'tel',
+      '#title' => 'Telephone',
+    ];
+    $elements[] = [
+      '#type' => 'url',
+      '#title' => 'URL',
+    ];
+    $elements[] = [
+      '#type' => 'date',
+      '#title' => 'Date',
+    ];
+    $elements[] = [
+      '#type' => 'file',
+      '#title' => 'File',
+    ];
+    $elements[] = [
+      '#type' => 'select',
+      '#title' => 'Select',
+      '#options' => [
+        'Option 1', 'Option 2'
+      ]
+    ];
+    $elements[] = [
+      '#type' => 'textarea',
+      '#title' =>  'Textarea',
+    ];
+    $elements[] = [
+      '#type' => 'fieldset',
+      '#title' => 'fieldset',
+      'content' => [
+        '#markup' => 'content',
+      ]
+    ];
+
+
+    return Pattern::atom('forms', 'Forms', $elements);
+  }
+
+  private function getPagerPattern() {
+    pager_default_initialize(50, 5, 2);
+    return Pattern::molecule('pager', 'Pager', [
+      '#type' => 'pager',
+      '#element' => 2,
     ]);
   }
 
