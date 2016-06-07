@@ -37,7 +37,7 @@ class Patterns implements PatternProviderInterface {
   public function getPatterns() {
     $patterns = [];
     $patterns[] = $this->getStatusMessagePattern();
-    $patterns[] = $this->getTypeographyPattern();
+    $patterns[] = $this->getTypographyPattern();
     $patterns[] = $this->getListsPattern();
     $patterns[] = $this->getButtonsPattern();
     $patterns[] = $this->getFormsPattern();
@@ -49,7 +49,7 @@ class Patterns implements PatternProviderInterface {
   /**
    * Pattern for <h> elements.
    */
-  private function getTypeographyPattern() {
+  private function getTypographyPattern() {
     $markup = '';
     foreach (range(1, 5) as $i) {
       $markup .= "<h{$i}>Header $i</h{$i}>\n";
@@ -118,6 +118,9 @@ class Patterns implements PatternProviderInterface {
     ]);
   }
 
+  /**
+   * Forms.
+   */
   private function getFormsPattern() {
     $elements[] = [
       '#type' => 'textfield',
@@ -159,25 +162,27 @@ class Patterns implements PatternProviderInterface {
       '#type' => 'select',
       '#title' => 'Select',
       '#options' => [
-        'Option 1', 'Option 2'
-      ]
+        'Option 1', 'Option 2',
+      ],
     ];
     $elements[] = [
       '#type' => 'textarea',
-      '#title' =>  'Textarea',
+      '#title' => 'Textarea',
     ];
     $elements[] = [
       '#type' => 'fieldset',
       '#title' => 'fieldset',
       'content' => [
         '#markup' => 'content',
-      ]
+      ],
     ];
-
 
     return Pattern::atom('forms', 'Forms', $elements);
   }
 
+  /**
+   * Tables.
+   */
   private function getTablePattern() {
     return Pattern::atom('table', 'Tables', [
       '#type' => 'table',
@@ -185,10 +190,13 @@ class Patterns implements PatternProviderInterface {
       '#rows' => [
         ['Row 1', 'Row 1', 'Row 1'],
         ['Row 2', 'Row 2', 'Row 2'],
-      ]
+      ],
     ]);
   }
 
+  /**
+   * Pager.
+   */
   private function getPagerPattern() {
     pager_default_initialize(50, 5, 2);
     return Pattern::molecule('pager', 'Pager', [
@@ -196,4 +204,5 @@ class Patterns implements PatternProviderInterface {
       '#element' => 2,
     ]);
   }
+
 }

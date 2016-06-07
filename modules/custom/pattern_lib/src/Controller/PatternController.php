@@ -3,7 +3,6 @@
 namespace Drupal\pattern_lib\Controller;
 
 
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\pattern_lib\PatternManager;
@@ -53,15 +52,8 @@ class PatternController extends ControllerBase {
   public function patternAction($patternId) {
     if ($pattern = $this->manager->getPattern($patternId)) {
       $render = $pattern->getRender();
-      $html = $this->renderer->render($render);
-      return [
-        'html' => [
-          '#type' => 'details',
-          '#title' => $this->t('Markup'),
-          '#markup' => '<pre><code>' . SafeMarkup::checkPlain($html) . '</code></pre>',
-        ],
-        'pattern' => $pattern->getRender(),
-      ];
+      $render['#theme_wrappers'][] = 'pattern';
+      return $render;
     }
     return [];
   }

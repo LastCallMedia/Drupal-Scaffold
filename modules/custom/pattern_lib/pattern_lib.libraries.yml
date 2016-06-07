@@ -1,0 +1,10 @@
+pattern:
+  version: 1
+  css:
+    theme:
+      css/pattern_lib.css: {}
+  js:
+    js/pattern_lib.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
