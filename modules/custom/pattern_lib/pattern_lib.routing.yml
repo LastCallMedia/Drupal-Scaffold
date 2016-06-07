@@ -1,4 +1,4 @@
-pattern.index:
+pattern_lib.index:
   path: '/patterns'
   defaults:
     _controller: '\Drupal\pattern_lib\Controller\PatternController::indexAction'
@@ -6,7 +6,7 @@ pattern.index:
   requirements:
     _permission: 'access patterns'
 
-pattern.view:
+pattern_lib.view:
   path: '/patterns/{patternId}'
   defaults:
     _controller: '\Drupal\pattern_lib\Controller\PatternController::patternAction'
