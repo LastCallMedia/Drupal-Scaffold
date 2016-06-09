@@ -6,7 +6,7 @@ var options = {
   // Packages of SCSS that will be compiled.
   scss: [
     {
-      src: './themes/custom/scaffold/scss/*.scss',
+      src: './themes/custom/scaffold/scss/**/*.scss',
       maps: '../maps',
       prefix: {browsers: 'last 2 versions', cascade: false},
       dest: './themes/custom/scaffold/dist/css'
@@ -15,7 +15,7 @@ var options = {
   // Packages of javascript that will be compiled.
   js: [
     {
-      src: ['./themes/custom/scaffold/js/*.js'],
+      src: ['./themes/custom/scaffold/js/**/*.js'],
       concat: false,
       min: true,
       maps: '../maps',
