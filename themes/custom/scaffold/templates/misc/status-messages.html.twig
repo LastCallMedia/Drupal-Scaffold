@@ -21,49 +21,19 @@
  *   - class: HTML classes.
  */
 #}
+{%
+  set class_map = {
+    error: 'alert',
+    warning: 'warning',
+    status: 'success'
+  }
+%}
 {% for type, messages in message_list %}
-
-  {# need to override attributes differently for each item in message list #}
-
-  {# the `|without` filter is the only way I can find to *copy* an array in twig #}
-  {% set current_attributes = attributes|without() %}
-
-  {% if type == 'error' %}
-
-    {% do current_attributes.addClass (['callout', 'small', 'alert']) %}
-
-  {% elseif type == 'status' %}
-
-    {% do current_attributes.addClass (['callout', 'small', 'success']) %}
-
-  {% else %}
-
-    {#
-     # use the "secondary" class so a generic callout doesn't
-     # look like an error
-     #}
-    {% do current_attributes.addClass (['callout', 'small', 'secondary']) %}
-
-  {% endif %}
-
-  <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ current_attributes|without('role', 'aria-label') }}>
-    {% if type == 'error' %}
-      <div role="alert">
-    {% endif %}
-      {% if status_headings[type] %}
-        <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
-      {% endif %}
-      {% if messages|length > 1 %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        {{ messages|first }}
-      {% endif %}
-    {% if type == 'error' %}
+  <div aria-label="{{ status_headings[type] }}" role="{{ type == 'error' ? 'alert' : 'contentinfo' }}" {{ attributes|without('role', 'aria-label') }}>
+    {% for message in messages %}
+      <div class="callout small {{ class_map[type] }}">
+        {{ message }}
       </div>
-    {% endif %}
+    {% endfor %}
   </div>
 {% endfor %}
