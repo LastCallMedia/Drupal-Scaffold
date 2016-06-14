@@ -56,7 +56,7 @@ gulp.task('install:bower', 'Run bower install', function () {
  * Add steps here to run during checking phase of the app.
  * Check steps should not require a database to function.
  */
-gulp.task('check', 'Run static code analysis', ['check:phpcs', 'check:eslint']);
+gulp.task('check', 'Run static code analysis', ['check:phplint', 'check:phpcs', 'check:eslint']);
 gulp.task('check:phplint', 'Lint PHP code', function () {
   return gulp.src(config.phpCheck)
     .pipe(phplint())
