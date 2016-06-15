@@ -10,6 +10,7 @@ default:
     Behat\MinkExtension:
       goutte: ~
     Drupal\DrupalExtension:
+      api_driver: 'drupal'
       blackbox: ~
       drush:
         binary: vendor/bin/drush
