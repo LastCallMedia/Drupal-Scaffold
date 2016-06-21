@@ -4,6 +4,7 @@
  *
  */
 /* eslint-env node */
+/* globals Promise:true */
 'use strict';
 
 var gulp = require('gulp-help')(require('gulp'));
@@ -112,7 +113,6 @@ gulp.task('test:performance', 'Run phantomas tests', function () {
     return function (result) {
       gutil.log('FAIL:' + name);
       gutil.log('-----------------');
-      console.log(result);
       var data = JSON.parse(result.stdout);
       for (var i = 0; i < data.asserts.failedAsserts.length; i++) {
         var assertName = data.asserts.failedAsserts[i];
@@ -198,7 +198,7 @@ gulp.task('build:js', 'Build JS files', function () {
   });
   return streams;
 });
-gulp.task('build:fonts', 'Build font files', function() {
+gulp.task('build:fonts', 'Build font files', function () {
   var streams = mergeStream();
   config.fonts.forEach(function (pack) {
     var stream = gulp
@@ -208,5 +208,5 @@ gulp.task('build:fonts', 'Build font files', function() {
   });
 
   return streams;
-})
+});
 
