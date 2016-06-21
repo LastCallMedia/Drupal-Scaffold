@@ -18,6 +18,7 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var mergeStream = require('merge-stream');
 var behat = require('gulp-behat');
+var gutil = require('gulp-util');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -85,10 +86,64 @@ gulp.task('check:eslint', 'Check JS style', function () {
  * Add steps here to run during the test phase.
  * Test steps may require a database and/or web server to function.
  */
-gulp.task('test', 'Run all testing steps', ['test:behat']);
+gulp.task('test', 'Run all testing steps', ['test:behat', 'test:performance']);
 gulp.task('test:behat', 'Run Behat tests', function () {
   return gulp.src('behat.yml')
     .pipe(behat(''));
+});
+gulp.task('test:performance', 'Run phantomas tests', function () {
+  var promises = [];
+  var promise;
+  var cli;
+  var name;
+  var test;
+  var url;
+
+  function createSuccessReporter(name) {
+    return function (result) {
+      gutil.log('PASS: ' + name);
+      gutil.log('-----------------');
+      var data = JSON.parse(result.stdout);
+      gutil.log('Requests: ' + data.metrics.requests);
+      gutil.log('Size: ' + data.metrics.contentLength);
+    };
+  }
+  function createFailReporter(name) {
+    return function (result) {
+      gutil.log('FAIL:' + name);
+      gutil.log('-----------------');
+      console.log(result);
+      var data = JSON.parse(result.stdout);
+      for (var i = 0; i < data.asserts.failedAsserts.length; i++) {
+        var assertName = data.asserts.failedAsserts[i];
+        gutil.log(assertName + ': ' + data.metrics[assertName]);
+      }
+      throw new gutil.PluginError('phantomas', {
+        message: 'Performance tests failed for ' + name
+      });
+    };
+  }
+
+  for (var i = 0; i < config.perfTests.length; i++) {
+    test = config.perfTests[i];
+    name = test.name;
+    url = config.baseUrl + test.url;
+    cli = '';
+    for (var prop in test) {
+      if (test.hasOwnProperty(prop) && prop !== 'url' && prop !== 'name') {
+        cli += ' --' + prop + '="' + test[prop] + '"';
+      }
+    }
+    cli += ' --reporter=json ' + url;
+
+    promise = exec('./node_modules/.bin/phantomas' + cli)
+      .then(createSuccessReporter(name))
+      .catch(createFailReporter(name));
+    promises.push(promise);
+  }
+
+  // Return a chain of all the promises.
+  return Promise.all(promises);
 });
 
 /**

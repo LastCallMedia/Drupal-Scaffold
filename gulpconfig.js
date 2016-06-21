@@ -3,6 +3,7 @@
 
 var options = {
   bowerJsonDirectory: './themes/custom/scaffold/',
+  baseUrl: 'http://localhost:8000',
   // Packages of SCSS that will be compiled.
   scss: [
     {
@@ -38,6 +39,18 @@ var options = {
     '{modules,themes}/custom/**/*.js',
     '!{modules,themes}/custom/**/bower_components/**',
     '!{modules,themes}/custom/**/dist/**'
+  ],
+  perfTests: [
+    {
+      name: 'homepage',
+      url: '/',
+      screenshot: './artifacts/homepage.jpg',
+      har: './artifacts/homepage.har'
+      // Add assertions as needed:
+      // "assert-requests": 5,
+      // These options are converted into phantomas CLI options.
+      // @see https://github.com/macbre/phantomas
+    }
   ]
 };
 
