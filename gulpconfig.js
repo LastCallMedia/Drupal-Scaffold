@@ -35,6 +35,9 @@ var options = {
       dest: './themes/custom/scaffold/dist/js'
     }
   ],
+  // Packages of fonts that will be copied.
+  // An array of objects that have a src and dest key.
+  fonts: [],
   // Patterns for PHP files to lint and check.
   phpCheck: ['{modules,themes}/custom/**/*.{php,inc,module,theme,inc}'],
   // Patterns for JS files to lint and check.

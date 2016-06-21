@@ -151,10 +151,11 @@ gulp.task('test:performance', 'Run phantomas tests', function () {
  *
  * Add steps here to run during the app build process.
  */
-gulp.task('build', 'Run all build steps.', ['build:scss', 'build:js']);
-gulp.task('build:watch', 'Run build steps and watch for changes', ['build:scss', 'build:js'], function () {
+gulp.task('build', 'Run all build steps.', ['build:scss', 'build:js', 'build:fonts']);
+gulp.task('build:watch', 'Run build steps and watch for changes', ['build:scss', 'build:js', 'build:fonts'], function () {
   gulp.watch(mergeSources(config.js), ['build:js']);
   gulp.watch(mergeSources(config.scss), ['build:scss']);
+  gulp.watch(mergeSources(config.fonts), ['build:fonts']);
 });
 gulp.task('build:scss', 'Build SCSS files', function () {
   var streams = mergeStream();
@@ -197,4 +198,15 @@ gulp.task('build:js', 'Build JS files', function () {
   });
   return streams;
 });
+gulp.task('build:fonts', 'Build font files', function() {
+  var streams = mergeStream();
+  config.fonts.forEach(function (pack) {
+    var stream = gulp
+      .src(pack.src)
+      .pipe(gulp.dest(pack.dest));
+    streams.add(stream);
+  });
+
+  return streams;
+})
 
