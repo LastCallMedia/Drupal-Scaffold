@@ -162,7 +162,7 @@ gulp.task('build:scss', 'Build SCSS files', function () {
     var stream = gulp
       .src(pack.src)
       .pipe(sourcemaps.init())
-      .pipe(sass())
+      .pipe(sass(pack.sassOptions))
       .pipe(autoprefixer(pack.prefix))
       .pipe(sourcemaps.write(pack.maps))
       .pipe(gulp.dest(pack.dest));
