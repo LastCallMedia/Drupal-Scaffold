@@ -12,7 +12,7 @@ class Pattern {
   private $name;
   private $type;
   private $description;
-  private $render = [];
+  private $render;
 
   /**
    * Create a new atom pattern.
@@ -38,7 +38,7 @@ class Pattern {
   /**
    * Pattern constructor.
    */
-  protected function __construct($id, $name, $type, $render = [], $description = '') {
+  protected function __construct($id, $name, $type, $render, $description = '') {
     $this->id = $id;
     $this->name = $name;
     $this->type = $type;
@@ -78,7 +78,11 @@ class Pattern {
    * Get the render array for the pattern.
    */
   public function getRender() {
-    return $this->render;
+    $render = $this->render;
+    if (is_callable($render)) {
+      return $render();
+    }
+    return $render;
   }
 
 }
