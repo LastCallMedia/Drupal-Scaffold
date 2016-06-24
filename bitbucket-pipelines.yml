@@ -1,0 +1,10 @@
+image: lastcallmedia/php:7.0-dev
+pipelines:
+  default:
+    - step:
+        script:
+          - npm install
+          - gulp install
+          - gulp build
+          - gulp check
+
