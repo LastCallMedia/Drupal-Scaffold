@@ -46,7 +46,9 @@ gulp.task('install:composer', 'Run composer install', function (cb) {
 });
 gulp.task('install:bower', 'Run bower install', function () {
   var bower = __dirname + '/node_modules/.bin/bower';
-  return exec(bower + ' install', {
+  // Use --allow-root in case this needs to be built in a docker container
+  // that forces root.
+  return exec(bower + ' install --allow-root', {
     cwd: config.bowerJsonDirectory
   });
 });
@@ -209,4 +211,3 @@ gulp.task('build:fonts', 'Build font files', function () {
 
   return streams;
 });
-
