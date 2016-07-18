@@ -2,7 +2,6 @@
 
 namespace Drupal\pattern_lib\Controller;
 
-
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\pattern_lib\PatternManager;
