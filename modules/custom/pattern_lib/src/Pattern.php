@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\pattern_lib;
 
 /**
