@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Drupal\pattern_lib;
-
 
 use Drupal\Core\Theme\ThemeManagerInterface;
 
@@ -30,7 +28,7 @@ class PatternManager {
       $instance = new $class();
       if ($instance instanceof PatternProviderInterface) {
         $patterns = $instance->getPatterns();
-        uasort($patterns, function(Pattern $a, Pattern $b) {
+        uasort($patterns, function (Pattern $a, Pattern $b) {
           return strnatcasecmp($a->getName(), $b->getName());
         });
         return $patterns;
