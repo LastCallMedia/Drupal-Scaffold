@@ -172,7 +172,7 @@ gulp.task('build:scss', 'Build SCSS files', function () {
     streams.add(stream);
   });
 
-  return streams;
+  return streams.isEmpty() ? null : streams;
 });
 gulp.task('build:js', 'Build JS files', function () {
   var streams = mergeStream();
@@ -198,7 +198,7 @@ gulp.task('build:js', 'Build JS files', function () {
 
     streams.add(stream);
   });
-  return streams;
+  return streams.isEmpty() ? null : streams;
 });
 gulp.task('build:fonts', 'Build font files', function () {
   var streams = mergeStream();
@@ -209,5 +209,5 @@ gulp.task('build:fonts', 'Build font files', function () {
     streams.add(stream);
   });
 
-  return streams;
+  return streams.isEmpty() ? null : streams;
 });
