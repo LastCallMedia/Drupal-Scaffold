@@ -10,6 +10,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
+  - nvm use
   - npm install
   - gulp install
 
