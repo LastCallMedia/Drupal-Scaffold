@@ -14,6 +14,8 @@
         }
     ],
     "require": {
+        "cweagans/composer-patches": "~1.0",
+        "hirak/prestissimo": "^0.3",
         "drupal/core": "^8.1",
         "drush/drush": "^8.1"
     },
@@ -27,6 +29,7 @@
         "installer-paths": {
             "modules/contrib/{$name}": ["type:drupal-module"],
             "themes/contrib/{$name}": ["type:drupal-theme"]
-        }
+        },
+        "patches": { }
     }
 }
