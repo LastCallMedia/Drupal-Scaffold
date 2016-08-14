@@ -1,6 +1,7 @@
 {
   "name": "scaffold",
   "description": "Scaffolding project for Drupal sites",
+  "license": "GPL-2.0+",
   "main": "gulpfile.js",
   "authors": [
     "Rob Bayliss <rob@lastcallmedia.com>"

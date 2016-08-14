@@ -1,6 +1,7 @@
 {
-  "name": "scaffold",
+  "name": "lcm-scaffold",
   "version": "1.0.0",
+  "license": "GPL-2.0+",
   "description": "Scaffolding project for Drupal sites",
   "main": "gulpfile.js",
   "dependencies": {
