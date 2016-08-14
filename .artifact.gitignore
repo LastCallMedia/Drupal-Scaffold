@@ -1,0 +1,9 @@
+# Default Drupal core excludes
+sites/*/files
+sites/*/settings*.php
+!sites/*/settings.php
+
+# Build tools
+node_modules/*
+bower_components/*
+behat.local.yml
