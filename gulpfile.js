@@ -108,7 +108,8 @@ gulp.task('test:performance', 'Run phantomas tests', function () {
       gutil.log('-----------------');
       var data = JSON.parse(result.stdout);
       gutil.log('Requests: ' + data.metrics.requests);
-      gutil.log('Size: ' + data.metrics.contentLength);
+      gutil.log('Time to http complete: ' + data.metrics.httpTrafficCompleted + 'ms');
+      gutil.log('Size: ' + data.metrics.contentLength + 'b');
     };
   }
   function createFailReporter(name) {
