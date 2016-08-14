@@ -2581,6 +2581,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-overflow-scrolling: auto; }
 
@@ -2599,6 +2600,7 @@ body {
   min-height: 100%;
   background: #fefefe;
   transition: transform 0.5s ease;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   z-index: 1;
   padding-bottom: 0.1px;

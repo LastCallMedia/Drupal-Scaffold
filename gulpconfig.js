@@ -2,7 +2,7 @@
 'use strict';
 
 var options = {
-  bowerJsonDirectory: './themes/custom/scaffold/',
+  bowerJsonDirectory: './',
   baseUrl: 'http://localhost:8000',
   // Packages of SCSS that will be compiled.
   scss: [
@@ -14,7 +14,7 @@ var options = {
       // Pass options to node-sass.
       sassOptions: {
         // Include paths to resolve automatically.
-        includePaths: []
+        includePaths: ['./bower_components/']
       }
     }
   ],
@@ -28,7 +28,7 @@ var options = {
       dest: './themes/custom/scaffold/dist/js'
     },
     {
-      src: './themes/custom/scaffold/bower_components/foundation-sites/dist/foundation.js',
+      src: './bower_components/foundation-sites/dist/foundation.js',
       concat: 'libs.js',
       min: true,
       maps: '../maps',
