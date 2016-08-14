@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "GPL-2.0+",
   "description": "Scaffolding project for Drupal sites",
+  "private": true,
   "main": "gulpfile.js",
   "dependencies": {
     "bower": "^1.7.9",
