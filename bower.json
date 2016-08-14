@@ -1,5 +1,5 @@
 {
-  "name": "scaffold",
+  "name": "lastcall.drupal-scaffold",
   "description": "Scaffolding project for Drupal sites",
   "license": "GPL-2.0+",
   "main": "gulpfile.js",
