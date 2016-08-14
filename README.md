@@ -1,6 +1,8 @@
 LCM Drupal 8 Scaffolding
 ========================
 
+This is a boilerplate Drupal 8 build that bundles some standard tools to make it a good starting point for an enterprise scale Drupal build.  It is conceptually similar to [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold), but it has a much simpler (and more manual) Composer setup, and includes additional tools. 
+
 Initial Project Setup
 -----
 
@@ -8,7 +10,7 @@ _(These are only needed for creating a new project repository.  Remove this sect
 
 1. Run the following command to clone this project down.  Replace PROJECTNAME with the name of the folder you want to create for the project.
   ```
-  composer create-project lastcall/drupal-scaffold PROJECTNAME
+  composer create-project lastcall/drupal-scaffold PROJECTNAME -s beta
   ```
 2. Configure nvm to use the latest stable version `nvm install stable; nvm use stable;` 
 3. From the docroot: `npm install` to install nodejs dependencies.
