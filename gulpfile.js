@@ -21,6 +21,7 @@ var mergeStream = require('merge-stream');
 var behat = require('gulp-behat');
 var gutil = require('gulp-util');
 var csso = require('gulp-csso');
+var imagemin = require('gulp-imagemin');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -155,11 +156,11 @@ gulp.task('test:performance', 'Run phantomas tests', function () {
  *
  * Add steps here to run during the app build process.
  */
-gulp.task('build', 'Run all build steps.', ['build:scss', 'build:js', 'build:fonts']);
-gulp.task('build:watch', 'Run build steps and watch for changes', ['build:scss', 'build:js', 'build:fonts'], function () {
+gulp.task('build', 'Run all build steps.', ['build:scss', 'build:js', 'build:copy']);
+gulp.task('build:watch', 'Run build steps and watch for changes', ['build:scss', 'build:js', 'build:copy'], function () {
   gulp.watch(mergeSources(config.js), ['build:js']);
   gulp.watch(mergeSources(config.scss), ['build:scss']);
-  gulp.watch(mergeSources(config.fonts), ['build:fonts']);
+  gulp.watch(mergeSources(config.copy), ['build:copy']);
 });
 gulp.task('build:scss', 'Build SCSS files', function () {
   var streams = mergeStream();
@@ -203,12 +204,17 @@ gulp.task('build:js', 'Build JS files', function () {
   });
   return streams.isEmpty() ? null : streams;
 });
-gulp.task('build:fonts', 'Build font files', function () {
+gulp.task('build:copy', 'Copy source files', function () {
   var streams = mergeStream();
-  config.fonts.forEach(function (pack) {
+  config.copy.forEach(function (pack) {
     var stream = gulp
-      .src(pack.src)
-      .pipe(gulp.dest(pack.dest));
+      .src(pack.src);
+
+    if(pack.imagemin) {
+      stream = stream.pipe(imagemin());
+    }
+
+    stream = stream.pipe(gulp.dest(pack.dest));
     streams.add(stream);
   });
 

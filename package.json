@@ -16,6 +16,7 @@
     "gulp-csso": "^2.0.0",
     "gulp-eslint": "^2.0.0",
     "gulp-help": "^1.6.1",
+    "gulp-imagemin": "^3.0.3",
     "gulp-minify": "0.0.12",
     "gulp-phpcs": "^1.1.1",
     "gulp-phplint": "^0.1.0",

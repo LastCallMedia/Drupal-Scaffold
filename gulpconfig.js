@@ -35,9 +35,15 @@ var options = {
       dest: './themes/custom/scaffold/dist/js'
     }
   ],
-  // Packages of fonts that will be copied.
-  // An array of objects that have a src and dest key.
-  fonts: [],
+  // Packages of files that will be copied.
+  // Files can optionally be passed through imagemin.
+  copy: [
+    {
+      src: './themes/custom/scaffold/images',
+      imagemin: true,
+      dest: './themes/custom/scaffold/dist/images'
+    }
+  ],
   // Patterns for PHP files to lint and check.
   phpCheck: ['{modules,themes}/custom/**/*.{php,inc,module,theme,inc}'],
   // Patterns for JS files to lint and check.
