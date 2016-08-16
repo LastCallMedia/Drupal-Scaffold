@@ -47,3 +47,6 @@ parameters:
     # Not recommended in production environments
     # @default true
     cache: false
+
+# Also see in services.yml:
+#  - http.response.debug_cacheability_headers
