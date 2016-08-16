@@ -3,7 +3,7 @@
 
 var options = {
   bowerJsonDirectory: './',
-  baseUrl: 'http://localhost:8000',
+  baseUrl: 'http://127.0.0.1:8888',
   // Packages of SCSS that will be compiled.
   scss: [
     {
