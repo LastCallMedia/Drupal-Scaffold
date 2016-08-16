@@ -20,6 +20,7 @@ var minify = require('gulp-minify');
 var mergeStream = require('merge-stream');
 var behat = require('gulp-behat');
 var gutil = require('gulp-util');
+var csso = require('gulp-csso');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -168,6 +169,7 @@ gulp.task('build:scss', 'Build SCSS files', function () {
       .pipe(sourcemaps.init())
       .pipe(sass(pack.sassOptions))
       .pipe(autoprefixer(pack.prefix))
+      .pipe(csso(pack.csso))
       .pipe(sourcemaps.write(pack.maps))
       .pipe(gulp.dest(pack.dest));
     streams.add(stream);

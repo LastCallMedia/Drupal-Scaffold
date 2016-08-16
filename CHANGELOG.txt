@@ -2,6 +2,7 @@ Development
 -----------
 * No longer include behat.local.yml by default.  Use default settings for `drush rs` (127.0.0.1:8888) for behat base_url.
 * Use default settings for `drush rs` (127.0.0.1:8888) for phantomas base url.
+* Add csso for CSS optimization.
 
 1.0.0-beta1, 2016-08-14
 -----------------------
