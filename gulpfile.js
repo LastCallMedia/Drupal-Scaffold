@@ -210,7 +210,7 @@ gulp.task('build:copy', 'Copy source files', function () {
     var stream = gulp
       .src(pack.src);
 
-    if(pack.imagemin) {
+    if (pack.imagemin) {
       stream = stream.pipe(imagemin());
     }
 
