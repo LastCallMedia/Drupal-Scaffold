@@ -168,7 +168,7 @@ gulp.task('build:scss', 'Build SCSS files', function () {
     var stream = gulp
       .src(pack.src)
       .pipe(sourcemaps.init())
-      .pipe(sass(pack.sassOptions))
+      .pipe(sass(pack.sassOptions).on('error', sass.logError))
       .pipe(autoprefixer(pack.prefix))
       .pipe(csso(pack.csso))
       .pipe(sourcemaps.write(pack.maps))
