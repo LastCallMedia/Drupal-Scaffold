@@ -5,6 +5,7 @@ Development
 * Add csso for CSS optimization.
 * Rename build:fonts to build:copy.
 * Add imagemin option to build:copy task.
+* Don't abort build:scss task on scss error (fixes watch breaking on invalid scss).
 
 
 1.0.0-beta1, 2016-08-14
