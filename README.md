@@ -38,7 +38,4 @@ You can use composer to bring in modules and themes.  Just run:
 ```
 composer require drupal/ctools
 ```
-Contributed modules and themes are .gitignored by default, meaning:
-
-* You need to run `composer install` each time you clone the repository down
-* You need to run `composer update` each time a `git pull` updates composer.json
+Contributed modules and themes are .gitignored by default, meaning you need to run `gulp install` each time you clone the repository down.
