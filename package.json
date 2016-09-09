@@ -19,7 +19,7 @@
     "gulp-imagemin": "^3.0.3",
     "gulp-minify": "^0.0.14",
     "gulp-phpcs": "^1.1.1",
-    "gulp-phplint": "^0.1.0",
+    "gulp-phplint": "^0.3.0",
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
