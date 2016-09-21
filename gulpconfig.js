@@ -18,7 +18,7 @@ var options = {
       }
     },
     {
-      src: './themes/custom/scaffold/scss/typography/*.scss',
+      src: './themes/custom/scaffold/scss/wysiwyg.scss',
       maps: '../maps',
       prefix: {browsers: 'last 2 versions', cascade: false},
       dest: './themes/custom/scaffold/dist/css/wysiwyg',

@@ -7,5 +7,5 @@ description: "Foundation 6 theme for _projectname_"
 libraries:
   - scaffold/global
 ckeditor_stylesheets:
-  - scaffold/dist/css/scaffold
+  - scaffold/dist/css/typography
 
