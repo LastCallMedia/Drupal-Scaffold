@@ -8,3 +8,4 @@ libraries:
   - scaffold/global
 ckeditor_stylesheets:
   - dist/css/wysiwyg/wysiwyg.css
+
