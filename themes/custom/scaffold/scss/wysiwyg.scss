@@ -7,12 +7,12 @@
 // Put remote font imports here.
 // @import url($google-fonts);
 
-@include $foundation-typography; 
-@include $foundation-button; 
-@include $foundation-table; 
-@include $foundation-thumbnail; 
-@include $foundation-visibility-classes; 
-@include $foundation-float-classes;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-table;
+@include foundation-thumbnail;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
 
 // This gives the wysiwyg a little breathing room.
 .cke_editable {
