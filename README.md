@@ -12,7 +12,7 @@ _(These are only needed for creating a new project repository.  Remove this sect
 
 1. Run the following command to clone this project down.  Replace PROJECTNAME with the name of the folder you want to create for the project.
   ```
-  composer create-project lastcall/drupal-scaffold PROJECTNAME -s beta
+  composer create-project lastcall/drupal-scaffold PROJECTNAME
   ```
 2. Configure nvm to use the latest stable version `nvm install stable; nvm use stable;` 
 3. From the docroot: `npm install` to install nodejs dependencies.
