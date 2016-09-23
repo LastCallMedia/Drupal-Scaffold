@@ -16,17 +16,6 @@ var options = {
         // Include paths to resolve automatically.
         includePaths: ['./bower_components/']
       }
-    },
-    {
-      src: './themes/custom/scaffold/scss/typography/*.scss',
-      maps: '../maps',
-      prefix: {browsers: 'last 2 versions', cascade: false},
-      dest: './themes/custom/scaffold/dist/css/wysiwyg',
-      // Pass options to node-sass.
-      sassOptions: {
-        // Include paths to resolve automatically.
-        includePaths: ['./bower_components/']
-      }
     }
   ],
   // Packages of javascript that will be compiled.
