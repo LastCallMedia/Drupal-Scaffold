@@ -13,7 +13,8 @@ install:
   - nvm install
   - npm install
   - gulp install
-  - composer validate
 
 script:
+  - composer validate
   - gulp check
+  - gulp build
