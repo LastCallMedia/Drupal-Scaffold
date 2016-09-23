@@ -6,5 +6,5 @@ description: "Foundation 6 theme for _projectname_"
 
 libraries:
   - scaffold/global
-
-
+ckeditor_stylesheets:
+  - dist/css/wysiwyg.css
