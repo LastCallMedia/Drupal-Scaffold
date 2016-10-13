@@ -18,10 +18,10 @@
     "gulp-help": "^1.6.1",
     "gulp-imagemin": "^3.0.3",
     "gulp-minify": "^0.0.14",
-    "gulp-phpcs": "^1.1.1",
+    "gulp-phpcs": "^1.2",
     "gulp-phplint": "^0.3.0",
     "gulp-sass": "^2.3.1",
-    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sourcemaps": "^2.0",
     "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0",
     "phantomas": "^1.15.1"
