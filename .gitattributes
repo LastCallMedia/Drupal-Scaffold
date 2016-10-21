@@ -52,3 +52,4 @@
 *.phar    -text diff
 *.exe     -text diff
 *.ttf     -text diff
+*.eot     -text diff
