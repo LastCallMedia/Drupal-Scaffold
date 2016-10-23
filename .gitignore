@@ -16,3 +16,6 @@ themes/contrib
 !themes/contrib/README.md
 artifacts/*
 
+# Extras for the scaffold theme
+themes/custom/scaffold/dist
+
