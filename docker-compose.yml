@@ -1,0 +1,72 @@
+# This is a Docker Compose file for a LAMP + Varnish, Redis, and Solr stack.
+# It is fine for local development, but to use it for production environments,
+# you should set proper passwords, memory limits, and restart policies. This
+# setup only exposes Varnish on port 8080.  All other ports are internal.
+#
+# Starting the application:
+#   docker-compose up -d
+#
+# Stopping the application:
+#   docker-compose stop
+#
+# Getting shell access:
+#   docker-compose exec drupal /bin/bash
+#
+# See https://docs.docker.com/compose/ for more information.
+
+version: '2'
+
+volumes:
+  # This is an anonymous volume.  It won't be deleted unless you explicitly do so
+  # (you can remove the mysql container and it will still persist).  The location
+  # of the volume on the host is managed by Docker.
+  mysql_data:
+
+services:
+  varnish:
+    image: kardasz/varnish:latest
+    ports:
+      - 8080:80
+    links:
+      - drupal
+    volumes:
+      - ./docker/default.vcl:/etc/varnish/default.vcl
+
+
+  drupal:
+    image: "lastcallmedia/php:7.0"
+    volumes:
+      - .:/var/www/html
+    links:
+      - mysql
+      - redis
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PASSWORD=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_DATABASE=drupal
+      - REDIS_HOSTNAME=redis
+      - SITE_NAME=scaffold
+      - DOCKER_ENV=local
+
+  mysql:
+    image: "mysql:5.6"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+      - MYSQL_DATABASE=drupal
+
+  redis:
+    image: redis:3.2.4
+
+  # You need to add the search_api_solr module before you can create this
+  # container, since we need the configuration files.
+  #solr:
+  #  image: solr:5.5.3-alpine
+  #  command: solr-precreate main /solr-config
+  #  volumes:
+  #    - ./modules/contrib/search_api_solr/solr-conf/5.x:/solr-config/conf
+
