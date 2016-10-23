@@ -1,5 +1,19 @@
 Development
 -----------
+
+
+1.0.2, 2016-10-23
+------------------
+* Add docker-compose stack for easy setup
+* Scaffold theme enhancements (add logo, base menu theming, remove compiled assets)
+* Properly set git attributes for .svg and .eot
+* Remove gitignore for settings*.php - only ignore settings.local.php
+* Coder check for .install files too
+* Dependency updates (gulp-sourcemaps, gulp-phpcs, Drupal core)
+
+1.0.1, 2016-09-23
+-----------------
+* Add wysiwyg stylesheet
 * No longer include behat.local.yml by default.  Use default settings for `drush rs` (127.0.0.1:8888) for behat base_url.
 * Use default settings for `drush rs` (127.0.0.1:8888) for phantomas base url.
 * Add csso for CSS optimization.
