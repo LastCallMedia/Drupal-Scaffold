@@ -45,7 +45,7 @@ var options = {
     }
   ],
   // Patterns for PHP files to lint and check.
-  phpCheck: ['{modules,themes}/custom/**/*.{php,inc,module,theme,inc}'],
+  phpCheck: ['{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'],
   // Patterns for JS files to lint and check.
   jsCheck: [
     'gulpfile.js',
