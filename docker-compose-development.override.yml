@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  varnish:
+    ports:
+      - "${EDGE_PORT}:80"
+  drupal:
+    ports:
+      - "${WEB_PORT}:80"
+  mysql:
+    ports:
+      - "${MYSQL_PORT}:3306"
+#  solr:
+#    ports:
+#      - "${SOLR_PORT}:8983"
