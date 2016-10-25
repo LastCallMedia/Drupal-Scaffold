@@ -51,16 +51,10 @@ To use the standard configuration, just run `docker-compose up`. This makes the 
 
 The default setup only exposes port 80 from varnish to the outside world (exposed as port 8080 to the host). This is great for production-like environments, but not for development where you may not want a reverse proxy, or you may need to connect directly to MySQL using a tool like Sequel Pro.
 
-The standard `docker-compose.yml` can be overridden/added to using a `docker-compose.override.yml` file (which is ignored by the repository). This project includes an example override file that exposes ports to all relevant containers for direct access from the host in `docker-compose-development.override.yml`. Unless additional customization is needed, it is most likely enough to symlink `docker-compose-development.override.yml` to `docker-compose.override.yml`
+The standard `docker-compose.yml` can be overridden/added to by specifying multiple compose files when bringing the containers online. This project includes a `docker-compose.debug.yml` file that exposes ports for all of the relevant containers, allowing direct access to them from the host. You can leverage these debug ports by bringing the containers up with this command: `docker-compose -f docker-compose.yml -f docker-compose.debug.yml up`
 
-`docker-compose-development.override.yml` uses environment variables to define which ports each container exposes to the host. These environment variables are defined in `.env` (also ignored from the repository). This project includes a `SETUP.env` file which shows how to define each environment variable, and can most likely be copied to `.env` and used verbatim. If you run into port conflicts, the ports in `.env` are arbitrary and can be changed to any port that is available.
-
-The configurable container ports are:
-* `EDGE_PORT`: Port used to access the site behind Varnish
-  * ex `EDGE_PORT=8080`: The site is available behind Varnish at [http://localhost:8080](http://localhost:8080)
-* `WEB_PORT`: Port used to access the site _without varnish_
-  * ex `WEB_PORT=8081`: The site is directly available (with no reverse proxy in front) at [http://localhost:8081](http://localhost:8081)
-* `MYSQL_PORT`: Port used to connect to MySQL from the host
-  * ex `MYSQL_PORT=33306`, direct MySQL connection can be made from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
-* `SOLR_PORT`: Port used to access Solr server
-  * ex `SOLR_PORT=8983`, the Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
+When the debug ports are exposed, the following services are available from the host:
+* Varnish: You can still access the site behind varnish as you would with only the default config at [http://localhost:8080](http://localhost:8080)
+* Drupal: You can directly access the drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
+* MySQL: You can make a direct connection from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+* Solr: The Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
