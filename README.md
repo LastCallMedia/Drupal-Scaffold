@@ -55,6 +55,6 @@ The standard `docker-compose.yml` can be overridden/added to by specifying multi
 
 When the debug ports are exposed, the following services are available from the host:
 * Varnish: You can still access the site behind varnish as you would with only the default config at [http://localhost:8080](http://localhost:8080)
-* Drupal: You can directly access the drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
+* Drupal: You can directly access the Drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
 * MySQL: You can make a direct connection from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
 * Solr: The Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
