@@ -28,7 +28,10 @@ var options = {
       dest: './themes/custom/scaffold/dist/js'
     },
     {
-      src: './bower_components/foundation-sites/dist/foundation.js',
+      src: [
+        './bower_components/what-input/what-input.js',
+        './bower_components/foundation-sites/dist/foundation.js'
+      ],
       concat: 'libs.js',
       min: true,
       maps: '../maps',
