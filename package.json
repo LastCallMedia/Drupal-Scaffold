@@ -28,5 +28,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">= 5.0"
+  },
   "author": ""
 }

@@ -3,6 +3,7 @@ Development
 * Add a debug configuration for docker-compose stack
 * Fix docker environment detection
 * Compile what-input with Foundation JS
+* Specify engines in package.json for better CI detection.
 
 1.0.2, 2016-10-23
 ------------------
