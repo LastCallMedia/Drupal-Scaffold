@@ -20,7 +20,7 @@ $config['search_api_solr.settings']['site_hash'] = $prefix;
 $settings['reverse_proxy'] = TRUE;
 $settings['reverse_proxy_addresses'] = ['172.0.0.0/8'];
 
-if(NULL !== getenv('REDIS_HOST')) {
+if(FALSE !== getenv('REDIS_HOST')) {
   $settings['redis.connection']['interface'] = 'PhpRedis';
   $settings['redis.connection']['base'] = getenv('REDIS_BASE') ?: 0;
   $settings['redis.connection']['host'] = getenv('REDIS_HOST') ?: 'redis';
