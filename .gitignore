@@ -19,3 +19,6 @@ artifacts/*
 # Extras for the scaffold theme
 themes/custom/scaffold/dist
 
+# Environment specific Docker files
+.env
+docker-compose.override.yml

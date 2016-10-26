@@ -39,3 +39,22 @@ You can use composer to bring in modules and themes.  Just run:
 composer require drupal/ctools
 ```
 Contributed modules and themes are .gitignored by default, meaning you need to run `gulp install` each time you clone the repository down.
+
+Using the Docker Images
+-----------------------
+
+#### Default configuration
+
+To use the standard configuration, just run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).
+
+#### Development configuration
+
+The default setup only exposes port 80 from varnish to the outside world (exposed as port 8080 to the host). This is great for production-like environments, but not for development where you may not want a reverse proxy, or you may need to connect directly to MySQL using a tool like Sequel Pro.
+
+The standard `docker-compose.yml` can be overridden/added to by specifying multiple compose files when bringing the containers online. This project includes a `docker-compose.debug.yml` file that exposes ports for all of the relevant containers, allowing direct access to them from the host. You can leverage these debug ports by bringing the containers up with this command: `docker-compose -f docker-compose.yml -f docker-compose.debug.yml up`
+
+When the debug ports are exposed, the following services are available from the host:
+* Varnish: You can still access the site behind varnish as you would with only the default config at [http://localhost:8080](http://localhost:8080)
+* Drupal: You can directly access the Drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
+* MySQL: You can make a direct connection from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+* Solr: The Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
