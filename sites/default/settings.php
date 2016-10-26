@@ -707,7 +707,7 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 /**
  * Load docker overrides, if available.
  */
-if(NULL !== getenv('DOCKER_ENV')) {
+if(FALSE !== getenv('DOCKER_ENV')) {
   require __DIR__ . '/settings.docker.php';
 }
 
