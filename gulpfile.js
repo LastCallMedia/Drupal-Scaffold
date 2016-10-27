@@ -65,7 +65,7 @@ gulp.task('install:bower', 'Run bower install', function () {
 gulp.task('check', 'Run static code analysis', ['check:phplint', 'check:phpcs', 'check:eslint']);
 gulp.task('check:phplint', 'Lint PHP code', function () {
   return gulp.src(config.phpCheck)
-    .pipe(phplint())
+    .pipe(phplint('', {notify: false, skipPassedFiles: true}))
     .pipe(phplint.reporter('fail'));
 });
 gulp.task('check:phpcs', 'Check Drupal code style', function () {
