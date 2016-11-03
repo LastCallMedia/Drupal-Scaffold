@@ -47,7 +47,7 @@ rsync -av --delete --exclude=artifacts/ --exclude=.git/ --exclude=node_modules -
 pushd $CLONE_DIR
   mv .artifact.gitignore .gitignore
   # Remove any newly excluded files.
-  git ls-files -i --exclude-standard | xargs git rm --cached
+  git ls-files -z --ignored --exclude-standard | xargs -0 -r git rm -r --cached --ignore-unmatch
   git add --all .
   git commit -m "$MESSAGE"
   git push origin "$BRANCH"
