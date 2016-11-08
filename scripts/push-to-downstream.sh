@@ -42,7 +42,7 @@ popd
 
 # Sync everything but .git/ and artifacts/ to the downstream folder.
 # .gitignore will take over from there.
-rsync -av --delete --exclude=artifacts/ --exclude=.git/ --exclude=node_modules --exclude=bower_components $DRUPAL_ROOT $CLONE_DIR
+rsync -a --delete --exclude=artifacts/ --exclude=.git/ --exclude=node_modules --exclude=bower_components $DRUPAL_ROOT $CLONE_DIR
 
 pushd $CLONE_DIR
   mv .artifact.gitignore .gitignore
