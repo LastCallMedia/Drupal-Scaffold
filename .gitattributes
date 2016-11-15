@@ -55,3 +55,4 @@
 *.eot     -text diff
 *.svg     -text diff
 *.swf     -text diff
+*.pdf     -text diff
