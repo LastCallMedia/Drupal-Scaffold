@@ -43,7 +43,7 @@ function mergeSources(arr) {
  * Add steps here to run during installation of the app.
  */
 gulp.task('install', 'Run all install steps', ['install:composer', 'install:bower']);
-gulp.task('install:composer', 'Run composer install', function (cb) {
+gulp.task('install:composer', 'Run composer install', function () {
   return exec('composer install');
 });
 gulp.task('install:bower', 'Run bower install', function () {
