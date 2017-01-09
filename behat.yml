@@ -21,7 +21,7 @@ default:
         # @docroot
         drupal_root: %paths.base%/web
       drush:
-        binary: vendor/bin/drush
+        binary: %paths.base%/vendor/bin/drush
         # @docroot
         root: %paths.base%/web
 
