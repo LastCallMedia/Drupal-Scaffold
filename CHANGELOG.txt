@@ -1,5 +1,6 @@
 Development
 -----------
+* Runs behat and performance tests out of the box with Travis.
 * Move docroot into web/
 * Update to Drupal core 8.2.x
 * Add a debug configuration for docker-compose stack
