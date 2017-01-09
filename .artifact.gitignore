@@ -1,8 +1,16 @@
-# Default Drupal core excludes
-sites/*/files
-sites/*/settings.local.php
+# Environment specific files:
+web/sites/*/files
+web/sites/*/settings.local.php
+.env
+docker-compose.override.yml
 
 # Build tools
 node_modules/*
 bower_components/*
 behat.local.yml
+
+# Build artifacts and tools:
+node_modules
+behat.local.yml
+bower_components
+artifacts/*
