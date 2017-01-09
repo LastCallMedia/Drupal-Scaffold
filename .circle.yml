@@ -19,11 +19,11 @@ database:
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
     - vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
-    - nohup vendor/bin/drush -r $(pwd)/web/ rs 8000 > /dev/null 2>&1:
-        background: true
 
 test:
   override:
+    - nohup vendor/bin/drush -r $(pwd)/web/ rs 8000 > /dev/null 2>&1:
+        background: true
     - composer validate
     - gulp check
     - gulp build
