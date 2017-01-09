@@ -40,6 +40,10 @@ composer require drupal/ctools
 ```
 Contributed modules and themes are .gitignored by default, meaning you need to run `gulp install` each time you clone the repository down.
 
+Customizing the docroot
+-----------------------
+This tool is pre-configured for use on Pantheon.  Using it on Acquia or another host may require some adjustment of the docroot folder (currently web/).  We've tried to comment with "@docroot" in any locations where the docroot path is hard-coded to web/.
+
 Using the Docker Images
 -----------------------
 

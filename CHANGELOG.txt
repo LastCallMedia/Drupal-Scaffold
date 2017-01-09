@@ -1,5 +1,6 @@
 Development
 -----------
+* Move docroot into web/
 * Update to Drupal core 8.2.x
 * Add a debug configuration for docker-compose stack
 * Fix docker environment detection
