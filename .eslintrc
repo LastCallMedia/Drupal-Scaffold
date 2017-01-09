@@ -1,3 +1,3 @@
 {
-  "extends": "./core/.eslintrc"
+  "extends": "./web/core/.eslintrc"
 }

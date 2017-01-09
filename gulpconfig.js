@@ -2,16 +2,20 @@
 
 (function () {
   'use strict';
+
+  // The folder the web accessible code lives in.
+  var docroot = './web';
+
   var options = {
     bowerJsonDirectory: './',
     baseUrl: 'http://127.0.0.1:8888',
     // Packages of SCSS that will be compiled.
     scss: [
       {
-        src: './themes/custom/scaffold/scss/**/*.scss',
+        src: docroot + '/themes/custom/scaffold/scss/**/*.scss',
         maps: '../maps',
         prefix: {browsers: 'last 2 versions', cascade: false},
-        dest: './themes/custom/scaffold/dist/css',
+        dest: docroot + '/themes/custom/scaffold/dist/css',
         // Pass options to node-sass.
         sassOptions: {
           // Include paths to resolve automatically.
@@ -22,11 +26,11 @@
     // Packages of javascript that will be compiled.
     js: [
       {
-        src: ['./themes/custom/scaffold/js/**/*.js'],
+        src: [docroot + '/themes/custom/scaffold/js/**/*.js'],
         concat: false,
         min: true,
         maps: '../maps',
-        dest: './themes/custom/scaffold/dist/js'
+        dest: docroot + '/themes/custom/scaffold/dist/js'
       },
       {
         src: [
@@ -36,28 +40,28 @@
         concat: 'libs.js',
         min: true,
         maps: '../maps',
-        dest: './themes/custom/scaffold/dist/js'
+        dest: docroot + '/themes/custom/scaffold/dist/js'
       }
     ],
     // Packages of files that will be copied.
     // Files can optionally be passed through imagemin.
     copy: [
       {
-        src: './themes/custom/scaffold/images',
+        src: docroot + '/themes/custom/scaffold/images',
         imagemin: true,
-        dest: './themes/custom/scaffold/dist/images'
+        dest: docroot + '/themes/custom/scaffold/dist/images'
       }
     ],
     // Patterns for PHP files to lint and check.
-    phpCheck: ['{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'],
+    phpCheck: [docroot + '/{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'],
     // Patterns for JS files to lint and check.
     jsCheck: [
       'gulpfile.js',
       'gulpconfig.js',
-      '{modules,themes}/custom/**/*.js',
-      '!{modules,themes}/custom/**/bower_components/**',
-      '!{modules,themes}/custom/**/node_modules/**',
-      '!{modules,themes}/custom/**/dist/**'
+      docroot + '/{modules,themes}/custom/**/*.js',
+      '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
+      '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',
+      '!' + docroot + '/{modules,themes}/custom/**/dist/**'
     ],
     perfTests: [
       {
