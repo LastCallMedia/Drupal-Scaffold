@@ -21,6 +21,6 @@ script:
   - gulp check
   - gulp build
   # Install site
-  - cp ci/travis-settings-local.php web/sites/default/settings.local.php
+  - cp ci/settings.travis.php web/sites/default/settings.local.php
   - vendor/bin/drush -r web/ si -y
 

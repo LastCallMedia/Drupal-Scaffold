@@ -8,3 +8,5 @@ $databases['default']['default'] = array(
   'username' => 'root',
   'database' => 'scaffold_test',
 );
+
+$settings['hash_salt'] = getenv('TRAVIS_BUILD_ID');
