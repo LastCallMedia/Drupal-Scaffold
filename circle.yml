@@ -18,11 +18,11 @@ dependencies:
 database:
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
+    - vendor/bin/drupal --root=web/ -n site:install
 
 test:
   override:
-    - nohup vendor/bin/drush -r $(pwd)/web/ rs 8000 > /dev/null 2>&1:
+    - nohup vendor/bin/drupal --root=web/ server 127.0.0.1:8888 > /dev/null 2>&1:
         background: true
     - composer validate
     - gulp check
