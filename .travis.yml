@@ -1,19 +1,33 @@
 language: php
 
+services:
+  - mysql
+
 php:
   - 5.6
   - 7
 
+env:
+  - COMPOSER_EXIT_ON_PATCH_FAILURE=1
+
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.drush/cache
+    - $HOME/.npm
 
 install:
   - nvm install
   - npm install
   - gulp install
+  - mysql -u root -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost'"
+  - cp ci/settings.travis.php web/sites/default/settings.local.php
+  - vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
+  - vendor/bin/drush -r web/ rs 8888 &>/dev/null &
 
 script:
   - composer validate
   - gulp check
   - gulp build
+  - gulp test
+

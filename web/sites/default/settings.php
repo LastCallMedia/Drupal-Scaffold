@@ -740,15 +740,16 @@ $settings['file_scan_ignore_directories'] = [
 ];
 
 /**
- * Load local development override configuration, if available.
- *
- * Use settings.local.php to override variables on secondary (staging,
- * development, etc) installations of this site. Typically used to disable
- * caching, JavaScript/CSS compression, re-routing of outgoing emails, and
- * other things that should not happen on development and testing sites.
- *
- * Keep this code block at the end of this file to take full effect.
+ * Load environment-specific configuration overrides, if applicable.
  */
-if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
+if(FALSE !== getenv('DOCKER_ENV') && file_exists(__DIR__ . '/settings.docker.php')) {
+  require __DIR__ . '/settings.docker.php';
+}
+// Always include a Pantheon settings file if one exists.
+if(file_exists(__DIR__ . '/settings.pantheon.php')) {
+  require __DIR__ . '/settings.pantheon.php';
+}
+// Include an optional local settings override.
+if(file_exists(__DIR__ . '/settings.local.php')) {
+  require __DIR__ . '/settings.local.php';
 }

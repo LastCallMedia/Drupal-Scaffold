@@ -11,7 +11,7 @@
 use Drupal\Core\DrupalKernel;
 use Symfony\Component\HttpFoundation\Request;
 
-$autoloader = require_once __DIR__.'/vendor/autoload.php';
+$autoloader = require_once __DIR__.'/autoload.php';
 
 $kernel = new DrupalKernel('prod', $autoloader);
 

@@ -1,3 +1,4 @@
 {
-  "extends": "./core/.eslintrc"
+  //  @docroot
+  "extends": "./web/core/.eslintrc"
 }

@@ -1,24 +1,21 @@
-# Default Drupal core excludes
-sites/*/files
-sites/*/settings.local.php
-
-# Build tools
-node_modules/*
-behat.local.yml
-bower_components/*
-
-# Extras required for a composer build
-core/*
-vendor/*
-modules/contrib
-themes/contrib
-!modules/contrib/README.md
-!themes/contrib/README.md
-artifacts/*
-
-# Extras for the scaffold theme
-themes/custom/scaffold/dist
-
-# Environment specific Docker files
+# Environment specific files:
+# @docroot
+web/sites/*/files
+web/sites/*/settings.local.php
 .env
 docker-compose.override.yml
+
+# Contrib/external code:
+web/core
+web/modules/contrib
+!web/modules/contrib/README.md
+web/themes/contrib
+!web/themes/contrib/README.md
+vendor/
+
+# Build artifacts and tools:
+node_modules
+behat.local.yml
+bower_components
+artifacts/*
+web/themes/custom/scaffold/dist

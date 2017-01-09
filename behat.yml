@@ -18,10 +18,12 @@ default:
       api_driver: 'drupal'
       blackbox: ~
       drupal:
-        drupal_root: %paths.base%
+        # @docroot
+        drupal_root: %paths.base%/web
       drush:
-        binary: vendor/bin/drush
-        root: %paths.base%
+        binary: %paths.base%/vendor/bin/drush
+        # @docroot
+        root: %paths.base%/web
 
 # Optionally, load a behat.local.yml to override parameters.
 #imports:
