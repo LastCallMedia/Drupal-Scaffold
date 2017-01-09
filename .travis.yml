@@ -15,12 +15,13 @@ install:
   - nvm install
   - npm install
   - gulp install
+  - mysql -e 'CREATE DATABASE test;'
+  - cp ci/settings.travis.php web/sites/default/settings.local.php
 
 script:
   - composer validate
   - gulp check
   - gulp build
   # Install site
-  - cp ci/settings.travis.php web/sites/default/settings.local.php
   - vendor/bin/drush -r web/ si -y
 

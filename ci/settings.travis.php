@@ -6,7 +6,7 @@
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'username' => 'root',
-  'database' => 'scaffold_test',
+  'database' => 'test',
 );
 
 $settings['hash_salt'] = getenv('TRAVIS_BUILD_ID');
