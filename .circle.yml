@@ -1,0 +1,33 @@
+machine:
+  php:
+    version: 7.0.4
+  environment:
+    PATH: "$HOME/.composer/vendor/bin:$PATH"
+    COMPOSER_EXIT_ON_PATCH_FAILURE: 1
+
+dependencies:
+  override:
+    - nvm install
+    - npm install
+    - node_modules/.bin/gulp install
+  cache_directories:
+    - "~/.composer/cache"
+    - "~/.npm"
+    - "~/.bower"
+
+database:
+  override:
+    - cp ci/settings.circle.php web/sites/default/settings.local.php
+    - vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
+    - nohup vendor/bin/drush -r $(pwd)/web/ rs 8000 > /dev/null 2>&1:
+        background: true
+
+test:
+  override:
+    - composer validate
+    - gulp check
+    - gulp build
+    - node_modules/.bin/gulp check
+    - node_modules/.bin/gulp build
+    - node_modules/.bin/gulp test
+
