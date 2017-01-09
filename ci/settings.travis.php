@@ -6,8 +6,9 @@
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'hostname' => '127.0.0.1',
-  'username' => 'root',
-  'database' => 'test',
+  'username' => 'drupal',
+  'password' => 'drupal',
+  'database' => 'drupal',
 );
 
 $settings['hash_salt'] = getenv('TRAVIS_BUILD_ID');

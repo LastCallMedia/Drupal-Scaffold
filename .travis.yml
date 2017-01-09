@@ -15,13 +15,12 @@ install:
   - nvm install
   - npm install
   - gulp install
-  - mysql -e 'CREATE DATABASE test;'
-  - cp ci/settings.travis.php web/sites/default/settings.local.php
+  - mysql -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost'"
+
 
 script:
   - composer validate
   - gulp check
   - gulp build
-  # Install site
-  - vendor/bin/drush -r web/ si -y
+  - cp ci/settings.travis.php web/sites/default/settings.local.php && vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
 
