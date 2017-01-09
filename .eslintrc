@@ -1,3 +1,4 @@
 {
+  //  @docroot
   "extends": "./web/core/.eslintrc"
 }

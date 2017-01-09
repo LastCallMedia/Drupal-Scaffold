@@ -1,4 +1,5 @@
 # Environment specific files:
+# @docroot
 web/sites/*/files
 web/sites/*/settings.local.php
 .env

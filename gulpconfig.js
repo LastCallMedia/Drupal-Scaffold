@@ -4,6 +4,7 @@
   'use strict';
 
   // The folder the web accessible code lives in.
+  // @docroot
   var docroot = './web';
 
   var options = {
