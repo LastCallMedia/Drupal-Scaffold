@@ -17,3 +17,7 @@ script:
   - composer validate
   - gulp check
   - gulp build
+  # Install site
+  - cp ci/travis-settings-local.php web/sites/default/settings.local.php
+  - vendor/bin/drush -r web/ si -y
+
