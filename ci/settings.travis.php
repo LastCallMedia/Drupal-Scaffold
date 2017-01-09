@@ -5,7 +5,7 @@
  */
 $databases['default']['default'] = array(
   'driver' => 'mysql',
-  'hostname' => '127.0.0.1',
+  'host' => '127.0.0.1',
   'username' => 'drupal',
   'password' => 'drupal',
   'database' => 'drupal',
