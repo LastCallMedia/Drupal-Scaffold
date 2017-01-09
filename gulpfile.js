@@ -129,11 +129,12 @@
             gutil.log(assertName + ': ' + data.metrics[assertName]);
           }
         }
-        finally {
-          throw new gutil.PluginError('phantomas', {
-            message: 'Performance tests failed for ' + name
-          });
+        catch (err) {
+          // No-op.
         }
+        throw new gutil.PluginError('phantomas', {
+          message: 'Performance tests failed for ' + name
+        });
       };
     }
 
