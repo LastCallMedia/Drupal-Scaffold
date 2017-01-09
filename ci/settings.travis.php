@@ -5,6 +5,7 @@
  */
 $databases['default']['default'] = array(
   'driver' => 'mysql',
+  'hostname' => '127.0.0.1',
   'username' => 'root',
   'database' => 'test',
 );
