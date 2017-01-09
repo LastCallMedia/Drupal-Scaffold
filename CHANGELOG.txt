@@ -1,5 +1,9 @@
 Development
 -----------
+* Nothing yet...
+
+1.0.3 2017-01-09
+----------------
 * Runs behat and performance tests out of the box with Travis.
 * Move docroot into web/
 * Update to Drupal core 8.2.x
