@@ -120,14 +120,20 @@
       return function (result) {
         gutil.log('FAIL:' + name);
         gutil.log('-----------------');
-        var data = JSON.parse(result.stdout);
-        for (var i = 0; i < data.asserts.failedAsserts.length; i++) {
-          var assertName = data.asserts.failedAsserts[i];
-          gutil.log(assertName + ': ' + data.metrics[assertName]);
+
+        try {
+          gutil.log(result.stderr);
+          var data = JSON.parse(result.stdout);
+          for (var i = 0; i < data.asserts.failedAsserts.length; i++) {
+            var assertName = data.asserts.failedAsserts[i];
+            gutil.log(assertName + ': ' + data.metrics[assertName]);
+          }
         }
-        throw new gutil.PluginError('phantomas', {
-          message: 'Performance tests failed for ' + name
-        });
+        finally {
+          throw new gutil.PluginError('phantomas', {
+            message: 'Performance tests failed for ' + name
+          });
+        }
       };
     }
 
