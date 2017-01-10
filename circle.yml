@@ -27,7 +27,5 @@ test:
     - composer validate
     - gulp check
     - gulp build
-    - node_modules/.bin/gulp check
-    - node_modules/.bin/gulp build
-    - node_modules/.bin/gulp test
+    - gulp test
 
