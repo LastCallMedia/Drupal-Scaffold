@@ -13,6 +13,7 @@ dependencies:
     - nvm install
     - npm install
     - gulp install
+    - drupal init -n
   cache_directories:
     - "~/.composer/cache"
     - "~/.npm"
@@ -28,7 +29,7 @@ database:
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
-    - nohup vendor/bin/drupal --root=web/ server 127.0.0.1:8888 > /dev/null 2>&1:
+    - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
         background: true
     - composer validate
     - gulp check
