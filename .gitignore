@@ -20,4 +20,4 @@ node_modules
 behat.local.yml
 bower_components
 artifacts/*
-web/themes/custom/scaffold/dist
+web/themes/custom/*/dist
