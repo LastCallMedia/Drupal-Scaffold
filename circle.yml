@@ -2,14 +2,15 @@ machine:
   php:
     version: 7.0.4
   environment:
-    PATH: "$HOME/.composer/vendor/bin:$PATH"
+    # Add composer and npm binaries to path.
+    PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.composer/vendor/bin:$PATH"
     COMPOSER_EXIT_ON_PATCH_FAILURE: 1
 
 dependencies:
   override:
     - nvm install
     - npm install
-    - node_modules/.bin/gulp install
+    - gulp install
   cache_directories:
     - "~/.composer/cache"
     - "~/.npm"
