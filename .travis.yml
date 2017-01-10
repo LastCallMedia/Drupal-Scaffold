@@ -28,7 +28,7 @@ before_script:
 
 # Perform all testing steps, including static code analysis, unit, and web tests.
 script:
-  - nohup vendor/bin/drupal --root=web/ server 127.0.0.1:8888 > /dev/null 2>&1
+  - nohup vendor/bin/drupal --root=web/ server 127.0.0.1:8888 > /dev/null 2>&1 &
   - composer validate
   - gulp check
   - gulp build
