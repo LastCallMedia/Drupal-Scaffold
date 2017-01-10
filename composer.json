@@ -30,6 +30,7 @@
     "extra": {
         "installer-paths": {
             "web/core": ["type:drupal-core"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"]
         },
