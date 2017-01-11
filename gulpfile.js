@@ -103,7 +103,7 @@
       .pipe(behat(''));
   });
   gulp.task('test:casper', 'Run visual regression tests', function () {
-    return gulp.src('./visual/*.js')
+    return gulp.src('./casper/*.js')
       .pipe(casperjs({
         binPath: './node_modules/.bin/casperjs'
       }));

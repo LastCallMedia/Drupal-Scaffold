@@ -2,7 +2,7 @@
  * Visual regression test script.
  *
  * Example usage:
- *   `node_modules/casperjs test visual/index.js`
+ *   `node_modules/casperjs test casper/index.js`
  *
  * Options:
  *   base-url - Sets the base url for the tests (ex: --base-url=http://my.production.site)
@@ -25,9 +25,9 @@
 
   phantomcss.init({
     rebase: casper.cli.get('rebase'),
-    screenshotRoot: './visual/reference',
-    comparisonResultRoot: './visual/comparisons',
-    failedComparisonsRoot: './visual/failures',
+    screenshotRoot: './casper/reference',
+    comparisonResultRoot: './casper/comparisons',
+    failedComparisonsRoot: './casper/failures',
     addIteratorToImage: false // Don't name images like homepage_1.jpg.
   });
 
