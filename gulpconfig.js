@@ -36,7 +36,7 @@
       {
         src: [
           './bower_components/what-input/what-input.js',
-          './bower_components/foundation-sites/dist/foundation.js'
+          './bower_components/foundation-sites/dist/js/foundation.js'
         ],
         concat: 'libs.js',
         min: true,
