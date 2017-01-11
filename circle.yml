@@ -31,7 +31,6 @@ test:
   override:
     - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
         background: true
-    - composer validate
     - gulp check
     - gulp build
     - gulp test
