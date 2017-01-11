@@ -1,6 +1,8 @@
 Development
 -----------
-* Nothing yet...
+* Added static Composer validation check
+* Added Circle CI test steps
+* Added drupal-profile installer support to composer.json
 
 1.0.3 2017-01-09
 ----------------
