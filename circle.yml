@@ -32,7 +32,7 @@ test:
   override:
     - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
         background: true
-    - vendor/bin/drupal --root=web/ -n drush cr
+    - vendor/bin/drupal --root=web/ -n cache:rebuild all
     - gulp check
     - gulp build
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
