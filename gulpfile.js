@@ -111,10 +111,10 @@
   });
   gulp.task('test:casper', 'Run visual regression tests', function () {
     var cli = 'test';
-    if(opts.artifactDir) {
+    if (opts.artifactDir) {
       cli += ' --artifact-dir=' + opts.artifactDir;
     }
-    if(opts.junitDir) {
+    if (opts.junitDir) {
       cli += ' --xunit=' + opts.junitDir + '/casper.xml';
     }
 
