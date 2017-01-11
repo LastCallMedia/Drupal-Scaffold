@@ -97,7 +97,7 @@
    * Add steps here to run during the test phase.
    * Test steps may require a database and/or web server to function.
    */
-  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:visual', 'test:performance']);
+  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:casper', 'test:performance']);
   gulp.task('test:behat', 'Run Behat tests', function () {
     return gulp.src('behat.yml')
       .pipe(behat(''));
