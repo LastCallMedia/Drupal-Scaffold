@@ -24,6 +24,7 @@
   var gutil = require('gulp-util');
   var csso = require('gulp-csso');
   var imagemin = require('gulp-imagemin');
+  var backstop = require('backstopjs');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -96,10 +97,13 @@
    * Add steps here to run during the test phase.
    * Test steps may require a database and/or web server to function.
    */
-  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:performance']);
+  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:visual', 'test:performance']);
   gulp.task('test:behat', 'Run Behat tests', function () {
     return gulp.src('behat.yml')
       .pipe(behat(''));
+  });
+  gulp.task('test:visual', 'Run visual regression tests', function () {
+    return backstop('test', {config: './backstop/backstop.json'});
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];

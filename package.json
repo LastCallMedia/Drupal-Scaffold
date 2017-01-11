@@ -6,6 +6,7 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
+    "backstopjs": "^2.3.5",
     "bower": "^1.7.9",
     "child-process-promise": "^2.0.2",
     "gulp": "^3.9.1",
@@ -23,8 +24,7 @@
     "gulp-sourcemaps": "^2.0",
     "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0",
-    "phantomas": "^1.15.1",
-    "phantomcss": "^1.1.4"
+    "phantomas": "^1.15.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
