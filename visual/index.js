@@ -1,4 +1,13 @@
-
+/**
+ * Visual regression test script.
+ *
+ * Example usage:
+ *   `node_modules/casperjs test visual/index.js`
+ *
+ * Options:
+ *   base-url - Sets the base url for the tests (ex: --base-url=http://my.production.site)
+ *   rebase   - Updates the reference screenshots (ex: --rebase)
+ */
 var phantomcss = require('phantomcss');
 
 var base = casper.cli.get('base-url') || 'http://127.0.0.1:8888';
