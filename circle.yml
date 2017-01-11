@@ -26,7 +26,9 @@ database:
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
     - vendor/bin/drupal --root=web/ -n site:install
-    - vendor/bin/drupal --root=web/ -n config:override system.theme default scaffold && vendor/bin/drupal --root=web/ -n cache:rebuild all
+    - vendor/bin/drupal --root=web/ -n theme:install scaffold
+    - vendor/bin/drupal --root=web/ -n config:override system.theme default scaffold
+    - vendor/bin/drupal --root=web/ -n cache:rebuild all
 
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
