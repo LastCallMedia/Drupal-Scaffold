@@ -59,6 +59,7 @@
     jsCheck: [
       'gulpfile.js',
       'gulpconfig.js',
+      'visual/**/*.js',
       docroot + '/{modules,themes}/custom/**/*.js',
       '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
       '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',
