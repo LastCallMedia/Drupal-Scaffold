@@ -104,7 +104,10 @@
   gulp.task('test', 'Run all testing steps', ['test:behat', 'test:casper', 'test:performance']);
   gulp.task('test:behat', 'Run Behat tests', function () {
     return gulp.src('behat.yml')
-      .pipe(behat(''));
+      .pipe(behat('', {
+        format: opts.junitDir ? 'junit' : 'pretty',
+        out: opts.junitDir ? opts.junitDir : null
+      }));
   });
   gulp.task('test:casper', 'Run visual regression tests', function () {
     var cli = 'test';
