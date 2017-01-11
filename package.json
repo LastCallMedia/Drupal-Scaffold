@@ -23,7 +23,8 @@
     "gulp-sourcemaps": "^2.0",
     "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0",
-    "phantomas": "^1.15.1"
+    "phantomas": "^1.15.1",
+    "phantomcss": "^1.1.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
