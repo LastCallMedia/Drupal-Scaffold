@@ -26,11 +26,15 @@
   var imagemin = require('gulp-imagemin');
   var casperjs = require('gulp-casperjs');
 
-// Load in configuration.  You don't have to use this,
-// but it makes it easier to update tasks in the future
-// if paths aren't scattered in the gulpfile.
+  // Load in configuration.  You don't have to use this,
+  // but it makes it easier to update tasks in the future
+  // if paths aren't scattered in the gulpfile.
   var config = require('./gulpconfig');
 
+  var opts = {
+    junitDir: gutil.env['junit-dir'] || null,
+    artifactDir: gutil.env['artifact-dir'] || null
+  };
 
   function mergeSources(arr) {
     var srcArr = [];
@@ -103,9 +107,18 @@
       .pipe(behat(''));
   });
   gulp.task('test:casper', 'Run visual regression tests', function () {
+    var cli = 'test';
+    if(opts.artifactDir) {
+      cli += ' --artifact-dir=' + opts.artifactDir;
+    }
+    if(opts.junitDir) {
+      cli += ' --xunit=' + opts.junitDir + '/casper.xml';
+    }
+
     return gulp.src('./casper/*.js')
       .pipe(casperjs({
-        binPath: './node_modules/.bin/casperjs'
+        binPath: './node_modules/.bin/casperjs',
+        command: cli
       }));
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {

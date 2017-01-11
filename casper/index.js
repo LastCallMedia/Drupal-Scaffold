@@ -15,6 +15,7 @@
 
   var phantomcss = require('phantomcss');
 
+  var artifactDirectory = casper.cli.get('artifact-dir') || './casper';
   var base = casper.cli.get('base-url') || 'http://127.0.0.1:8888';
 
   var breakpoints = {
@@ -26,8 +27,8 @@
   phantomcss.init({
     rebase: casper.cli.get('rebase'),
     screenshotRoot: './casper/reference',
-    comparisonResultRoot: './casper/comparisons',
-    failedComparisonsRoot: './casper/failures',
+    comparisonResultRoot: artifactDirectory + '/comparisons',
+    failedComparisonsRoot: artifactDirectory + '/failures',
     addIteratorToImage: false // Don't name images like homepage_1.jpg.
   });
 

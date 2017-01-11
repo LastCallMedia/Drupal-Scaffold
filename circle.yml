@@ -6,6 +6,7 @@ machine:
     # Add composer and npm binaries to path.
     PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.composer/vendor/bin:$PATH"
     COMPOSER_EXIT_ON_PATCH_FAILURE: 1
+    ARTIFACT_DIRECTORY: "${CIRCLE_ARTIFACTS}"
 
 dependencies:
   # Install dependencies.
@@ -33,5 +34,5 @@ test:
         background: true
     - gulp check
     - gulp build
-    - gulp test
+    - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
 
