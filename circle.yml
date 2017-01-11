@@ -25,13 +25,14 @@ database:
   # This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drupal --root=web/ --uri=http://127.0.0.1:8888 -n site:install
+    - vendor/bin/drupal --root=web/ -n site:install
 
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
     - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
         background: true
+    - vendor/bin/drupal --root=web/ -n drush cr
     - gulp check
     - gulp build
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
