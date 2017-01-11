@@ -24,7 +24,7 @@
   var gutil = require('gulp-util');
   var csso = require('gulp-csso');
   var imagemin = require('gulp-imagemin');
-  var backstop = require('backstopjs');
+  var casperjs = require('gulp-casperjs');
 
 // Load in configuration.  You don't have to use this,
 // but it makes it easier to update tasks in the future
@@ -102,8 +102,11 @@
     return gulp.src('behat.yml')
       .pipe(behat(''));
   });
-  gulp.task('test:visual', 'Run visual regression tests', function () {
-    return backstop('test', {config: './backstop/backstop.json'});
+  gulp.task('test:casper', 'Run visual regression tests', function () {
+    return gulp.src('./visual/*.js')
+      .pipe(casperjs({
+        binPath: './node_modules/.bin/casperjs'
+      }));
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];
