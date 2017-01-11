@@ -1,0 +1,38 @@
+machine:
+  # Define the environment.
+  php:
+    version: 7.0.4
+  environment:
+    # Add composer and npm binaries to path.
+    PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.composer/vendor/bin:$PATH"
+    COMPOSER_EXIT_ON_PATCH_FAILURE: 1
+
+dependencies:
+  # Install dependencies.
+  override:
+    - nvm install
+    - npm install
+    - gulp install
+    - drupal init -n
+  cache_directories:
+    - "~/.composer/cache"
+    - "~/.npm"
+    - "~/.bower"
+
+database:
+  # Perform whatever steps are needed to setup the site for testing.
+  # This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
+  override:
+    - cp ci/settings.circle.php web/sites/default/settings.local.php
+    - vendor/bin/drupal --root=web/ -n site:install
+
+test:
+  # Perform all testing steps, including static code analysis, unit, and web tests.
+  override:
+    - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
+        background: true
+    - composer validate
+    - gulp check
+    - gulp build
+    - gulp test
+

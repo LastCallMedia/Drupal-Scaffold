@@ -12,9 +12,14 @@
         {
             "type": "composer",
             "url":  "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/rbayliss/drupal-console.git"
         }
     ],
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
@@ -22,7 +27,7 @@
         "drush/drush": "^8.1"
     },
     "require-dev": {
-        "drupal/console": "^0.11.3",
+        "drupal/console": "dev-server_no_tty",
         "drupal/coder": "^8.2.8",
         "drupal/drupal-extension": "^3.1",
         "squizlabs/php_codesniffer": "^2.0"
@@ -30,6 +35,7 @@
     "extra": {
         "installer-paths": {
             "web/core": ["type:drupal-core"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"]
         },

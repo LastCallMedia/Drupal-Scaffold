@@ -11,4 +11,4 @@ $databases['default']['default'] = array(
   'database' => 'drupal',
 );
 
-$settings['hash_salt'] = getenv('TRAVIS_BUILD_ID');
+$settings['hash_salt'] = 'TRAVIS_CI';

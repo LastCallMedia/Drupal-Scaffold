@@ -1,31 +1,34 @@
+# Define the environment.
 language: php
-
 services:
   - mysql
-
 php:
   - 5.6
   - 7
-
 env:
   - COMPOSER_EXIT_ON_PATCH_FAILURE=1
-
 cache:
   directories:
     - $HOME/.composer/cache
     - $HOME/.drush/cache
     - $HOME/.npm
 
+# Install dependencies.
 install:
   - nvm install
   - npm install
   - gulp install
+
+# Perform whatever steps are needed to setup the site for testing.
+# This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
+before_script:
   - mysql -u root -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost'"
   - cp ci/settings.travis.php web/sites/default/settings.local.php
-  - vendor/bin/drush -r web/ si -y --db-url=mysql://root@localhost/test
-  - vendor/bin/drush -r web/ rs 8888 &>/dev/null &
+  - vendor/bin/drupal --root=web/ -n site:install
 
+# Perform all testing steps, including static code analysis, unit, and web tests.
 script:
+  - nohup vendor/bin/drupal --root=web/ server 127.0.0.1:8888 > /dev/null 2>&1 &
   - composer validate
   - gulp check
   - gulp build

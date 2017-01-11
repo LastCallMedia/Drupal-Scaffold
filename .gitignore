@@ -7,10 +7,12 @@ docker-compose.override.yml
 
 # Contrib/external code:
 web/core
-web/modules/contrib
+web/modules/contrib/*
 !web/modules/contrib/README.md
-web/themes/contrib
+web/themes/contrib/*
 !web/themes/contrib/README.md
+web/profiles/contrib/*
+!web/profiles/contrib/README.md
 vendor/
 
 # Build artifacts and tools:
@@ -18,4 +20,4 @@ node_modules
 behat.local.yml
 bower_components
 artifacts/*
-web/themes/custom/scaffold/dist
+web/themes/custom/*/dist
