@@ -125,7 +125,7 @@
     });
     function copyArtifacts() {
       return new Promise(function (resolve, reject) {
-        gulp.src(dir + '/{comparisons,reports}/**')
+        gulp.src(dir + '/{comparisons,reports,reference}/**')
           .pipe(gulp.dest(opts.artifactDir))
           .on('end', resolve)
           .on('error', reject);
