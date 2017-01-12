@@ -28,6 +28,7 @@ database:
     - vendor/bin/drupal --root=web/ -n site:install
     - vendor/bin/drupal --root=web/ -n theme:install scaffold
     - vendor/bin/drupal --root=web/ -n config:override system.theme default scaffold
+    - gulp build
     - vendor/bin/drupal --root=web/ -n cache:rebuild all
 
 test:
@@ -36,6 +37,5 @@ test:
     - vendor/bin/drupal --root=web/ -v -n server 127.0.0.1:8888:
         background: true
     - gulp check
-    - gulp build
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
 
