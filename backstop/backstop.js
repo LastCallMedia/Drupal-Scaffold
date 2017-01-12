@@ -6,6 +6,7 @@
     id: 'visual',
     viewports: viewports,
     scenarios: scenarios,
+    engine: 'slimer',
     paths: {
       "bitmaps_reference": "reference",
       "bitmaps_test": "comparisons",
@@ -13,8 +14,7 @@
       "html_report": "reports",
       "ci_report": "reports"
     },
-    report: ['CI', 'browser'],
-    debug: true
+    report: ['CI', 'browser']
   };
 })()
 
