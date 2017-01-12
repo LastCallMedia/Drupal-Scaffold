@@ -27,6 +27,7 @@
   var csso = require('gulp-csso');
   var imagemin = require('gulp-imagemin');
   var path = require('path');
+  var assign = require('lodash.assign');
 
   // Load in configuration.  You don't have to use this,
   // but it makes it easier to update tasks in the future
@@ -37,6 +38,10 @@
     junitDir: gutil.env['junit-dir'] || null,
     artifactDir: gutil.env['artifact-dir'] || null,
     rebase: gutil.env['rebase'] || null
+  };
+  var optDescription = {
+    'junit-dir': 'A directory to output a junit formatted report to.',
+    'artifact-dir': 'A directory to output test artifacts to.'
   };
 
   function mergeSources(arr) {
@@ -111,7 +116,7 @@
         format: opts.junitDir ? 'junit' : 'pretty',
         out: opts.junitDir ? opts.junitDir : null
       }));
-  });
+  }, {options: optDescription});
   gulp.task('test:backstop', 'Run visual regression tests', function () {
     var dir = path.resolve('backstop');
     var op = opts.rebase ? 'reference' : 'test';
@@ -141,6 +146,8 @@
       backstopProcess.then(copyJunit);
     }
     return process;
+  }, {
+    options: assign({}, optDescription, {rebase: 'Regenerate the reference screenshots.'})
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];
