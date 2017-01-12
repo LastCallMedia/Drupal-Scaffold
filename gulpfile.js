@@ -115,9 +115,32 @@
   gulp.task('test:backstop', 'Run visual regression tests', function () {
     var dir = path.resolve('backstop');
     var op = opts.rebase ? 'reference' : 'test';
-    return spawn('docker', ['run', '--rm', '-v', dir + ':/src', '-e', 'BASE_URL=' + config.baseUrl, 'docksal/backstopjs', op, '--configPath=backstop.js'], {
+    var backstopProcess = spawn('docker', ['run', '--rm', '-v', dir + ':/src', '-e', 'BASE_URL=' + config.baseUrl, 'docksal/backstopjs', op, '--configPath=backstop.js'], {
       stdio: ['inherit', 'inherit', 'inherit']
     });
+    function copyArtifacts() {
+      return new Promise(function (resolve, reject) {
+        gulp.src(dir + '/{comparisons,reports}/**')
+          .pipe(gulp.dest(opts.artifactDir))
+          .on('end', resolve)
+          .on('error', reject);
+      });
+    }
+    function copyJunit() {
+      return new Promise(function (resolve, reject) {
+        gulp.src(dir + '/reports/xunit.xml')
+          .pipe(gulp.dest(opts.junitDir + '/backstop.xml'))
+          .on('end', resolve)
+          .on('error', reject);
+      });
+    }
+    if (opts.artifactDir) {
+      backstopProcess.then(copyArtifacts);
+    }
+    if (opts.junitDir) {
+      backstopProcess.then(copyJunit);
+    }
+    return process;
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];
