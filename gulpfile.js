@@ -10,7 +10,9 @@
   'use strict';
 
   var gulp = require('gulp-help')(require('gulp'));
-  var exec = require('child-process-promise').exec;
+  var child_process = require('child-process-promise');
+  var exec = child_process.exec;
+  var spawn = child_process.spawn;
   var phpcs = require('gulp-phpcs');
   var eslint = require('gulp-eslint');
   var phplint = require('gulp-phplint');
@@ -24,7 +26,7 @@
   var gutil = require('gulp-util');
   var csso = require('gulp-csso');
   var imagemin = require('gulp-imagemin');
-  var casperjs = require('gulp-casperjs');
+  var path = require('path');
 
   // Load in configuration.  You don't have to use this,
   // but it makes it easier to update tasks in the future
@@ -33,7 +35,8 @@
 
   var opts = {
     junitDir: gutil.env['junit-dir'] || null,
-    artifactDir: gutil.env['artifact-dir'] || null
+    artifactDir: gutil.env['artifact-dir'] || null,
+    rebase: gutil.env['rebase'] || null
   };
 
   function mergeSources(arr) {
@@ -101,7 +104,7 @@
    * Add steps here to run during the test phase.
    * Test steps may require a database and/or web server to function.
    */
-  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:casper', 'test:performance']);
+  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:backstop', 'test:performance']);
   gulp.task('test:behat', 'Run Behat tests', function () {
     return gulp.src('behat.yml')
       .pipe(behat('', {
@@ -109,20 +112,12 @@
         out: opts.junitDir ? opts.junitDir : null
       }));
   });
-  gulp.task('test:casper', 'Run visual regression tests', function () {
-    var cli = 'test';
-    if (opts.artifactDir) {
-      cli += ' --artifact-dir=' + opts.artifactDir;
-    }
-    if (opts.junitDir) {
-      cli += ' --xunit=' + opts.junitDir + '/casper.xml';
-    }
-
-    return gulp.src('./casper/*.js')
-      .pipe(casperjs({
-        binPath: './node_modules/.bin/casperjs',
-        command: cli
-      }));
+  gulp.task('test:backstop', 'Run visual regression tests', function () {
+    var dir = path.resolve('backstop');
+    var op = opts.rebase ? 'reference' : 'test';
+    return spawn('docker', ['run', '--rm', '-v', dir + ':/src', '-e', 'BASE_URL=' + config.baseUrl, 'docksal/backstopjs', op, '--configPath=backstop.js'], {
+      stdio: ['inherit', 'inherit', 'inherit']
+    });
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];
