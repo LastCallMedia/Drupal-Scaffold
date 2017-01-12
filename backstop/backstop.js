@@ -13,7 +13,8 @@
       "html_report": "reports",
       "ci_report": "reports"
     },
-    report: ['CI', 'browser']
+    report: ['CI', 'browser'],
+    debug: true
   };
 })()
 
