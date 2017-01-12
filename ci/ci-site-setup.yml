@@ -9,5 +9,6 @@ commands:
   - command: theme:install
     options:
       set-default: true
+      uri: http://default/
     arguments:
       theme: [scaffold]
