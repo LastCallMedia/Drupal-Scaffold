@@ -1,15 +1,22 @@
 // Make sure the charset is set appropriately
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Roboto+Mono');
+
 
 @import "global";
 @import "foundation-sites/scss/foundation";
 
 // Put remote font imports here.
-// @import url($google-fonts);
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Roboto+Mono');
 
 @include foundation-everything();
+
+/**
+ * Add button font-family, which is missing in Foundation.
+ */
+button, input[type="submit"], input[type="reset"] {
+  font-family:$input-font-family;
+}
 
 // Import components.
 @import "components/logo";
