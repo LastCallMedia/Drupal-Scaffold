@@ -27,7 +27,6 @@ database:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
     - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/ci-site-setup.yml
     - gulp build
-    - vendor/bin/drupal --root=web/ -n cache:rebuild all
 
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
