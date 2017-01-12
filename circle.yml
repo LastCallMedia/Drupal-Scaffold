@@ -25,9 +25,7 @@ database:
   # This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drupal --root=web/ -n site:install
-    - vendor/bin/drupal --root=web/ -n theme:install scaffold
-    - vendor/bin/drupal --root=web/ -n config:override system.theme default scaffold
+    - vendor/bin/drupal --root=web/ -n chain --file=../ci/ci-site-setup.yml
     - gulp build
     - vendor/bin/drupal --root=web/ -n cache:rebuild all
 
