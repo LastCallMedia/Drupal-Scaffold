@@ -5,12 +5,12 @@ web/sites/*/settings.local.php
 .env
 docker-compose.override.yml
 
-# Build tools
+# Build tools not required in production:
 node_modules/*
 bower_components/*
 ci/*
+backstop/*
 behat.local.yml
 
-# Build artifacts and tools:
-behat.local.yml
+# Build artifacts:
 artifacts/*
