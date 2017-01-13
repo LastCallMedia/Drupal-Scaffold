@@ -12,6 +12,8 @@
  */
 $settings['container_yamls'][] = __DIR__ . '/development.services.yml';
 
+$settings['hash_salt'] = 'This is an insecure hash salt.  You should change it!';
+
 /**
  * More local development settings.  Disable CSS/JS aggregation,
  * and disable the render cache.
