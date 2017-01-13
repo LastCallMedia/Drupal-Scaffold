@@ -19,7 +19,7 @@ cache:
 install:
   - nvm install
   - npm install
-  - gulp install
+  - node_modules/.bin/gulp install
   - vendor/bin/drupal init -n
 
 # Perform whatever steps are needed to setup the site for testing.
@@ -28,12 +28,12 @@ before_script:
   - mysql -u root -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost'"
   - cp ci/settings.travis.php web/sites/default/settings.local.php
   - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/ci-site-setup.yml
-  - gulp build
+  - node_modules/.bin/gulp build
 
 # Perform all testing steps, including static code analysis, unit, and web tests.
 script:
   - nohup vendor/bin/drupal --root=web/ --uri=http://default -v -n server 0.0.0.0:8888 > /dev/null 2>&1 &
   - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
-  - gulp check
-  - gulp test
+  - node_modules/.bin/gulp check
+  - node_modules/.bin/gulp test
 
