@@ -140,12 +140,12 @@
       });
     }
     function onSuccess() {
-      var promise = new Promise(function(resolve) {resolve()});
-      if(opts.junitDir) {
+      var promise = new Promise(function (resolve) { resolve(); });
+      if (opts.junitDir) {
         promise = promise.then(copyJunit());
       }
-      if(opts.artifactDir) {
-        promise = promise.then(copyArtifacts())
+      if (opts.artifactDir) {
+        promise = promise.then(copyArtifacts());
       }
       return promise;
     }
