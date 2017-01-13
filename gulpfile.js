@@ -134,18 +134,18 @@
     function copyJunit() {
       return new Promise(function (resolve, reject) {
         gulp.src(dir + '/reports/xunit.xml')
-          .pipe(gulp.dest(opts.junitDir + '/backstop.xml'))
+          .pipe(gulp.dest(opts.junitDir))
           .on('end', resolve)
           .on('error', reject);
       });
     }
-    if (opts.artifactDir) {
-      backstopProcess.then(copyArtifacts);
+    function onSuccess() {
+      return copyArtifacts().then(copyJunit());
     }
-    if (opts.junitDir) {
-      backstopProcess.then(copyJunit);
+    function onFailure(reason) {
+      return onSuccess().then(function () {throw new gutil.PluginError('backstop', reason)})
     }
-    return process;
+    return backstopProcess.then(onSuccess, onFailure);
   }, {
     options: assign({}, optDescription, {rebase: 'Regenerate the reference screenshots.'})
   });
