@@ -11,7 +11,6 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-behat": "^0.4.2",
-    "gulp-casperjs": "0.0.6",
     "gulp-concat": "^2.6.0",
     "gulp-csso": "^2.0.0",
     "gulp-eslint": "^3.0.0",
