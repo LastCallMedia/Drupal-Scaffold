@@ -143,7 +143,7 @@
       return copyArtifacts().then(copyJunit());
     }
     function onFailure(reason) {
-      return onSuccess().then(function () {throw new gutil.PluginError('backstop', reason)})
+      return onSuccess().then(function () { throw new gutil.PluginError('backstop', reason); });
     }
     return backstopProcess.then(onSuccess, onFailure);
   }, {
