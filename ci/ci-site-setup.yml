@@ -1,0 +1,14 @@
+commands:
+# Install Drupal
+  - command: site:install
+    options:
+      uri: http://default/
+      force: true
+    arguments:
+      profile: minimal
+  - command: theme:install
+    options:
+      set-default: true
+      uri: http://default/
+    arguments:
+      theme: [scaffold]

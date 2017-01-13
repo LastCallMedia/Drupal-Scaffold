@@ -1,5 +1,10 @@
 Development
 -----------
+* Added visual regression testing with BackstopJS
+* Added default font stack to Scaffold theme
+* Added ability to export junit reports and artifacts from gulp tasks that provide them.
+* Exclude all build tools and files from production build.
+* Update to Foundation 6.3.0
 * Added static Composer validation check
 * Added Circle CI test steps
 * Added drupal-profile installer support to composer.json

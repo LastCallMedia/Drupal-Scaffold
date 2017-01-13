@@ -5,9 +5,16 @@
 @import "foundation-sites/scss/foundation";
 
 // Put remote font imports here.
-// @import url($google-fonts);
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab');
 
 @include foundation-everything();
+
+/**
+ * Add button font-family, which is missing in Foundation.
+ */
+button, input[type="submit"], input[type="reset"] {
+  font-family:$input-font-family;
+}
 
 // Import components.
 @import "components/logo";

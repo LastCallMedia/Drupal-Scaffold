@@ -3,13 +3,15 @@
 (function () {
   'use strict';
 
+  var ip = require('ip');
+
   // The folder the web accessible code lives in.
   // @docroot
   var docroot = './web';
 
   var options = {
     bowerJsonDirectory: './',
-    baseUrl: 'http://127.0.0.1:8888',
+    baseUrl: 'http://' + ip.address() + ':8888',
     // Packages of SCSS that will be compiled.
     scss: [
       {
@@ -59,6 +61,7 @@
     jsCheck: [
       'gulpfile.js',
       'gulpconfig.js',
+      'visual/**/*.js',
       docroot + '/{modules,themes}/custom/**/*.js',
       '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
       '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',

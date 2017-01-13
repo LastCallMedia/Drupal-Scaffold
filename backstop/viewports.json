@@ -1,0 +1,17 @@
+[
+  {
+    "name": "phone",
+    "width": 320,
+    "height": 480
+  },
+  {
+    "name": "tablet",
+    "width": 568,
+    "height": 1024
+  },
+  {
+    "name": "desktop",
+    "width": 1024,
+    "height": 768
+  }
+]

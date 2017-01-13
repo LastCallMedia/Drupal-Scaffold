@@ -2,10 +2,13 @@ machine:
   # Define the environment.
   php:
     version: 7.0.4
+  services:
+    - docker
   environment:
     # Add composer and npm binaries to path.
     PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.composer/vendor/bin:$PATH"
     COMPOSER_EXIT_ON_PATCH_FAILURE: 1
+    ARTIFACT_DIRECTORY: "${CIRCLE_ARTIFACTS}"
 
 dependencies:
   # Install dependencies.
@@ -24,14 +27,15 @@ database:
   # This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drupal --root=web/ -n site:install
+    - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/ci-site-setup.yml
+    - gulp build
 
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
-    - vendor/bin/drupal --root=web/ -n server 127.0.0.1:8888:
+    - vendor/bin/drupal --root=web/ --uri=http://default -v -n server 0.0.0.0:8888:
         background: true
+    - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
     - gulp check
-    - gulp build
-    - gulp test
+    - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
 

@@ -3,14 +3,26 @@
 web/sites/*/files
 web/sites/*/settings.local.php
 .env
-docker-compose.override.yml
 
-# Build tools
-node_modules/*
-bower_components/*
-ci/*
+# Build tools not required in production:
+node_modules
+bower_components
+ci
+backstop
+docker
+features
+behat.yml
+default.behat.local.yml
 behat.local.yml
+docker-compose.*
+circle.yml
+.travis.yml
+bower.json
+.nvmrc
+gulpconfig.js
+gulpfile.js
+package.json
+.eslintrc
 
-# Build artifacts and tools:
-behat.local.yml
-artifacts/*
+# Build artifacts:
+artifacts

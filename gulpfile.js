@@ -10,7 +10,9 @@
   'use strict';
 
   var gulp = require('gulp-help')(require('gulp'));
-  var exec = require('child-process-promise').exec;
+  var child_process = require('child-process-promise');
+  var exec = child_process.exec;
+  var spawn = child_process.spawn;
   var phpcs = require('gulp-phpcs');
   var eslint = require('gulp-eslint');
   var phplint = require('gulp-phplint');
@@ -24,12 +26,23 @@
   var gutil = require('gulp-util');
   var csso = require('gulp-csso');
   var imagemin = require('gulp-imagemin');
+  var path = require('path');
+  var assign = require('lodash.assign');
 
-// Load in configuration.  You don't have to use this,
-// but it makes it easier to update tasks in the future
-// if paths aren't scattered in the gulpfile.
+  // Load in configuration.  You don't have to use this,
+  // but it makes it easier to update tasks in the future
+  // if paths aren't scattered in the gulpfile.
   var config = require('./gulpconfig');
 
+  var opts = {
+    junitDir: gutil.env['junit-dir'] || null,
+    artifactDir: gutil.env['artifact-dir'] || null,
+    rebase: gutil.env['rebase'] || null
+  };
+  var optDescription = {
+    'junit-dir': 'A directory to output a junit formatted report to.',
+    'artifact-dir': 'A directory to output test artifacts to.'
+  };
 
   function mergeSources(arr) {
     var srcArr = [];
@@ -96,10 +109,52 @@
    * Add steps here to run during the test phase.
    * Test steps may require a database and/or web server to function.
    */
-  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:performance']);
+  gulp.task('test', 'Run all testing steps', ['test:behat', 'test:backstop', 'test:performance']);
   gulp.task('test:behat', 'Run Behat tests', function () {
     return gulp.src('behat.yml')
-      .pipe(behat(''));
+      .pipe(behat('', {
+        format: opts.junitDir ? 'junit' : 'pretty',
+        out: opts.junitDir ? opts.junitDir : null
+      }));
+  }, {options: optDescription});
+  gulp.task('test:backstop', 'Run visual regression tests', function () {
+    var dir = path.resolve('backstop');
+    var op = opts.rebase ? 'reference' : 'test';
+    var backstopProcess = spawn('docker', ['run', '--rm', '-v', dir + ':/src', '-e', 'BASE_URL=' + config.baseUrl, 'docksal/backstopjs', op, '--configPath=backstop.js'], {
+      stdio: ['inherit', 'inherit', 'inherit']
+    });
+    function copyArtifacts() {
+      return new Promise(function (resolve, reject) {
+        gulp.src(dir + '/{comparisons,reports,reference}/**')
+          .pipe(gulp.dest(opts.artifactDir))
+          .on('end', resolve)
+          .on('error', reject);
+      });
+    }
+    function copyJunit() {
+      return new Promise(function (resolve, reject) {
+        gulp.src(dir + '/reports/xunit.xml')
+          .pipe(gulp.dest(opts.junitDir))
+          .on('end', resolve)
+          .on('error', reject);
+      });
+    }
+    function onSuccess() {
+      var promise = new Promise(function (resolve) { resolve(); });
+      if (opts.junitDir) {
+        promise = promise.then(copyJunit());
+      }
+      if (opts.artifactDir) {
+        promise = promise.then(copyArtifacts());
+      }
+      return promise;
+    }
+    function onFailure(reason) {
+      return onSuccess().then(function () { throw new gutil.PluginError('backstop', reason); });
+    }
+    return backstopProcess.then(onSuccess, onFailure);
+  }, {
+    options: assign({}, optDescription, {rebase: 'Regenerate the reference screenshots.'})
   });
   gulp.task('test:performance', 'Run phantomas tests', function () {
     var promises = [];
