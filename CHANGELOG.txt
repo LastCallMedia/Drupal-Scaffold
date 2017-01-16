@@ -1,5 +1,6 @@
 Development
 -----------
+* Allow skipping bower tasks if bower is not configured.
 * Added visual regression testing with BackstopJS
 * Added default font stack to Scaffold theme
 * Added ability to export junit reports and artifacts from gulp tasks that provide them.

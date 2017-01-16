@@ -62,12 +62,14 @@
     return exec('composer install');
   });
   gulp.task('install:bower', 'Run bower install', function () {
-    var bower = __dirname + '/node_modules/.bin/bower';
-    // Use --allow-root in case this needs to be built in a docker container
-    // that forces root.
-    return exec(bower + ' install --allow-root', {
-      cwd: config.bowerJsonDirectory
-    });
+    // Skip bower if it hasn't been configured.
+    if (config.bowerJsonDirectory) {
+      var bower = __dirname + '/node_modules/.bin/bower';
+      return exec(bower + ' install --allow-root', {
+        cwd: config.bowerJsonDirectory
+      });
+    }
+    return gutil.noop();
   });
 
 
