@@ -27,7 +27,7 @@ install:
 before_script:
   - mysql -u root -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost'"
   - cp ci/settings.travis.php web/sites/default/settings.local.php
-  - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/ci-site-setup.yml
+  - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/prepare-site.yml
   - node_modules/.bin/gulp build
 
 # Perform all testing steps, including static code analysis, unit, and web tests.

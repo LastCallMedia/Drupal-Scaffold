@@ -27,7 +27,7 @@ database:
   # This could mean a fresh install, or a download/import of a sanitized copy of a production-like database.
   override:
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/ci-site-setup.yml
+    - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/prepare-site.yml
     - gulp build
 
 test:
