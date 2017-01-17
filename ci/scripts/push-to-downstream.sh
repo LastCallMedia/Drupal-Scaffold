@@ -13,7 +13,7 @@
 #   MESSAGE:    The commit message - optional.
 set -e
 
-DRUPAL_ROOT=$PWD
+DRUPAL_ROOT="$PWD/"
 CLONE_DIR="${CLONE_DIR:-$DRUPAL_ROOT/artifacts/clone}"
 MESSAGE="${MESSAGE:-Updating downstream repository}"
 
