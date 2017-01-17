@@ -61,7 +61,7 @@
     jsCheck: [
       'gulpfile.js',
       'gulpconfig.js',
-      'backstop/**/*.js',
+      'backstop/{scripts,}/*.js',
       docroot + '/{modules,themes}/custom/**/*.js',
       '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
       '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',

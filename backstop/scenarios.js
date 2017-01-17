@@ -1,19 +1,22 @@
-(function() {
+/* eslint-env node */
+(function () {
+  'use strict';
+
   var baseUrl = process.env.BASE_URL || 'http://127.0.0.1:8888';
 
   module.exports = [
     {
-      "label": "Homepage",
-      "url": baseUrl + '/',
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "selectors": [
-        "document"
+      label: 'Homepage',
+      url: baseUrl + '/',
+      hideSelectors: [],
+      removeSelectors: [],
+      selectors: [
+        'document'
       ],
-      "readyEvent": null,
-      "delay": 500,
-      "misMatchThreshold" : 0.1,
+      readyEvent: null,
+      delay: 500,
+      misMatchThreshold: 0.1
     }
   ];
-})()
+})();
 
