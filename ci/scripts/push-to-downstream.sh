@@ -13,12 +13,9 @@
 #   MESSAGE:    The commit message - optional.
 set -e
 
-
-SELF_DIR="`dirname -- "$0"`"
-DRUPAL_ROOT="`dirname -- "$SELF_DIR"`"
+DRUPAL_ROOT=$PWD
 CLONE_DIR="${CLONE_DIR:-$DRUPAL_ROOT/artifacts/clone}"
 MESSAGE="${MESSAGE:-Updating downstream repository}"
-mkdir -p $CLONE_DIR
 
 if [ -z "$BRANCH" ]; then
   echo "\$BRANCH not set - exiting"
@@ -31,6 +28,7 @@ if [ -z "$DOWNSTREAM" ]; then
   exit 1
 fi
 
+mkdir -p $CLONE_DIR
 echo "Beginning build of $BRANCH in $CLONE_DIR to $DOWNSTREAM"
 
 # Try a clone directly to the right branch if possible.  If the branch
