@@ -11,9 +11,9 @@ machine:
     ARTIFACT_DIRECTORY: "${CIRCLE_ARTIFACTS}"
 
     # Replace these variables with your own.
-    PSITE: **REPLACE WITH PANTHEON SITE MACHINE NAME**
+    PSITE: "**REPLACE WITH PANTHEON SITE MACHINE NAME**"
     PSRCENV: live
-    DOWNSTREAM: **REPLACE WITH PANTHEON GIT URL**
+    DOWNSTREAM: "**REPLACE WITH PANTHEON GIT URL**"
     GIT_AUTHOR_NAME: "Last Call Media Automation"
     GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
 
