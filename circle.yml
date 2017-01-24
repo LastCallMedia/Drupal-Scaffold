@@ -51,6 +51,7 @@ test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
     - gulp build
+    - vendor/bin/drupal --root=web/ --uri=http://default cr
     - vendor/bin/drupal --root=web/ --uri=http://default -v -n server 0.0.0.0:8888:
         background: true
     - gulp check
