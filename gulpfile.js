@@ -91,7 +91,7 @@
     return gulp.src(config.phpCheck)
       .pipe(phpcs({
         bin: 'vendor/bin/phpcs',
-        standard: 'vendor/drupal/coder/coder_sniffer/Drupal'
+        standard: config.phpcsStandard
       }))
       .pipe(phpcs.reporter('log'))
       .pipe(phpcs.reporter('fail'));

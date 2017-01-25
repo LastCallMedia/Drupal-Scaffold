@@ -57,6 +57,7 @@
     ],
     // Patterns for PHP files to lint and check.
     phpCheck: [docroot + '/{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'],
+    phpcsStandard: 'vendor/drupal/coder/coder_sniffer/Drupal',
     // Patterns for JS files to lint and check.
     jsCheck: [
       'gulpfile.js',

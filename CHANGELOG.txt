@@ -1,5 +1,7 @@
 Development
 -----------
+* Use a configurable PHPCS standard
+* Add pantheon deployment tasks to circle.yml
 * Allow skipping bower tasks if bower is not configured.
 * Added visual regression testing with BackstopJS
 * Added default font stack to Scaffold theme
