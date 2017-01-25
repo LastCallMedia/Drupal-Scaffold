@@ -72,7 +72,6 @@
     return gutil.noop();
   });
 
-
   /**
    * Check tasks
    *
@@ -116,7 +115,7 @@
     return gulp.src('behat.yml')
       .pipe(behat('', {
         format: opts.junitDir ? 'junit' : 'pretty',
-        out: opts.junitDir ? opts.junitDir : null
+        out: opts.junitDir ? path.join(opts.junitDir, 'behat') : null
       }));
   }, {options: optDescription});
   gulp.task('test:backstop', 'Run visual regression tests', function () {
@@ -136,7 +135,7 @@
     function copyJunit() {
       return new Promise(function (resolve, reject) {
         gulp.src(dir + '/reports/xunit.xml')
-          .pipe(gulp.dest(opts.junitDir))
+          .pipe(gulp.dest(path.join(opts.junitDir, 'backstop')))
           .on('end', resolve)
           .on('error', reject);
       });
