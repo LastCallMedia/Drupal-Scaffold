@@ -1,5 +1,8 @@
 Development
 -----------
+
+1.1.0 2017-01-09
+----------------
 * Use a configurable PHPCS standard
 * Add pantheon deployment tasks to circle.yml
 * Allow skipping bower tasks if bower is not configured.
