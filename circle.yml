@@ -51,9 +51,9 @@ test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
     - gulp build
-    - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
     - vendor/bin/drupal --root=web/ --uri=http://default -n server 0.0.0.0:8888:
         background: true
+    - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
     - gulp check
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
     # Fix file ownership issues caused by the Docker usage
