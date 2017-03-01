@@ -23,9 +23,8 @@ dependencies:
     # Install and log in using Terminus (requires a machine token in $PMACHINE)
     # - composer global require pantheon-systems/terminus
     # - terminus login --machine-token=$PMACHINE
-    - nvm use
-    - npm install
-    - gulp install
+    - nvm exec npm install
+    - nvm exec gulp install
     - drupal init -n
   cache_directories:
     - "~/.composer/cache"
@@ -50,12 +49,12 @@ database:
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
-    - gulp build
+    - nvm exec gulp build
     - vendor/bin/drupal --root=web/ --uri=http://default -n server 0.0.0.0:8888:
         background: true
     - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
-    - gulp check
-    - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
+    - nvm exec gulp check
+    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
     # Fix file ownership issues caused by the Docker usage
     - sudo chown -R ubuntu:ubuntu backstop/
 
