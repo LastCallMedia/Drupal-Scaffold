@@ -23,7 +23,7 @@ dependencies:
     # Install and log in using Terminus (requires a machine token in $PMACHINE)
     # - composer global require pantheon-systems/terminus
     # - terminus login --machine-token=$PMACHINE
-    - nvm install
+    - nvm use
     - npm install
     - gulp install
     - drupal init -n
