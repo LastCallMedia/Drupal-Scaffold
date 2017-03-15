@@ -9,7 +9,7 @@
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
     "ip": "^1.1.4",
-    "lastcall-gulp-drupal-tasks": "git+https://github.com/LastCallMedia/gulp-drupal-tasks.git#8df3f1870d",
+    "lastcall-gulp-drupal-tasks": "git+https://github.com/LastCallMedia/gulp-drupal-tasks.git#27613c9510",
     "yargs": "^7.0.2"
   },
   "scripts": {
