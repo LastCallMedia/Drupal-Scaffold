@@ -9,12 +9,41 @@
   // @docroot
   var docroot = './web';
 
+  var baseUrl = 'http://' + ip.address() + ':8888';
+  var phpPatterns = [docroot + '/{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'];
+  var jsPatterns = [
+    'gulpfile.js',
+    'gulpconfig.js',
+    'backstop/{scripts,}/*.js',
+    docroot + '/{modules,themes}/custom/**/*.js',
+    '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
+    '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',
+    '!' + docroot + '/{modules,themes}/custom/**/dist/**'
+  ];
+
+
   var options = {
-    bowerJsonDirectory: './',
-    baseUrl: 'http://' + ip.address() + ':8888',
+    version: 1,
+    composer: {
+      src: './composer.json'
+    },
+    bower: {
+      src: './bower.json'
+    },
+    phpcs: {
+      src: phpPatterns,
+      bin: 'vendor/bin/phpcs',
+      standard: 'vendor/drupal/coder/coder_sniffer/Drupal'
+    },
+    phplint: {
+      src: phpPatterns
+    },
+    eslint: {
+      src: jsPatterns
+    },
     // Packages of SCSS that will be compiled.
-    scss: [
-      {
+    scss: {
+      theme: {
         src: docroot + '/themes/custom/scaffold/scss/**/*.scss',
         maps: '../maps',
         prefix: {browsers: 'last 2 versions', cascade: false},
@@ -25,17 +54,17 @@
           includePaths: ['./bower_components/']
         }
       }
-    ],
+    },
     // Packages of javascript that will be compiled.
-    js: [
-      {
+    js: {
+      'theme-custom': {
         src: [docroot + '/themes/custom/scaffold/js/**/*.js'],
         concat: false,
         min: true,
         maps: '../maps',
         dest: docroot + '/themes/custom/scaffold/dist/js'
       },
-      {
+      'theme-libs': {
         src: [
           './bower_components/what-input/what-input.js',
           './bower_components/foundation-sites/dist/js/foundation.js'
@@ -45,41 +74,28 @@
         maps: '../maps',
         dest: docroot + '/themes/custom/scaffold/dist/js'
       }
-    ],
+    },
     // Packages of files that will be copied.
-    // Files can optionally be passed through imagemin.
-    copy: [
-      {
-        src: docroot + '/themes/custom/scaffold/images',
-        imagemin: true,
+    copy: {
+      theme: {
+        src: [docroot + '/themes/custom/scaffold/images'],
+        imagemin: false, // Requires gulp-imagemin package.
         dest: docroot + '/themes/custom/scaffold/dist/images'
       }
-    ],
-    // Patterns for PHP files to lint and check.
-    phpCheck: [docroot + '/{modules,themes}/custom/**/*.{php,inc,module,theme,inc,install}'],
-    phpcsStandard: 'vendor/drupal/coder/coder_sniffer/Drupal',
-    // Patterns for JS files to lint and check.
-    jsCheck: [
-      'gulpfile.js',
-      'gulpconfig.js',
-      'backstop/{scripts,}/*.js',
-      docroot + '/{modules,themes}/custom/**/*.js',
-      '!' + docroot + '/{modules,themes}/custom/**/bower_components/**',
-      '!' + docroot + '/{modules,themes}/custom/**/node_modules/**',
-      '!' + docroot + '/{modules,themes}/custom/**/dist/**'
-    ],
-    perfTests: [
-      {
-        name: 'homepage',
-        url: '/',
-        screenshot: './artifacts/homepage.jpg',
-        har: './artifacts/homepage.har'
-        // Add assertions as needed:
-        // "assert-requests": 5,
-        // These options are converted into phantomas CLI options.
-        // @see https://github.com/macbre/phantomas
-      }
-    ]
+    },
+    backstopjs: {
+      src: './backstop/backstop.js',
+      baseUrl: baseUrl,
+      junitGlob: './backstop/reports/xunit.xml',
+      artifactGlob: './backstop/{reports,reference,comparisons}/**'
+    },
+    behat: {
+      src: './behat.yml'
+    },
+    phantomas: {
+      src: './phantomas/**.yml',
+      baseUrl: baseUrl
+    }
   };
 
   module.exports = options;
