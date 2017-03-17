@@ -90,6 +90,7 @@
       artifactGlob: './backstop/{reports,reference,comparisons}/**'
     },
     behat: {
+      baseUrl: baseUrl,
       src: './behat.yml'
     },
     phantomas: {
