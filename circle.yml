@@ -59,8 +59,6 @@ test:
     - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
     - gulp check --junit-dir=$CIRCLE_TEST_REPORTS
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
-    # Fix file ownership issues caused by the Docker usage
-    - sudo chown -R ubuntu:ubuntu backstop/
 
 # Pantheon Deployment worfklow:
 #deployment:
