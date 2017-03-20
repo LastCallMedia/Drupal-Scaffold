@@ -95,7 +95,8 @@
     },
     phantomas: {
       src: './phantomas/**.yml',
-      baseUrl: baseUrl
+      baseUrl: baseUrl,
+      artifactGlob: './phantomas/artifacts/**'
     }
   };
 

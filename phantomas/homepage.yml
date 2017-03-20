@@ -1,7 +1,7 @@
 url: "${BASE_URL}/"
 # Save a HAR of the homepage for historical purposes.
 # This path is relative to where the binary is invoked.
-har: "${ARTIFACTS_DIR:-./artifacts}/homepage.har"
+har: "./phantomas/artifacts/homepage.har"
 
 # Assertions can be set here.  See https://github.com/macbre/phantomas for more info.
 # assert-requests: 5
