@@ -6,26 +6,11 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
-    "bower": "^1.7.9",
-    "child-process-promise": "^2.0.2",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-behat": "^0.4.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-csso": "^2.0.0",
-    "gulp-eslint": "^3.0.0",
     "gulp-help": "^1.6.1",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-minify": "^0.0.14",
-    "gulp-phpcs": "^1.2",
-    "gulp-phplint": "^0.3.0",
-    "gulp-sass": "^2.3.1",
-    "gulp-sourcemaps": "^2.0",
-    "gulp-util": "^3.0.7",
     "ip": "^1.1.4",
-    "lodash.assign": "^4.2.0",
-    "merge-stream": "^1.0.0",
-    "phantomas": "^1.15.1"
+    "lastcall-gulp-drupal-tasks": "^1.0.0-rc1",
+    "yargs": "^7.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

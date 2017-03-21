@@ -1,5 +1,8 @@
 machine:
   # Define the environment.
+  pre:
+    # Install a more recent version of Docker to support images created by docker > 1.10.0
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
   php:
     version: 7.0.4
   services:
@@ -16,6 +19,7 @@ machine:
     DOWNSTREAM: "**REPLACE WITH PANTHEON GIT URL**"
     GIT_AUTHOR_NAME: "Last Call Media Automation"
     GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
+    IP: $(hostname -I | cut -d' ' -f1)
 
 dependencies:
   # Install dependencies.
@@ -53,10 +57,8 @@ test:
     - vendor/bin/drupal --root=web/ --uri=http://default -n server 0.0.0.0:8888:
         background: true
     - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
-    - nvm exec gulp check
-    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
-    # Fix file ownership issues caused by the Docker usage
-    - sudo chown -R ubuntu:ubuntu backstop/
+    - nvm exec gulp check --junit-dir=$CIRCLE_TEST_REPORTS
+    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
 
 # Pantheon Deployment worfklow:
 #deployment:
