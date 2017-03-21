@@ -19,6 +19,7 @@ machine:
     DOWNSTREAM: "**REPLACE WITH PANTHEON GIT URL**"
     GIT_AUTHOR_NAME: "Last Call Media Automation"
     GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
+    IP: $(ip addr show eth0)
 
 dependencies:
   # Install dependencies.
@@ -57,7 +58,7 @@ test:
         background: true
     - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
     - nvm exec gulp check --junit-dir=$CIRCLE_TEST_REPORTS
-    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS
+    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
 
 # Pantheon Deployment worfklow:
 #deployment:
