@@ -19,7 +19,7 @@ machine:
     DOWNSTREAM: "**REPLACE WITH PANTHEON GIT URL**"
     GIT_AUTHOR_NAME: "Last Call Media Automation"
     GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
-    IP: $(ip addr show eth0)
+    IP: $(hostname -I | cut -d' ' -f1)
 
 dependencies:
   # Install dependencies.
