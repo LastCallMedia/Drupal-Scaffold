@@ -27,9 +27,6 @@
     composer: {
       src: './composer.json'
     },
-    bower: {
-      src: './bower.json'
-    },
     phpcs: {
       src: phpPatterns,
       bin: 'vendor/bin/phpcs',
@@ -51,7 +48,7 @@
         // Pass options to node-sass.
         sassOptions: {
           // Include paths to resolve automatically.
-          includePaths: ['./bower_components/']
+          includePaths: ['./node_modules/']
         }
       }
     },
@@ -66,8 +63,8 @@
       },
       'theme-libs': {
         src: [
-          './bower_components/what-input/what-input.js',
-          './bower_components/foundation-sites/dist/js/foundation.js'
+          './node_modules/what-input/dist/what-input.js',
+          './node_modules/foundation-sites/dist/js/foundation.js',
         ],
         concat: 'libs.js',
         min: true,
