@@ -36,11 +36,13 @@ services:
   drupal:
     image: "lastcallmedia/php:7.0"
     volumes:
-      - .:/var/www/html
+      - .:/var/www
     links:
       - mysql
       - redis
     environment:
+      # @docroot:
+      - APACHE_DOCROOT=/var/www/web
       - MYSQL_HOST=mysql
       - MYSQL_PASSWORD=drupal
       - MYSQL_USER=drupal
@@ -48,6 +50,7 @@ services:
       - REDIS_HOSTNAME=redis
       - SITE_NAME=scaffold
       - DOCKER_ENV=local
+    working_dir: /var/www/web
 
   mysql:
     image: "mysql:5.6"
