@@ -64,7 +64,7 @@
       'theme-libs': {
         src: [
           './node_modules/what-input/dist/what-input.js',
-          './node_modules/foundation-sites/dist/js/foundation.js',
+          './node_modules/foundation-sites/dist/js/foundation.js'
         ],
         concat: 'libs.js',
         min: true,
