@@ -7,10 +7,10 @@ web/sites/*/settings.local.php
 # Build tools not required in production:
 node_modules
 bower_components
-ci
-backstop
-docker
-features
+/ci
+/backstop
+/docker
+/features
 behat.yml
 default.behat.local.yml
 behat.local.yml
