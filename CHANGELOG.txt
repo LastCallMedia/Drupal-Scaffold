@@ -5,6 +5,7 @@ Development
 * Update gulp configuration to a more tool-oriented syntax.  See gulpconfig.js
 * Move phantomas tests to yml files instead of gulp configuration for easier visibility and reuse.
 * Use configurable docroot for php docker container.
+* Bring in foundation with npm and kill off bower.
 
 1.1.0 2017-01-09
 ----------------
