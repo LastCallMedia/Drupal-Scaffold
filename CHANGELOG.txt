@@ -3,6 +3,7 @@ Development
 * Use a --base-url flag for setting the base url during tests on CircleCI.
 * Move all gulp tasks to a npm module for maintainability. See https://github.com/LastCallMedia/gulp-drupal-tasks
 * Update gulp configuration to a more tool-oriented syntax.  See gulpconfig.js
+* Move phantomas tests to yml files instead of gulp configuration for easier visibility and reuse.
 
 1.1.0 2017-01-09
 ----------------
