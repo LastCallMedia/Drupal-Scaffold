@@ -60,29 +60,23 @@ test:
     - nvm exec gulp check --junit-dir=$CIRCLE_TEST_REPORTS
     - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
 
-# Pantheon Deployment worfklow:
-#deployment:
-#  # Deployment to any branch matching p-*
-#  to_multidev:
-#    branch: /p-.*/
-#    commands:
-#      # Remove dev dependencies and optimize the autoloader.
-#      - composer install --no-dev -o
-#      # Attempt to create a multidev site for this branch if one doesn't exist.
-#      - terminus env:info "$PSITE.$CIRCLE_BRANCH" || terminus env:create "$PSITE.$PSRCENV" $CIRCLE_BRANCH
-#      # Push the artifact to Pantheon.
-#      - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
-#          environment:
-#            BRANCH: $CIRCLE_BRANCH
-#
-#  # Deployment to master
-#  to_master:
-#    branch: master
-#    commands:
-#      # Remove dev dependencies and optimize the autoloader.
-#      - composer install --no-dev -o
-#      - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
-#          environment:
-#            BRANCH: $CIRCLE_BRANCH
+deployment:
+  to_master:
+    branch: master
+    commands:
+      - composer install --no-dev -o
+      # Pantheon deployment workflow:
+      # - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
+      #     environment:
+      #       BRANCH: $CIRCLE_BRANCH
 
-
+  to_multidev:
+    branch: /p-.*/
+    commands:
+      - composer install --no-dev -o
+      # Pantheon deployment workflow:
+      # Attempt to create a multidev environment for this branch if one doesn't exist:
+      # - terminus env:info "$PSITE.$CIRCLE_BRANCH" || terminus env:create "$PSITE.$PSRCENV" $CIRCLE_BRANCH
+      # - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
+      #     environment:
+      #       BRANCH: $CIRCLE_BRANCH
