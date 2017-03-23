@@ -24,7 +24,3 @@ default:
         binary: %paths.base%/vendor/bin/drush
         # @docroot
         root: %paths.base%/web
-
-# Optionally, load a behat.local.yml to override parameters.
-#imports:
-#  - behat.local.yml
