@@ -15,7 +15,7 @@ _(These are only needed for creating a new project repository.  Remove this sect
   composer create-project lastcall/drupal-scaffold PROJECTNAME
   ```
 2. Configure nvm to use the latest stable version `nvm install stable; nvm use stable;` 
-3. From the docroot: `npm install` to install nodejs dependencies.
+3. From the docroot: `yarn install` to install nodejs dependencies (or use `npm install` if you don't have yarn).
 4. From the docroot: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp  installed globally) to install bower and composer dependencies.
 5. Edit the `composer.json`, `package.json`, and `bower.json` and rename the project as needed.
 6. Rename the scaffold theme to match the project (including JS and SCSS files).
@@ -27,7 +27,7 @@ _(These will be used when working from a repo already prepared for a specific pr
 
 1. Clone the repository to your local environment
 2. Initalize nvm: `nvm install`
-3. Install node packages: `npm install`
+3. Install node packages: `yarn install`  (or use `npm install` if you don't have yarn).
 4. Install composer and bower packages: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp installed globally)
 5. Commit and push work to repository as normal
 
