@@ -10,6 +10,7 @@ php:
 env:
   - COMPOSER_EXIT_ON_PATCH_FAILURE=1
 cache:
+  yarn: true
   directories:
     - $HOME/.composer/cache
     - $HOME/.npm
@@ -18,7 +19,7 @@ cache:
 # Install dependencies.
 install:
   - nvm install
-  - npm install
+  - yarn install
   - node_modules/.bin/gulp install
   - vendor/bin/drupal init -n
 
