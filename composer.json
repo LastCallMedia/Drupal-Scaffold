@@ -17,6 +17,7 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
+        "composer/installers": "^1.2",
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
         "drupal/core": "^8.2",

@@ -6,6 +6,7 @@ Development
 * Move phantomas tests to yml files instead of gulp configuration for easier visibility and reuse.
 * Use configurable docroot for php docker container.
 * Bring in foundation with npm and kill off bower.
+* Explicitly require composer/installers to ensure drupal modules, themes, and core always get put in the right place.
 
 1.1.0 2017-01-09
 ----------------
