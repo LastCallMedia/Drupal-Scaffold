@@ -25,7 +25,7 @@ machine: # Define the environment.
 dependencies: # Install dependencies.
   override:
     - if [ -n "$PSITE" ]; then composer global install terminus && terminus login --machine-token=$PMACHINE; fi
-    - npm install
+    - yarn install
     - gulp install
     - drupal init -n
   cache_directories:
