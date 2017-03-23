@@ -1,82 +1,73 @@
-machine:
-  # Define the environment.
-  pre:
-    # Install a more recent version of Docker to support images created by docker > 1.10.0
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+machine: # Define the environment.
   php:
     version: 7.0.4
-  services:
-    - docker
+  node:
+    version: 6
   environment:
     # Add composer and npm binaries to path.
     PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/vendor/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.composer/vendor/bin:$PATH"
     COMPOSER_EXIT_ON_PATCH_FAILURE: 1
     ARTIFACT_DIRECTORY: "${CIRCLE_ARTIFACTS}"
-
-    # Replace these variables with your own.
-    PSITE: "**REPLACE WITH PANTHEON SITE MACHINE NAME**"
-    PSRCENV: live
-    DOWNSTREAM: "**REPLACE WITH PANTHEON GIT URL**"
-    GIT_AUTHOR_NAME: "Last Call Media Automation"
-    GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
     IP: $(hostname -I | cut -d' ' -f1)
 
-dependencies:
-  # Install dependencies.
+    # Replace these variables with your own.
+    # PSITE: "**REPLACE WITH PANTHEON SITE MACHINE NAME**"
+    # PSRCENV: live
+    # DOWNSTREAM: "**REPLACE WITH GIT URL**"
+    GIT_AUTHOR_NAME: "Last Call Media Automation"
+    GIT_AUTHOR_EMAIL: "sysadmin@lastcallmedia.com"
+  pre:
+    # Install a more recent version of Docker to support images created by docker > 1.10.0
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  services:
+    - docker
+
+dependencies: # Install dependencies.
   override:
-    # Install and log in using Terminus (requires a machine token in $PMACHINE)
-    # - composer global require pantheon-systems/terminus
-    # - terminus login --machine-token=$PMACHINE
-    - nvm exec npm install
-    - nvm exec gulp install
+    - if [ -n "$PSITE" ]; then composer global install terminus && terminus login --machine-token=$PMACHINE; fi
+    - npm install
+    - gulp install
     - drupal init -n
   cache_directories:
     - "~/.composer/cache"
     - "~/.npm"
     - "~/.bower"
 
-database:
+database: # Install the Drupal site.  Try to fetch and import a db, then run prepare-site.yml.
   override:
-    ## Grab a database from Pantheon and restore it.
-    # - cp ci/settings.circle.php web/sites/default/settings.local.php
-    # - terminus backup:get "$PSITE.$PSRCENV" --element=db --to=/tmp/db.sql.gz
-    # - pushd web/ && zcat /tmp/db.sql.gz | ../vendor/bin/drush sql-cli && popd
-    ## Setup stage file proxy so we don't need to grab the files.
-    # - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/chain/prepare-site.yml
-    #
-    # OR...
-    #
-    # Install a fresh copy of Drupal.
     - cp ci/settings.circle.php web/sites/default/settings.local.php
-    - vendor/bin/drupal --root=web/ -n chain --uri=http://default --file=../ci/prepare-site.yml
+    - if [ -n "$PSITE" ]; then terminus backup:get "$PSITE.$PSRCENV" --element=db --to=/tmp/db.sql.gz; fi
+    - if [ -f /tmp/db.sql.gz ]; then zcat /tmp/db.sql.gz | mysql -u ubuntu circle_test; fi
+    - drupal -n chain --file=$(pwd)/ci/prepare-site.yml
 
 test:
   # Perform all testing steps, including static code analysis, unit, and web tests.
   override:
-    - nvm exec gulp build
-    - vendor/bin/drupal --root=web/ --uri=http://default -n server 0.0.0.0:8888:
+    - gulp build
+    - drupal -n server 0.0.0.0:8888:
         background: true
-    - vendor/bin/drupal --root=web/ --uri=http://default -n cache:rebuild all
-    - nvm exec gulp check --junit-dir=$CIRCLE_TEST_REPORTS
-    - nvm exec gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
+    - drupal -n cache:rebuild all
+    - gulp check --junit-dir=$CIRCLE_TEST_REPORTS
+    - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
 
 deployment:
   to_master:
     branch: master
     commands:
       - composer install --no-dev -o
-      # Pantheon deployment workflow:
-      # - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
-      #     environment:
-      #       BRANCH: $CIRCLE_BRANCH
+      - if [ -n "$DOWNSTREAM" ]; then ./ci/scripts/push-to-downstream.sh; fi:
+          environment:
+            MESSAGE: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+            BRANCH: $CIRCLE_BRANCH
 
   to_multidev:
     branch: /p-.*/
     commands:
       - composer install --no-dev -o
-      # Pantheon deployment workflow:
-      # Attempt to create a multidev environment for this branch if one doesn't exist:
-      # - terminus env:info "$PSITE.$CIRCLE_BRANCH" || terminus env:create "$PSITE.$PSRCENV" $CIRCLE_BRANCH
-      # - MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1) ./ci/scripts/push-to-downstream.sh:
-      #     environment:
-      #       BRANCH: $CIRCLE_BRANCH
+      # If we're pushing to pantheon, ensure that a multidev home exists for this branch.
+      - if [ -n "$PSITE" ]; then terminus env:info "$PSITE.$CIRCLE_BRANCH" || terminus env:create "$PSITE.$PSRCENV" $CIRCLE_BRANCH; fi
+      - if [ -n "$DOWNSTREAM" ]; then ./ci/scripts/push-to-downstream.sh; fi:
+          environment:
+            MESSAGE: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+            BRANCH: $CIRCLE_BRANCH
+            GIT_COMMITTER_NAME: CircleCI
