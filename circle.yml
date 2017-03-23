@@ -24,7 +24,7 @@ machine: # Define the environment.
 
 dependencies: # Install dependencies.
   override:
-    - if [ -n "$PSITE" ]; then composer global install terminus && terminus login --machine-token=$PMACHINE; fi
+    - if [ -n "$PSITE" ]; then composer global require pantheon-systems/terminus && terminus login --machine-token=$PMACHINE; fi
     - yarn install
     - gulp install
     - drupal init -n
