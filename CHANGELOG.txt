@@ -9,6 +9,7 @@ Development
 * Explicitly require composer/installers to ensure drupal modules, themes, and core always get put in the right place.
 * Refactor circle.yml so only the top section (environment and versions) needs to be changed for most projects.
 * Use [yarn](https://yarnpkg.com/en/) instead of NPM.
+* Remove the concept of a behat.local.yml
 
 1.1.0 2017-01-09
 ----------------
