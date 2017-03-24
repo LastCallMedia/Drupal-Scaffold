@@ -55,7 +55,7 @@ deployment:
   to_master:
     branch: master
     commands:
-      - composer install --no-dev -o
+      - rm -rf vendor/ && composer install --no-dev -o
       - if [ -n "$DOWNSTREAM" ]; then ./ci/scripts/push-to-downstream.sh; fi:
           environment:
             MESSAGE: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
@@ -64,7 +64,7 @@ deployment:
   to_multidev:
     branch: /p-.*/
     commands:
-      - composer install --no-dev -o
+      - rm -rf vendor/ && composer install --no-dev -o
       # If we're pushing to pantheon, ensure that a multidev home exists for this branch.
       - if [ -n "$PSITE" ]; then terminus env:info "$PSITE.$CIRCLE_BRANCH" || terminus env:create "$PSITE.$PSRCENV" $CIRCLE_BRANCH; fi
       - if [ -n "$DOWNSTREAM" ]; then ./ci/scripts/push-to-downstream.sh; fi:
