@@ -71,4 +71,3 @@ deployment:
           environment:
             MESSAGE: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
             BRANCH: $CIRCLE_BRANCH
-            GIT_COMMITTER_NAME: CircleCI
