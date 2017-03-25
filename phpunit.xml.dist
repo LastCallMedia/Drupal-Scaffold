@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="web/core/tests/bootstrap.php" colors="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutChangesToGlobalState="true"
+         checkForUnintentionallyCoveredCode="false">
+  <php>
+    <!-- Set error reporting to E_ALL. -->
+    <ini name="error_reporting" value="32767"/>
+    <!-- Do not limit the amount of memory tests take to run. -->
+    <ini name="memory_limit" value="-1"/>
+    <!-- SIMPLETEST_BASE_URL is set through gulp flags. -->
+    <env name="SIMPLETEST_BASE_URL" value=""/>
+    <env name="SIMPLETEST_DB" value="sqlite://localhost//tmp/test.db.sqlite"/>
+    <env name="BROWSERTEST_OUTPUT_DIRECTORY" value=""/>
+  </php>
+  <testsuites>
+      <testsuite name="unit"><!-- Unit tests -->
+          <directory suffix="Test.php">./web/modules/custom/**/tests/src/Unit</directory>
+          <directory suffix="Test.php">./web/themes/custom/**/tests/src/Unit</directory>
+      </testsuite>
+      <testsuite name="kernel"><!-- Kernel tests -->
+          <directory suffix="Test.php">./web/modules/custom/**/tests/src/Kernel</directory>
+          <directory suffix="Test.php">./web/themes/custom/**/tests/src/Kernel</directory>
+      </testsuite>
+      <testsuite name="functional"><!-- Functional tests -->
+          <directory suffix="Test.php">./web/modules/custom/**/tests/src/Functional</directory>
+          <directory suffix="Test.php">./web/themes/custom/**/tests/src/Functional</directory>
+      </testsuite>
+      <testsuite name="functional-javascript"><!-- Functional Javascript tests -->
+          <directory suffix="Test.php">./web/modules/custom/**/tests/src/FunctionalJavascript</directory>
+          <directory suffix="Test.php">./web/themes/custom/**/tests/src/FunctionalJavascript</directory>
+      </testsuite>
+  </testsuites>
+  <listeners>
+    <listener class="\Drupal\Tests\Listeners\DrupalStandardsListener">
+    </listener>
+  </listeners>
+  <!-- Filter for coverage reports. -->
+  <filter>
+    <whitelist>
+      <directory>./web/modules/custom</directory>
+      <directory>./web/themes/custom</directory>
+      <!-- By definition test classes have no tests. -->
+      <exclude>
+        <directory suffix="Test.php">./</directory>
+        <directory suffix="TestBase.php">./</directory>
+      </exclude>
+     </whitelist>
+  </filter>
+</phpunit>

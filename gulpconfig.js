@@ -80,6 +80,10 @@
         dest: docroot + '/themes/custom/scaffold/dist/images'
       }
     },
+    phpunit: {
+      src: './phpunit.xml.dist',
+      bin: './vendor/bin/phpunit'
+    },
     backstopjs: {
       src: './backstop/backstop.js',
       baseUrl: baseUrl,
