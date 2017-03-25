@@ -4,6 +4,7 @@ namespace Drupal\pattern_lib\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\pattern_lib\PatternManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,32 +17,38 @@ class PatternController extends ControllerBase {
 
   private $renderer;
 
+  private $themeManager;
+
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('pattern_lib.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('theme.manager')
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(PatternManager $manager, RendererInterface $renderer) {
+  public function __construct(PatternManager $manager, RendererInterface $renderer, ThemeManagerInterface $themeManager) {
     $this->manager = $manager;
     $this->renderer = $renderer;
+    $this->themeManager = $themeManager;
   }
 
   /**
    * Serve a list of patterns.
    */
   public function indexAction() {
+    $theme = $this->themeManager->getActiveTheme();
+
     return [
       '#theme' => 'pattern_list',
       '#render' => TRUE,
-      '#patterns' => $this->manager->getPatternsGrouped(),
+      '#patterns' => $this->manager->getPatternsGrouped($theme),
     ];
   }
 
@@ -49,7 +56,8 @@ class PatternController extends ControllerBase {
    * Serve a single pattern.
    */
   public function patternAction($patternId) {
-    if ($pattern = $this->manager->getPattern($patternId)) {
+    $theme = $this->themeManager->getActiveTheme();
+    if ($pattern = $this->manager->getPattern($theme, $patternId)) {
       $render = $pattern->getRender();
       $render['#theme_wrappers'][] = 'pattern';
       return $render;
@@ -61,7 +69,8 @@ class PatternController extends ControllerBase {
    * Title callback for when viewing a pattern.
    */
   public function patternTitle($patternId) {
-    if ($pattern = $this->manager->getPattern($patternId)) {
+    $theme = $this->themeManager->getActiveTheme();
+    if ($pattern = $this->manager->getPattern($theme, $patternId)) {
       return $pattern->getName();
     }
   }
