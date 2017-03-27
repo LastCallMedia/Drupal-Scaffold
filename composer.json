@@ -27,7 +27,9 @@
         "drupal/console": "1.0.0-rc15",
         "drupal/coder": "^8.2.8",
         "drupal/drupal-extension": "^3.1",
-        "squizlabs/php_codesniffer": "^2.0"
+        "squizlabs/php_codesniffer": "^2.0",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": ">=4.8.28 <5"
     },
     "extra": {
         "installer-paths": {
