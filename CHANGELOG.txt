@@ -3,6 +3,7 @@ Development
 * rm -rf composer dependencies before attempting final optimized install to fix Drupal console uninstall bug. See https://github.com/hechoendrupal/drupal-console-extend-plugin/issues/2
 * gitignore "-n" file from backstop container.
 * Bump MySQL max allowed packet to 16mb.
+* Add configuration for Behat Drupal messaging steps.
 
 1.2.0 2017-03-23
 ----------------
