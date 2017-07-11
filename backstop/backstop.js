@@ -11,11 +11,11 @@
     scenarios: scenarios,
     engine: 'slimer',
     paths: {
-      bitmaps_reference: 'reference',
-      bitmaps_test: 'comparisons',
-      casper_scripts: '.',
-      html_report: 'reports',
-      ci_report: 'reports'
+      bitmaps_reference: __dirname + '/reference',
+      bitmaps_test: __dirname + '/comparisons',
+      casper_scripts: __dirname,
+      html_report: __dirname + '/reports',
+      ci_report: __dirname + '/reports'
     },
     report: ['CI', 'browser']
   };
