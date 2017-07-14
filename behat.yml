@@ -1,3 +1,23 @@
+# Behat Configuration file.
+#
+# Behat is a "Behavior Driven Development" (BDD) tool.  It executes tests written in
+# plain, human readable language.  It is best used to ensure parts of the site function
+# as expected.
+#
+# Tests and step definitions for this specific project are stored in the /features directory.
+# Behat can be run through gulp using:
+#
+#     gulp test:behat --base-url=http://localhost:8080
+#
+# If you need to interact with Behat more directly, you can invoke it directly using:
+#
+#     vendor/bin/behat
+#
+# Note that you may also need to set a base url in the configuration below.
+#
+# For more information on Behat, see:
+#   - Behat documentation: http://behat.org/en/latest/guides.html
+#   - Drupal Behat documentation: https://behat-drupal-extension.readthedocs.io/en/3.1/
 default:
   suites:
     default:
