@@ -1,6 +1,6 @@
 machine: # Define the environment.
   php:
-    version: 7.0.4
+    version: 7.0.7
   node:
     version: 6
   environment:
