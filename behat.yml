@@ -9,6 +9,12 @@
 #
 #     gulp test:behat --base-url=http://localhost:8080
 #
+# If you need to interact with Behat more directly, you can invoke it directly using:
+#
+#     vendor/bin/behat
+#
+# Note that you may also need to set a base url in the configuration below.
+#
 # For more information on Behat, see:
 #   - Behat documentation: http://behat.org/en/latest/guides.html
 #   - Drupal Behat documentation: https://behat-drupal-extension.readthedocs.io/en/3.1/
