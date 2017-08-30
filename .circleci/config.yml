@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  install:
+  build:
     working_directory: ~/site
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
