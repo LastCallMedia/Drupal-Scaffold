@@ -11,13 +11,13 @@
  */
 module.exports = [
   {
-    "name": "phone",
-    "width": 320,
-    "height": 480
+    name: 'phone',
+    width: 320,
+    height: 480
   },
   {
-    "name": "desktop",
-    "width": 1024,
-    "height": 768
+    name: 'desktop',
+    width: 1024,
+    height: 768
   }
-]
+];
