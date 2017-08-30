@@ -1,5 +1,8 @@
 Development
 -----------
+
+1.3.0 2017-08-30
+----------------
 * rm -rf composer dependencies before attempting final optimized install to fix Drupal console uninstall bug. See https://github.com/hechoendrupal/drupal-console-extend-plugin/issues/2
 * gitignore "-n" file from backstop container.
 * Bump MySQL max allowed packet to 16mb.
