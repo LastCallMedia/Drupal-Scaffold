@@ -5,6 +5,7 @@ Development
 * Bump MySQL max allowed packet to 16mb.
 * Drupal core update to 8.3.7
 * Drupal console update to 1.0.1
+* Update Foundation to 6.4.  This enables the flex grid by default (see style.scss for how to switch back to the float grid).
 
 1.2.0 2017-03-23
 ----------------
