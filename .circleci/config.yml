@@ -22,20 +22,20 @@ jobs:
       - persist_to_workspace:
           root: ~/site
 
-    test:
-      working_directory: ~/site
-      docker:
-        - image: lastcallmedia/php:7.0-dev # Primary image
-        - image: mysql:5.6
-          environment:
-            MYSQL_USER: circle
-            MYSQL_PASSWORD: circle
-            MYSQL_DATABASE: circle
-            MYSQL_RANDOM_ROOT_PASSWORD: 1
-      steps:
-        - attach_workspace:
-            at: ~/site
-        - run: ls
+  test:
+    working_directory: ~/site
+    docker:
+      - image: lastcallmedia/php:7.0-dev # Primary image
+      - image: mysql:5.6
+        environment:
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_RANDOM_ROOT_PASSWORD: 1
+    steps:
+      - attach_workspace:
+          at: ~/site
+      - run: ls
 
 
 workflows:
