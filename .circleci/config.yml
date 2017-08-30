@@ -27,7 +27,7 @@ jobs:
           paths: [ node_modules ]
       - persist_to_workspace:
           root: ~/site
-          paths: [web, vendor, node_modules]
+          paths: ./*
 
   test:
     working_directory: ~/site
