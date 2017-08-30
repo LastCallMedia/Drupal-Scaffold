@@ -19,8 +19,15 @@ jobs:
       - run: npm install
       - run: gulp install
       - run: gulp build
+      - save_cache:
+          key: site-composer-{{ checksum "composer.lock" }}
+          paths: [ vendor ]
+      - save_cache:
+          key: site-npm-{{ checksum "package.json" }}
+          paths: [ node_modules ]
       - persist_to_workspace:
           root: ~/site
+          paths: *
 
   test:
     working_directory: ~/site
