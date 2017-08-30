@@ -7,6 +7,9 @@
 // Put remote font imports here.
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab');
 
+// This builds Foundation with the flex grid.
+// If you want xy-grid, set $xy_grid: true in _global.scss.
+// If you want the float grid, set $flex: false in this include.
 @include foundation-everything();
 
 /**
