@@ -11,7 +11,7 @@
     "gulp-help": "^1.6.1",
     "ip": "^1.1.4",
     "lastcall-gulp-drupal-tasks": "^1.0.0-rc4",
-    "yargs": "^7.0.2"
+    "yargs": "^8.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
