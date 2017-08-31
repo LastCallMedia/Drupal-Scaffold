@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/site
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
+      - image: lastcallmedia/php:7.0-dev # Web container
       - image: mysql:5.6
         environment:
           MYSQL_USER: circle
@@ -39,7 +40,7 @@ jobs:
           command: |
             cp ci/settings.circle.php web/sites/default/settings.local.php
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
-      - run: {name: "Execute tests", command: "gulp test" }
+      - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1" }
 
 workflows:
   version: 2
