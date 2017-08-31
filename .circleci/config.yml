@@ -40,7 +40,7 @@ jobs:
           command: |
             cp ci/settings.circle.php web/sites/default/settings.local.php
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
-      - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1" }
+      - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1'" }
 
 workflows:
   version: 2
