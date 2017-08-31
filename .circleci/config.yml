@@ -4,27 +4,27 @@ jobs:
     working_directory: /var/www
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
-          environment:
-            DOCKER_ENV: ci
-            APACHE_DOCROOT: /var/www/web
-            MYSQL_USER: circle
-            MYSQL_PASSWORD: circle
-            MYSQL_DATABASE: circle
-            MYSQL_HOST: circle
+        environment:
+          DOCKER_ENV: ci
+          APACHE_DOCROOT: /var/www/web
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_HOST: circle
       - image: lastcallmedia/php:7.0-dev # Web container
-          environment:
-            DOCKER_ENV: ci
-            APACHE_DOCROOT: /var/www/web
-            MYSQL_USER: circle
-            MYSQL_PASSWORD: circle
-            MYSQL_DATABASE: circle
-            MYSQL_HOST: circle
+        environment:
+          DOCKER_ENV: ci
+          APACHE_DOCROOT: /var/www/web
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_HOST: circle
       - image: mysql:5.6
-          environment:
-            MYSQL_USER: circle
-            MYSQL_PASSWORD: circle
-            MYSQL_DATABASE: circle
-            MYSQL_RANDOM_ROOT_PASSWORD: 1
+        environment:
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_RANDOM_ROOT_PASSWORD: 1
     steps:
       - checkout
       - restore_cache:
