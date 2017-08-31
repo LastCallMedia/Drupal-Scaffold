@@ -30,14 +30,14 @@ jobs:
       - save_cache:
           key: site-composer-{{ checksum "composer.lock" }}
           paths: [ vendor ]
-      - run: |
-          gulp build
-          gulp check
-          cp ci/settings.circle.php web/sites/default/settings.local.php
-          vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
-          gulp test
-
-
+      - run: {name: "Execute build", command: "gulp build" }
+      - run: {name: "Check code", command: "gulp check" }
+      - run:
+          name: "Prepare site"
+          command: |
+            cp ci/settings.circle.php web/sites/default/settings.local.php
+            vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
+      - run: {name: "Execute tests", command: "gulp test" }
 
 workflows:
   version: 2
