@@ -15,10 +15,11 @@ jobs:
           name: Restore NPM cache
           keys:
             - site-npm-{{ checksum "package.json" }}
-            - site-npm]
-      - run: npm install
-      - run: gulp install
-      - run: gulp build
+            - site-npm-
+      - run: |
+          npm install
+          gulp install
+          gulp build
       - save_cache:
           key: site-composer-{{ checksum "composer.lock" }}
           paths: [ vendor ]
@@ -42,7 +43,12 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/site
-      - run: ls
+      - run: |
+          cp ci/settings.circle.php web/sites/default/settings.local.php
+          vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
+          gulp check
+          gulp test
+
 
 
 workflows:
