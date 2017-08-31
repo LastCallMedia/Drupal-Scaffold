@@ -84,12 +84,12 @@
       src: './phpunit.xml.dist',
       bin: './vendor/bin/phpunit'
     },
-    backstopjs: {
-      src: './backstop/backstop.js',
-      baseUrl: baseUrl,
-      junitGlob: './backstop/reports/xunit.xml',
-      artifactGlob: './backstop/{reports,reference,comparisons}/**'
-    },
+    // backstopjs: {
+    //   src: './backstop/backstop.js',
+    //   baseUrl: baseUrl,
+    //   junitGlob: './backstop/reports/xunit.xml',
+    //   artifactGlob: './backstop/{reports,reference,comparisons}/**'
+    // },
     behat: {
       bin: './vendor/bin/behat',
       baseUrl: baseUrl,
