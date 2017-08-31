@@ -53,7 +53,7 @@ jobs:
           name: "Prepare site"
           command: |
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
-            git checkout sites/default/settings.php
+            git checkout web/sites/default/settings.php
       - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1'" }
 
 workflows:
