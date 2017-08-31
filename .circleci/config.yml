@@ -1,16 +1,30 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/site
+    working_directory: /var/www
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
+          environment:
+            DOCKER_ENV: ci
+            APACHE_DOCROOT: /var/www/web
+            MYSQL_USER: circle
+            MYSQL_PASSWORD: circle
+            MYSQL_DATABASE: circle
+            MYSQL_HOST: circle
       - image: lastcallmedia/php:7.0-dev # Web container
+          environment:
+            DOCKER_ENV: ci
+            APACHE_DOCROOT: /var/www/web
+            MYSQL_USER: circle
+            MYSQL_PASSWORD: circle
+            MYSQL_DATABASE: circle
+            MYSQL_HOST: circle
       - image: mysql:5.6
-        environment:
-          MYSQL_USER: circle
-          MYSQL_PASSWORD: circle
-          MYSQL_DATABASE: circle
-          MYSQL_RANDOM_ROOT_PASSWORD: 1
+          environment:
+            MYSQL_USER: circle
+            MYSQL_PASSWORD: circle
+            MYSQL_DATABASE: circle
+            MYSQL_RANDOM_ROOT_PASSWORD: 1
     steps:
       - checkout
       - restore_cache:
@@ -38,7 +52,6 @@ jobs:
       - run:
           name: "Prepare site"
           command: |
-            cp ci/settings.circle.php web/sites/default/settings.local.php
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
       - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1'" }
 
