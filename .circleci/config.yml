@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
         environment:
+          CID: 1
           DOCKER_ENV: ci
           APACHE_DOCROOT: /var/www/code/web
           MYSQL_USER: circle
@@ -30,22 +31,22 @@ jobs:
       - restore_cache:
           name: Restore NPM cache
           keys:
-            - site-npm-{{ checksum "package.json" }}
-            - site-npm-
+            - site-npm-{{ .Environment.CID }}-{{ checksum "package.json" }}
+            - site-npm-{{ .Environment.CID }}-
       - run: {name: "NPM install", command: "npm install" }
       - save_cache:
           name: Save NPM cache
-          key: site-npm-{{ checksum "package.json" }}
+          key: site-npm-{{ .Environment.CID }}-{{ checksum "package.json" }}
           paths: [ node_modules ]
       - restore_cache:
           name: Restore Composer cache
           keys:
-            - site-composer-{{ checksum "composer.lock" }}
-            - site-composer
+            - site-composer-{{ .Environment.CID }}-{{ checksum "composer.lock" }}
+            - site-composer-{{ .Environment.CID }}-
       - run: {name: "Gulp install", command: "gulp install" }
       - save_cache:
           name: Save Composer cache
-          key: site-composer-{{ checksum "composer.lock" }}
+          key: site-composer-{{ .Environment.CID }}-{{ checksum "composer.lock" }}
           paths: [ vendor ]
       - run: {name: "Execute build", command: "gulp build" }
       - run: {name: "Check code", command: "gulp check" }
