@@ -17,8 +17,9 @@ jobs:
           keys:
             - site-npm-{{ checksum "package.json" }}
             - site-npm-
-      - run: npm install
+      - run: {name: "NPM install", command: "npm install" }
       - save_cache:
+          name: Save NPM cache
           key: site-npm-{{ checksum "package.json" }}
           paths: [ node_modules ]
       - restore_cache:
@@ -26,8 +27,9 @@ jobs:
           keys:
             - site-composer-{{ checksum "composer.lock" }}
             - site-composer
-      - run: gulp install
+      - run: {name: "Gulp install", command: "gulp install" }
       - save_cache:
+          name: Save Composer cache
           key: site-composer-{{ checksum "composer.lock" }}
           paths: [ vendor ]
       - run: {name: "Execute build", command: "gulp build" }
