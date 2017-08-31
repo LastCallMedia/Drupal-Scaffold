@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: /var/www
+    working_directory: /var/www/code
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
         environment:
           DOCKER_ENV: ci
-          APACHE_DOCROOT: /var/www/web
+          APACHE_DOCROOT: /var/www/code/web
           MYSQL_USER: circle
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
@@ -14,7 +14,7 @@ jobs:
       - image: lastcallmedia/php:7.0-dev # Web container
         environment:
           DOCKER_ENV: ci
-          APACHE_DOCROOT: /var/www/web
+          APACHE_DOCROOT: /var/www/code/web
           MYSQL_USER: circle
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
