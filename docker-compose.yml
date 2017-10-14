@@ -37,6 +37,7 @@ services:
     image: "lastcallmedia/php:7.0"
     ports:
       - "${DRUPAL_PORT:-8081}:80" # Debug port - remove if you use for production hosting
+      - "${MANNEQUIN_PORT:-8082}:8082" # Debug port - remove if you use for production hosting.
     volumes:
       - .:/var/www
     links:
