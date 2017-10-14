@@ -783,3 +783,7 @@ if(file_exists(__DIR__ . '/settings.pantheon.php')) {
 if(file_exists(__DIR__ . '/settings.local.php')) {
   require __DIR__ . '/settings.local.php';
 }
+
+// Hard-coded config directory.  This should not be overrideable
+// from any of the settings files we include, so we set it last.
+$config_directories[CONFIG_SYNC_DIRECTORY] = $app_root.'/../config';
