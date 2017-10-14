@@ -12,14 +12,6 @@ jobs:
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
           MYSQL_HOST: 127.0.0.1
-      - image: lastcallmedia/php:7.0-dev # Web container
-        environment:
-          DOCKER_ENV: ci
-          APACHE_DOCROOT: /var/www/code/web
-          MYSQL_USER: circle
-          MYSQL_PASSWORD: circle
-          MYSQL_DATABASE: circle
-          MYSQL_HOST: 127.0.0.1
       - image: mysql:5.6
         environment:
           MYSQL_USER: circle
@@ -55,7 +47,8 @@ jobs:
           command: |
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
             git checkout web/sites/default/settings.php
-      - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1'" }
+      - run: {name: 'Web server', command: 'drupal -n server 0.0.0.0:8888', background: true}
+      - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1:8888'" }
 
 workflows:
   version: 2
