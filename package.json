@@ -6,12 +6,13 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
+    "eslint-config-airbnb": "^16.0.0",
     "foundation-sites": "^6.4.3",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
     "ip": "^1.1.4",
     "lastcall-gulp-drupal-tasks": "^1.0.0-rc4",
-    "yargs": "^8.0"
+    "yargs": "^9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
