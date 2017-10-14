@@ -14,7 +14,7 @@
 #
 # See https://docs.docker.com/compose/ for more information.
 
-version: '2'
+version: '3'
 
 volumes:
   # This is an anonymous volume.  It won't be deleted unless you explicitly do so
@@ -26,7 +26,7 @@ services:
   varnish:
     image: kardasz/varnish:latest
     ports:
-      - 8080:80
+      - ${VARNISH_PORT:-8080}:80
     links:
       - drupal
     volumes:
@@ -36,7 +36,7 @@ services:
   drupal:
     image: "lastcallmedia/php:7.0"
     ports:
-      - 8081:80 # Debug port - remove if you use for production hosting
+      - "${DRUPAL_PORT:-8081}:80" # Debug port - remove if you use for production hosting
     volumes:
       - .:/var/www
     links:
@@ -50,14 +50,14 @@ services:
       - MYSQL_USER=drupal
       - MYSQL_DATABASE=drupal
       - REDIS_HOSTNAME=redis
-      - SITE_NAME=scaffold
+      - "SITE_NAME=${SITE_NAME:-scaffold}"
       - DOCKER_ENV=local
     working_dir: /var/www/web
 
   mysql:
     image: "mysql:5.6"
     ports:
-      - 33306:3306 # Debug port - remove if you use for production hosting.
+      - "${MYSQL_PORT:-33306}:3306" # Debug port - remove if you use for production hosting.
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docker/mysql-extra.cnf:/etc/mysql/conf.d/extra.cnf
@@ -75,7 +75,7 @@ services:
   #solr:
   #  image: solr:5.5.3-alpine
   #  ports:
-  #    - "8983:8983" # Debug port - remove if you use for production hosting.
+  #    - "${SOLR_PORT:-8983}:8983" # Debug port - remove if you use for production hosting.
   #  command: solr-precreate main /solr-config
   #  volumes:
   #    - ./modules/contrib/search_api_solr/solr-conf/5.x:/solr-config/conf

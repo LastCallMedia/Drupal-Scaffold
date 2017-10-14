@@ -10,6 +10,9 @@
 * Update sites/default/services.yml with default CORS configuration from Drupal 8.4.0
 * Move config directory outside of web root so it can be committed - [#35](https://github.com/LastCallMedia/Drupal-Scaffold/issues/35).
 
+### Added
+* Allow Docker ports to be configured [using environment variables](https://docs.docker.com/compose/environment-variables/#substituting-environment-variables-in-compose-files).
+
 ## [1.3.0] - 2017-08-30
 ### Changed
 * rm -rf composer dependencies before attempting final optimized install to fix Drupal console uninstall bug. See https://github.com/hechoendrupal/drupal-console-extend-plugin/issues/2
