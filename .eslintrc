@@ -1,4 +1,4 @@
 {
   //  @docroot
-  "extends": "./web/core/.eslintrc.json"
+  "extends": "./web/core/.eslintrc.legacy.json"
 }
