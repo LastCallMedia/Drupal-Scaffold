@@ -1,14 +1,14 @@
-Development
------------
+# Changelog
 
 ## [Unreleased]
-Changed
+### Changed
 * Use Legacy configuration for ESLint
 * Drupal core update to 8.4.0
 * Symfony component update to 3.3.*
+* Update CHANGELOG to [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) format 1.0.0.
 
-1.3.0 2017-08-30
-----------------
+## [1.3.0] - 2017-08-30
+### Changed
 * rm -rf composer dependencies before attempting final optimized install to fix Drupal console uninstall bug. See https://github.com/hechoendrupal/drupal-console-extend-plugin/issues/2
 * gitignore "-n" file from backstop container.
 * Bump MySQL max allowed packet to 16mb.
@@ -17,8 +17,8 @@ Changed
 * Update Foundation to 6.4.  This enables the flex grid by default (see style.scss for how to switch back to the float grid).
 * Add configuration for Behat Drupal messaging steps.
 
-1.2.0 2017-03-23
-----------------
+## [1.2.0] - 2017-03-23
+### Changed
 * Use a --base-url flag for setting the base url during tests on CircleCI.
 * Move all gulp tasks to a npm module for maintainability. See https://github.com/LastCallMedia/gulp-drupal-tasks
 * Update gulp configuration to a more tool-oriented syntax.  See gulpconfig.js
@@ -30,8 +30,8 @@ Changed
 * Use [yarn](https://yarnpkg.com/en/) instead of NPM.
 * Remove the concept of a behat.local.yml
 
-1.1.0 2017-01-09
-----------------
+## [1.1.0] - 2017-01-09
+### Changed
 * Use a configurable PHPCS standard
 * Add pantheon deployment tasks to circle.yml
 * Allow skipping bower tasks if bower is not configured.
@@ -44,8 +44,8 @@ Changed
 * Added Circle CI test steps
 * Added drupal-profile installer support to composer.json
 
-1.0.3 2017-01-09
-----------------
+## [1.0.3] - 2017-01-09
+### Changed
 * Runs behat and performance tests out of the box with Travis.
 * Move docroot into web/
 * Update to Drupal core 8.2.x
@@ -54,8 +54,8 @@ Changed
 * Compile what-input with Foundation JS
 * Specify engines in package.json for better CI detection.
 
-1.0.2, 2016-10-23
-------------------
+## [1.0.2] - 2016-10-23
+### Changed
 * Add docker-compose stack for easy setup
 * Scaffold theme enhancements (add logo, base menu theming, remove compiled assets)
 * Properly set git attributes for .svg and .eot
@@ -63,8 +63,8 @@ Changed
 * Coder check for .install files too
 * Dependency updates (gulp-sourcemaps, gulp-phpcs, Drupal core)
 
-1.0.1, 2016-09-23
------------------
+## [1.0.1] - 2016-09-23
+### Changed
 * Add wysiwyg stylesheet
 * No longer include behat.local.yml by default.  Use default settings for `drush rs` (127.0.0.1:8888) for behat base_url.
 * Use default settings for `drush rs` (127.0.0.1:8888) for phantomas base url.
@@ -74,6 +74,6 @@ Changed
 * Don't abort build:scss task on scss error (fixes watch breaking on invalid scss).
 
 
-1.0.0-beta1, 2016-08-14
------------------------
+## [1.0.0-beta1] - 2016-08-14
+### Added
 * Initial beta release
