@@ -8,6 +8,7 @@
 * Update CHANGELOG to [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) format 1.0.0.
 * Use development Docker configuration by default.
 * Update sites/default/services.yml with default CORS configuration from Drupal 8.4.0
+* Move config directory outside of web root so it can be committed - [#35](https://github.com/LastCallMedia/Drupal-Scaffold/issues/35).
 
 ## [1.3.0] - 2017-08-30
 ### Changed
