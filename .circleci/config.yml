@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
         environment:
-          CID: 1
+          CID: 1 # Cache identifier.  Increment to create a fresh cache.
           DOCKER_ENV: ci
           APACHE_DOCROOT: /var/www/code/web
           MYSQL_USER: circle
