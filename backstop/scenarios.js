@@ -12,24 +12,18 @@
  * For more information, see
  *  https://github.com/garris/BackstopJS#here-is-the-configuration-that-backstop-genconfig-generates
  */
-(function () {
-  'use strict';
+var baseUrl = process.env.BASE_URL;
 
-  var baseUrl = process.env.BASE_URL;
-
-  module.exports = [
-    {
-      label: 'Homepage',
-      url: baseUrl + '/',
-      hideSelectors: [],
-      removeSelectors: [],
-      selectors: [
-        'document'
-      ],
-      readyEvent: null,
-      delay: 500,
-      misMatchThreshold: 0.1
-    }
-  ];
-})();
+module.exports = [
+  {
+    label: 'Homepage',
+    url: baseUrl + '/',
+    hideSelectors: [],
+    removeSelectors: [],
+    selectors: ['document'],
+    readyEvent: null,
+    delay: 500,
+    misMatchThreshold: 0.1
+  }
+];
 

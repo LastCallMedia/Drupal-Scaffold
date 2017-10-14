@@ -6,10 +6,6 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
-    "eslint-config-airbnb": "14.1.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.3",
     "foundation-sites": "^6.4.3",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
