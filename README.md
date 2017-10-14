@@ -47,18 +47,11 @@ This tool is pre-configured for use on Pantheon.  Using it on Acquia or another 
 Using the Docker Images
 -----------------------
 
-#### Default configuration
+Run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).  The default Docker Compose configuration exposes the following ports:
 
-To use the standard configuration, just run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).
+* **8080**: Varnish, connected to Drupal.  This is a production-like environment.
+* **8081**: Drupal direct connection. Skips Varnish, which is great for local development.
+* **33306**: MySQL direct connection.  Useful for connecting to the database from the host machine.  A direct mysql connection can be made from the outside via: `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+* **8983**: Solr direct connection.  Useful for debugging via Apache Solr web interface.
 
-#### Development configuration
-
-The default setup only exposes port 80 from varnish to the outside world (exposed as port 8080 to the host). This is great for production-like environments, but not for development where you may not want a reverse proxy, or you may need to connect directly to MySQL using a tool like Sequel Pro.
-
-The standard `docker-compose.yml` can be overridden/added to by specifying multiple compose files when bringing the containers online. This project includes a `docker-compose.debug.yml` file that exposes ports for all of the relevant containers, allowing direct access to them from the host. You can leverage these debug ports by bringing the containers up with this command: `docker-compose -f docker-compose.yml -f docker-compose.debug.yml up`
-
-When the debug ports are exposed, the following services are available from the host:
-* Varnish: You can still access the site behind varnish as you would with only the default config at [http://localhost:8080](http://localhost:8080)
-* Drupal: You can directly access the Drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
-* MySQL: You can make a direct connection from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
-* Solr: The Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
+Important: Should you choose to run this setup in production, you should always remove the debug ports (noted in `docker-compose.yml`) for security.
