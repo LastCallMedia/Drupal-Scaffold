@@ -1,15 +1,23 @@
-{#
-/**
- * @file
- * Theme override for a breadcrumb trail.
- *
- * Available variables:
- * - breadcrumb: Breadcrumb trail items.
- */
+{# @Component
+name: Breadcrumbs
+description: Breadcrumbs are a visual way to tell people where they are on the site.
+group: Drupal>Misc
+samples:
+  Short:
+    breadcrumb:
+      - {url: '#', text: 'Home'}
+      - {text: 'You are here'}
+  Long:
+    breadcrumb:
+      - {url: '#', text: 'Home'}
+      - {url: '#', text: 'Some'}
+      - {url: '#', text: 'Nested'}
+      - {url: '#', text: 'Section'}
+      - {text: 'You are here'}
 #}
 {% if breadcrumb %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
-    <h2 class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+    <h2 class="show-for-sr">{{ 'Breadcrumb'|t }}</h2>
     <ul class="breadcrumbs">
     {% for item in breadcrumb %}
       <li>
