@@ -12,6 +12,10 @@
 
 ### Added
 * Allow Docker ports to be configured [using environment variables](https://docs.docker.com/compose/environment-variables/#substituting-environment-variables-in-compose-files).
+* Add [Mannequin](https://mannequin.io) support
+
+### Deprecated
+* Use of the Pattern Library module is now deprecated.  This module will be removed in 1.4.0.
 
 ## [1.3.0] - 2017-08-30
 ### Changed

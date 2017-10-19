@@ -50,6 +50,7 @@ test:
     - drupal -n cache:rebuild all
     - gulp check --junit-dir=$CIRCLE_TEST_REPORTS
     - gulp test --junit-dir=$CIRCLE_TEST_REPORTS --artifact-dir=$CIRCLE_ARTIFACTS --base-url="http://${IP}:8888"
+    - vendor/bin/mannequin snapshot
 
 deployment:
   to_master:
