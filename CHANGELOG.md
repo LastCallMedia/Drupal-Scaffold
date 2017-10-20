@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.4.0] - 2017-10-19
 ### Changed
 * Use Legacy configuration for ESLint
 * Drupal core update to 8.4.0
