@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 * Enabled Drupal js behaviors in Mannequin by default.
+* Removed Pattern Library module
 
 ## [1.4.0] - 2017-10-19
 ### Changed
