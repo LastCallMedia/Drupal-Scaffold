@@ -1,5 +1,0 @@
-pattern_lib.index:
-  title: 'Patterns'
-  route_name: pattern_lib.index
-  parent: system.themes_page
-  description: 'View theme patterns'
