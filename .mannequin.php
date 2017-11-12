@@ -24,7 +24,9 @@ $config = MannequinConfig::create()
   ])
   ->setGlobalJs([
     'web/core/assets/vendor/jquery/jquery.min.js',
+    'web/core/assets/vendor/domready/ready.min.js',
     'web/core/misc/drupal.js',
+    'web/core/misc/drupal.init.js',
     'web/themes/custom/scaffold/dist/js/libs.min.js',
     'web/themes/custom/scaffold/dist/js/theme.min.js',
   ]);
