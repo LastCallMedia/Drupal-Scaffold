@@ -55,6 +55,7 @@ jobs:
           name: "Execute tests"
           command: |
             su -m www-data -s /bin/sh
+            whoami
             gulp test --base-url='http://127.0.0.1'
 
 workflows:
