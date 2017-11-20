@@ -13,6 +13,7 @@ $databases['default']['default'] = [
 // prefix will be different between drush and web runs.
 $prefix = sprintf("%s:%s", getenv('SITE_NAME'), getenv('DOCKER_ENV'));
 $settings['cache_prefix'] = $prefix;
+$settings['hash_salt'] = getenv('HASH_SALT') ?? 'insecurehashsalt';
 $config['search_api_solr.settings']['site_hash'] = $prefix;
 
 // Allow any docker container to serve as a reverse
