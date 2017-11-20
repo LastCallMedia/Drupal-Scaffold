@@ -48,7 +48,7 @@ jobs:
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
             git checkout web/sites/default/settings.php
       - run: {name: 'Web server', command: 'vendor/bin/drupal -n server 0.0.0.0:8888', background: true}
-      - run: {name: 'Wait for server', command: 'ci/scripts/wait-for-http http://127.0.0.1:8888'}
+      - run: {name: 'Wait for server', command: 'ci/scripts/wait-for-http.sh http://127.0.0.1:8888'}
       - run: {name: "Execute tests", command: "gulp test --base-url='http://127.0.0.1:8888'" }
 
 workflows:
