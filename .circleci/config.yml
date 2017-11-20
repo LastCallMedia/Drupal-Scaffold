@@ -8,6 +8,8 @@ jobs:
           CID: 1 # Cache identifier.  Increment to create a fresh cache.
           DOCKER_ENV: ci
           APACHE_DOCROOT: /var/www/code/web
+          APACHE_RUN_USER: root # Run Apache as root to avoid any permissions issues.
+          APACHE_RUN_GROUP: root
           MYSQL_USER: circle
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
@@ -19,6 +21,7 @@ jobs:
           MYSQL_DATABASE: circle
           MYSQL_RANDOM_ROOT_PASSWORD: 1
     steps:
+
       - checkout
       - restore_cache:
           name: Restore NPM cache
