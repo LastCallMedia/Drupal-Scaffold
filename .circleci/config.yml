@@ -49,6 +49,7 @@ jobs:
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
             git checkout web/sites/default/settings.php
             chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files
+            chown -R g+s web/sites/default/files
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for server', command: 'ci/scripts/wait-for-http.sh http://127.0.0.1'}
       - run:
