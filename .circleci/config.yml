@@ -48,13 +48,16 @@ jobs:
           command: |
             vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
             git checkout web/sites/default/settings.php
-            chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files
-            chmod g+s web/sites/default/files
+            mkdir web/sites/simpletest
+            chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest
+            chmod g+s web/sites/default/files web/sites/simpletest
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for server', command: 'ci/scripts/wait-for-http.sh http://127.0.0.1'}
+      # From this point until deployment, all commands should happen as www-data to avoid
+      # permissions errors.
       - run:
           name: "Execute tests"
-          command: gulp test --base-url='http://127.0.0.1'
+          command: su -m -s /bin/bash www-data gulp test --base-url='http://127.0.0.1'
 
 
 workflows:
