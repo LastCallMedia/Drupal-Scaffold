@@ -75,4 +75,4 @@ workflows:
   build_test_release:
     jobs:
       - build
-      - test
+      - test: {requires: [build]}
