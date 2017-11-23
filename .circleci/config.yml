@@ -55,7 +55,7 @@ jobs:
       # @todo: Roll Dockerize into php container.
       - run:
           name: 'Install Dockerize'
-          command: 'curl https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar -C /usr/local/bin -xzvf && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz'
+          command: 'curl -L https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar -C /usr/local/bin -xzv && chmod +x /usr/local/bin/dockerize'
           environment: {DOCKERIZE_VERSION: 0.6.0}
       - run: {name: "Check code", command: "gulp check" }
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
