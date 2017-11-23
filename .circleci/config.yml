@@ -3,23 +3,8 @@ jobs:
   build:
     working_directory: /var/www/code
     docker:
-      - image: lastcallmedia/php:7.0-dev # Primary image
-        environment:
-          CID: 1 # Cache identifier.  Increment to create a fresh cache.
-          DOCKER_ENV: ci
-          APACHE_DOCROOT: /var/www/code/web
-          MYSQL_USER: circle
-          MYSQL_PASSWORD: circle
-          MYSQL_DATABASE: circle
-          MYSQL_HOST: 127.0.0.1
-      - image: mysql:5.6
-        environment:
-          MYSQL_USER: circle
-          MYSQL_PASSWORD: circle
-          MYSQL_DATABASE: circle
-          MYSQL_RANDOM_ROOT_PASSWORD: 1
+      - image: lastcallmedia/php:7.0-dev
     steps:
-
       - checkout
       - restore_cache:
           name: Restore NPM cache
@@ -42,6 +27,37 @@ jobs:
           key: site-composer-{{ .Environment.CID }}-{{ checksum "composer.lock" }}
           paths: [ vendor ]
       - run: {name: "Execute build", command: "gulp build" }
+      - persist_to_workspace:
+          root: /var/www
+          paths: [code]
+      
+
+
+  test:
+    working_directory: /var/www/code
+    docker:
+      - image: lastcallmedia/php:7.0-dev # Primary image
+        environment:
+          CID: 1 # Cache identifier.  Increment to create a fresh cache.
+          DOCKER_ENV: ci
+          APACHE_DOCROOT: /var/www/code/web
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_HOST: 127.0.0.1
+      - image: mysql:5.6
+        environment:
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_RANDOM_ROOT_PASSWORD: 1
+    steps:
+
+      - checkout
+
+
+
+      # Testing starts here:
       - run: {name: "Check code", command: "gulp check" }
       - run:
           name: "Prepare site"
