@@ -56,7 +56,7 @@ jobs:
       # From this point until deployment, all commands should happen as www-data to avoid
       # permissions errors.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
-      - run: {name: 'Run Behat', command: 'vendor/bin/behat --f=junit -o /tmp/junit'}
+      - run: {name: 'Run Behat', command: 'vendor/bin/behat -f=junit -o /tmp/junit'}
 
 
 workflows:
