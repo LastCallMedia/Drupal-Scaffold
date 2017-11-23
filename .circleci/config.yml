@@ -30,7 +30,7 @@ jobs:
       - persist_to_workspace:
           root: /var/www
           paths: [code]
-      
+
 
 
   test:
@@ -52,11 +52,7 @@ jobs:
           MYSQL_DATABASE: circle
           MYSQL_RANDOM_ROOT_PASSWORD: 1
     steps:
-
-      - checkout
-
-
-
+      - attach_workspace: {at: /var/www}
       # Testing starts here:
       - run: {name: "Check code", command: "gulp check" }
       - run:
@@ -79,3 +75,4 @@ workflows:
   build_test_release:
     jobs:
       - build
+      - test
