@@ -7,14 +7,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore NPM cache
+          name: Restore Yarn cache
           keys:
-            - site-npm-{{ .Environment.CID }}-{{ checksum "package.json" }}
-            - site-npm-{{ .Environment.CID }}-
-      - run: {name: "NPM install", command: "npm install" }
+            - site-yarn-v1-{{ checksum "yarn.lock" }}
+            - site-yarn-v1-
+      - run: {name: "Yarn install", command: "yarn install --pure-lockfile" }
       - save_cache:
-          name: Save NPM cache
-          key: site-npm-{{ .Environment.CID }}-{{ checksum "package.json" }}
+          name: Save Yarn cache
+          key: site-yarn-v1-{{ checksum "yarn.lock" }}
           paths: [ node_modules ]
       - restore_cache:
           name: Restore Composer cache
@@ -79,7 +79,7 @@ jobs:
       - image: lastcallmedia/php:7.0-dev # Primary image
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Composer install', command: 'composer install --no-dev -o'}
+      - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Check status', command: 'git status'}
 
 workflows:
