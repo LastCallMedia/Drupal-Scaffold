@@ -19,13 +19,13 @@ jobs:
       - restore_cache:
           name: Restore Composer cache
           keys:
-            - site-composer-{{ .Environment.CID }}-{{ checksum "composer.lock" }}
-            - site-composer-{{ .Environment.CID }}-
-      - run: {name: "Gulp install", command: "gulp install" }
+            - site-composer-v1-{{ checksum "composer.lock" }}
+            - site-composer-v1-
+      - run: {name: 'Composer install', command: 'composer install'}
       - save_cache:
           name: Save Composer cache
-          key: site-composer-{{ .Environment.CID }}-{{ checksum "composer.lock" }}
-          paths: [ vendor ]
+          key: site-composer-v1-{{ checksum "composer.lock" }}
+          paths: [ vendor, web/core, web/modules/contrib ]
       - run: {name: "Execute build", command: "gulp build" }
       - persist_to_workspace:
           root: /var/www
