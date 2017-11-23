@@ -53,11 +53,10 @@ jobs:
             chmod g+s web/sites/default/files web/sites/simpletest
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for server', command: 'ci/scripts/wait-for-http.sh http://127.0.0.1'}
-      # From this point until deployment, all commands should happen as www-data to avoid
-      # permissions errors.
+      # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
       - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
-
+      - store_test_results: { path: '/tmp/junit' }
 
 workflows:
   version: 2
