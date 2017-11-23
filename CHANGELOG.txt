@@ -1,6 +1,10 @@
 Development
 -----------
 
+Unreleased
+----------
+* Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
+
 1.3.0 2017-08-30
 ----------------
 * rm -rf composer dependencies before attempting final optimized install to fix Drupal console uninstall bug. See https://github.com/hechoendrupal/drupal-console-extend-plugin/issues/2
