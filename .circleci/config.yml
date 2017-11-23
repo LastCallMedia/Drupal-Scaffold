@@ -79,6 +79,7 @@ jobs:
       - image: lastcallmedia/php:7.0-dev # Primary image
     steps:
       - attach_workspace: {at: /var/www}
+      - run: {name: 'Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Check status', command: 'git status'}
 
 workflows:
