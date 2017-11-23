@@ -76,7 +76,7 @@ jobs:
       - image: lastcallmedia/php:7.0-dev # Primary image
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Check status' command: 'git status'}
+      - run: {name: 'Check status', command: 'git status'}
 
 workflows:
   version: 2
