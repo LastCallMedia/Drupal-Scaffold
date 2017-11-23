@@ -5,6 +5,7 @@ Unreleased
 ----------
 * Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
 * Remove default setting for SIMPLETEST_DB - let it fall back to whatever connection is defined in settings.php.
+* Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 
 1.3.0 2017-08-30
 ----------------
