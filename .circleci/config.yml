@@ -70,9 +70,18 @@ jobs:
       - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
       - store_test_results: { path: '/tmp/junit' }
 
+  deploy:
+    working_directory: /var/www/code
+    docker:
+      - image: lastcallmedia/php:7.0-dev # Primary image
+    steps:
+      - attach_workspace: {at: /var/www}
+      - run: {name: 'Check status' command: 'git status'}
+
 workflows:
   version: 2
   build_test_release:
     jobs:
       - build
       - test: {requires: [build]}
+      - deploy: {requires: [build]}
