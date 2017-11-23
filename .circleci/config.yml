@@ -25,7 +25,7 @@ jobs:
       - save_cache:
           name: Save Composer cache
           key: site-composer-v1-{{ checksum "composer.lock" }}
-          paths: [ vendor, web/core, web/modules/contrib ]
+          paths: [ vendor, web/core, web/modules/contrib, web/themes/contrib ]
       - run: {name: "Execute build", command: "gulp build" }
       - persist_to_workspace:
           root: /var/www
