@@ -57,7 +57,9 @@ jobs:
           name: 'Install Dockerize'
           command: 'curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-amd64-v0.6.0.tar.gz | tar -C /usr/local/bin -xzv && chmod +x /usr/local/bin/dockerize'
           environment: {DOCKERIZE_VERSION: 0.6.0}
-      - run: {name: "Check code", command: "gulp check" }
+      - run: {name: 'Make test output directory', command: 'mkdir /tmp/junit'}
+      - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
+      - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       - run:

@@ -1,0 +1,7 @@
+web/core
+web/modules/contrib
+web/themes/contrib
+web/sites/*/files
+web/themes/custom/*/dist
+vendor/
+node_modules
