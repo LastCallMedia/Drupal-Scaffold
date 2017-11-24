@@ -3,10 +3,10 @@
 #   * test: Run all unit and functional tests
 #   * deploy: Push artifact code to a remote git repository.
 #
-# In the default configuration, deployment happens regardless of testing outcome.
-# Using a Pantheon Multidev/PR workflow, we've found fast deployments to be more
-# important than test outcomes; no PRs are merged before they pass tests, and we
-# have the safety net of only deploying to dev following a PR merge.
+# In this configuration, deployment happens regardless of testing outcome.
+# Assuming you wait until tests pass before merging any PRs or deploying from dev
+# to prod, this enables much faster local -> multidev deployment cycles without
+# increasing risk.
 #
 version: 2
 jobs:
