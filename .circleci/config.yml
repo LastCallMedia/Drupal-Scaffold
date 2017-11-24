@@ -88,7 +88,7 @@ jobs:
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
-      - run: {name: 'Push to downstream', command: 'mv .artifact.gitignore .gitignore && git status'}
+      - run: {name: 'Push to downstream', command: 'mv .artifact.gitignore .gitignore && git status && git ls-files -z --ignored --exclude-standard'}
 
 workflows:
   version: 2
