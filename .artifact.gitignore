@@ -8,8 +8,6 @@ web/sites/*/settings.local.php
 node_modules
 bower_components
 /ci
-/backstop
-/phantomas
 /docker
 /features
 /artifacts
