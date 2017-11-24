@@ -1,3 +1,13 @@
+# This CircleCI configuration executes 3 different jobs:
+#   * build: Install dependencies and build static assets
+#   * test: Run all unit and functional tests
+#   * deploy: Push artifact code to a remote git repository.
+#
+# In the default configuration, deployment happens regardless of testing outcome.
+# Using a Pantheon Multidev/PR workflow, we've found fast deployments to be more
+# important than test outcomes; no PRs are merged before they pass tests, and we
+# have the safety net of only deploying to dev following a PR merge.
+#
 version: 2
 jobs:
   build:
@@ -59,11 +69,6 @@ jobs:
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
-      # @todo: Roll Dockerize into php container.
-      - run:
-          name: 'Install Dockerize'
-          command: 'curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-amd64-v0.6.0.tar.gz | tar -C /usr/local/bin -xzv && chmod +x /usr/local/bin/dockerize'
-          environment: {DOCKERIZE_VERSION: 0.6.0}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       - run:
