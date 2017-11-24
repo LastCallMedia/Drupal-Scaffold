@@ -8,9 +8,6 @@
     "wdio-visual-regression-service": "^0.8.0",
     "webdriverio": "^4.9.9"
   },
-  "engines": {
-    "node": ">= 8.0"
-  },
   "main": "wdio.conf.js",
   "files": ["package.json"]
 }
