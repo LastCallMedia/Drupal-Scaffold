@@ -1,3 +1,4 @@
+/* eslint strict: ["error", "global"] */
 /**
  * Configuration file for webdriverio.
  *
@@ -19,7 +20,7 @@ function getScreenshotName(basePath) {
 const reporters = process.env.JUNIT ? ['dot', 'junit'] : ['dot'];
 const reporterOptions = process.env.JUNIT ? {
   junit: {
-    outputDir: process.env.JUNIT,
+    outputDir: process.env.JUNIT
   }
 } : {};
 

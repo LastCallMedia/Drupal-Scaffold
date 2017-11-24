@@ -1,6 +1,8 @@
+/* eslint strict: ["error", "global"] */
 /**
  * Mocha specs for Visual regression tests using wdio-visual-regression-service.
  */
+'use strict';
 const assert = require('assert');
 const threshold = 1;
 
