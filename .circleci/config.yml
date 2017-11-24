@@ -45,7 +45,6 @@ jobs:
     working_directory: /var/www/code
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
-        name: drupal
         environment:
           DOCKER_ENV: ci
           APACHE_DOCROOT: /var/www/code/web
