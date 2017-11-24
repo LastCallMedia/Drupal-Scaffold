@@ -11,9 +11,9 @@ function assertNoDiff(results, message) {
 }
 
 describe('Site Design', function () {
-  it('Homepage', async function () {
-    await browser.url('/');
-    const report = await browser.checkDocument();
+  it('Homepage', function () {
+    browser.url('/');
+    const report = browser.checkDocument();
     assertNoDiff(report, 'Homepage matches designs');
   });
 });
