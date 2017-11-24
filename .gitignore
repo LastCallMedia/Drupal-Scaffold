@@ -2,6 +2,7 @@
 # @docroot
 web/sites/*/files
 web/sites/*/settings.local.php
+web/sites/simpletest/*
 .env
 docker-compose.override.yml
 
@@ -17,7 +18,7 @@ vendor/
 
 # Build artifacts and tools:
 node_modules
-behat.local.yml
 bower_components
-artifacts/*
+behat.local.yml
+/artifacts
 web/themes/custom/*/dist

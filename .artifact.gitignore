@@ -2,24 +2,26 @@
 # @docroot
 web/sites/*/files
 web/sites/*/settings.local.php
+web/sites/simpletest/*
 .env
+docker-compose.override.yml
 
 # Build tools not required in production:
 node_modules
 bower_components
-/ci
+/.circleci
 /docker
 /features
-/artifacts
 behat.yml
+/artifacts
 docker-compose.*
 circle.yml
-.travis.yml
-bower.json
 .nvmrc
 gulpconfig.js
 gulpfile.js
 package.json
 yarn.lock
-.eslintrc
+.eslint*
+/phpcs*
+/phpunit*
 
