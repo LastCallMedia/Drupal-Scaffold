@@ -46,8 +46,9 @@
         "lint:phpcs": "phpcs",
         "lint:eslint": "node_modules/.bin/eslint .",
 
-        "test": ["@test:phpunit", "@test:behat"],
+        "test": ["@test:phpunit", "@test:behat", "@test:wdio"],
         "test:phpunit": "phpunit",
-        "test:behat": "behat"
+        "test:behat": "behat",
+        "test:wdio": "node_modules/.bin/wdio"
     }
 }

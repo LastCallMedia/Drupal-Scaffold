@@ -11,6 +11,10 @@
     "gulp-help": "^1.6.1",
     "ip": "^1.1.4",
     "lastcall-gulp-drupal-tasks": "^1.0.0-rc4",
+    "wdio-junit-reporter": "^0.3.1",
+    "wdio-mocha-framework": "^0.5.11",
+    "wdio-visual-regression-service": "^0.8.0",
+    "webdriverio": "^4.9.9",
     "yargs": "^8.0"
   },
   "scripts": {

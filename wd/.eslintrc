@@ -1,0 +1,12 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "browser": false,
+    "mocha": true
+  },
+  "globals": {
+    "browser": true
+  }
+}
