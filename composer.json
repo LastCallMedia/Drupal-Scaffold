@@ -39,5 +39,15 @@
             "web/themes/contrib/{$name}": ["type:drupal-theme"]
         },
         "patches": { }
+    },
+    "scripts": {
+        "lint": ["@lint:composer", "@lint:phpcs", "@lint:eslint"],
+        "lint:composer": "@composer validate",
+        "lint:phpcs": "phpcs",
+        "lint:eslint": "node_modules/.bin/eslint .",
+
+        "test": ["@test:phpunit", "@test:behat"],
+        "test:phpunit": "phpunit",
+        "test:behat": "behat"
     }
 }
