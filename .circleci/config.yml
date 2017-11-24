@@ -63,7 +63,7 @@ jobs:
       - run:
           name: "Prepare site"
           command: |
-            vendor/bin/drupal chain --file=$(pwd)/ci/prepare-site.yml
+            vendor/bin/drupal chain --file=$(pwd)/.circleci/prepare-site.yml
             git checkout web/sites/default/settings.php
             mkdir web/sites/simpletest
             chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest
