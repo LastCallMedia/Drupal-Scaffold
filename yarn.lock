@@ -746,8 +746,8 @@ csso@^2.0.0:
     source-map "^0.5.3"
 
 csv-string@^2.3.0:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-2.3.2.tgz#7ee58bd957a04de3f9935b7ea1ab29180156894c"
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-2.3.3.tgz#e0801e3c6f92f0983629505774af66dd3090e9e5"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -2363,6 +2363,14 @@ lastcall-gulp-drupal-tasks@^1.0.0-rc4:
     phplint "^1.7.1"
     through2 "^2.0.3"
     which "^1.2.12"
+
+"lastcall-scaffold-webdriver@file:wd":
+  version "0.0.1"
+  dependencies:
+    wdio-junit-reporter "^0.3.1"
+    wdio-mocha-framework "^0.5.11"
+    wdio-visual-regression-service "^0.8.0"
+    webdriverio "^4.9.9"
 
 lazy-cache@^1.0.3:
   version "1.0.4"

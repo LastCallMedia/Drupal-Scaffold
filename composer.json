@@ -49,6 +49,6 @@
         "test": ["@test:phpunit", "@test:behat", "@test:wdio"],
         "test:phpunit": "phpunit",
         "test:behat": "behat",
-        "test:wdio": "node_modules/.bin/wdio"
+        "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js"
     }
 }

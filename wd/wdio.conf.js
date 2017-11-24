@@ -27,7 +27,7 @@ const reporterOptions = process.env.JUNIT ? {
 
 exports.config = {
   host: 'selenium', // hostname for the Selenium server.
-  specs: ['./wd/specs/*.js'], // test files kept here.
+  specs: [path.join(__dirname, 'specs/*.js')], // test files kept here.
   capabilities: [{ // browsers to test in.
     browserName: 'chrome'
   }],
@@ -40,9 +40,9 @@ exports.config = {
   ],
   visualRegression: {
     compare: new VisualRegressionCompare.LocalCompare({
-      referenceName: getScreenshotName(path.join(__dirname, 'wd/screenshots/reference')),
-      screenshotName: getScreenshotName(path.join(__dirname, 'wd/screenshots/taken')),
-      diffName: getScreenshotName(path.join(__dirname, 'wd/screenshots/diff')),
+      referenceName: getScreenshotName(path.join(__dirname, 'screenshots/reference')),
+      screenshotName: getScreenshotName(path.join(__dirname, 'screenshots/taken')),
+      diffName: getScreenshotName(path.join(__dirname, 'screenshots/diff')),
       viewports: [
         {width: 320, height: 480}
       ]

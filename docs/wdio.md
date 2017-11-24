@@ -23,8 +23,8 @@ Running
 
 Uninstalling
 ------------
-1. Run `git rm wdio.conf.js wd/`
-2. Run `yarn remove wdio-mocha-framework wdio-visual-regression-service wdio-junit-reporter webdriverio`
-3. Edit `composer.json` to remove the `test:wdio` script, and remove the `@test:wdio` script from the `test` script.
-4. Remove the "Run WDIO" step from `.circleci/config.yml`.
-4. Commit changes.
+1. Run `yarn remove lastcall-scaffold-webdriver` to remove the Node modules required for the webdriver.
+2. Edit `composer.json` to remove the `@test:wdio` key from the `test` script.
+3. Remove the "Run WDIO" step from `.circleci/config.yml`.
+4. Optionally, remove the `wd/` directory entirely.
+5. Commit changes.
