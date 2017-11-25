@@ -15,10 +15,9 @@ web/themes/contrib/*
 web/profiles/contrib/*
 !web/profiles/contrib/README.md
 vendor/
-
-# Build artifacts and tools:
 node_modules
 bower_components
-behat.local.yml
+
+# Build artifacts and tools:
 /artifacts
 web/themes/custom/*/dist
