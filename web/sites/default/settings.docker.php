@@ -21,12 +21,12 @@ $config['search_api_solr.settings']['site_hash'] = $prefix;
 $settings['reverse_proxy'] = TRUE;
 $settings['reverse_proxy_addresses'] = ['172.0.0.0/8'];
 
-if(FALSE !== getenv('REDIS_HOST')) {
+if(FALSE !== getenv('CACHE_HOST')) {
   $settings['redis.connection']['interface'] = 'PhpRedis';
-  $settings['redis.connection']['base'] = getenv('REDIS_BASE') ?: 0;
-  $settings['redis.connection']['host'] = getenv('REDIS_HOST') ?: 'redis';
-  $settings['redis.connection']['port'] = getenv('REDIS_PORT') ?: 6379;
-  $settings['redis.connection']['password'] = getenv('REDIS_PASSWORD') ?: NULL;
+  $settings['redis.connection']['base'] = getenv('CACHE_BASE') ?: 0;
+  $settings['redis.connection']['host'] = getenv('CACHE_HOST') ?: 'redis';
+  $settings['redis.connection']['port'] = getenv('CACHE_PORT') ?: 6379;
+  $settings['redis.connection']['password'] = getenv('CACHE_PASSWORD') ?: NULL;
 
   /**
    * The following configuration can only be used after the Redis module

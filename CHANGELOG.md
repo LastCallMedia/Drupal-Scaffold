@@ -6,6 +6,7 @@
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 * Enabled Drupal js behaviors in Mannequin by default.
 * Replace `ci/push-to-downstream.sh` with `bin/artifact.sh`.  This script should be faster, and handles nested .artifact.gitignore files.
+* Use CACHE_HOST, CACHE_PORT, CACHE_PASSWORD in settings.docker.php instead of REDIS_* equivalents.  Bring into line with Pantheon settings.php.
 
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the DRUPAL_HASH_SALT environment variable.
