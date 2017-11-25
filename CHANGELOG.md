@@ -10,8 +10,9 @@
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
 * Add a selenium container to the default Docker Compose stack.
-* Add phpcs.xml.dist to the repository root so we have the ability to configure rules on a per-site basis.
-* Add .eslintignore to the repository root so we have more granularity on what files get linted.
+* Add `phpcs.xml.dist` to the repository root so we have the ability to configure rules on a per-site basis.
+* Add `.eslintignore` to the repository root so we have more granularity on what files get linted.
+* Add `pantheon.yml` for configuring web docroot in Pantheon deployments.
 
 ### Removed
 * Removed Pattern Library module
