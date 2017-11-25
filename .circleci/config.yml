@@ -107,9 +107,8 @@ jobs:
           name: 'Ensure Multidev'
           command: |
             composer global require pantheon-systems/terminus
-            alias terminus=~/.composer/vendor/bin/terminus
-            terminus auth:login --machine-token=$PMACHINE
-            terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
+            ~/composer/vendor/bin/terminus auth:login --machine-token=$PMACHINE
+            ~/composer/vendor/bin/terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && ~/composer/vendor/bin/terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
 
 workflows:
   version: 2
