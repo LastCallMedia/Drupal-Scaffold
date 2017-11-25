@@ -91,10 +91,10 @@ find . -name .artifact.gitignore -exec sh -c 'mv {} $(dirname {})/.gitignore' \;
 
 $agit add .
 if [ $skipcommit ]; then
-  $agit commit --dry-run -m="$message" --author="$author" -m "Built from upstream commit $commit"
+  $agit commit --dry-run -m "$message" --author "$author" -m "Built from upstream commit $commit"
   echo "Skipping final commit.  Changes are listed above."
 else
-  $agit commit -m="$message" --author="$author" -m "Built from upstream commit $commit"
+  $agit commit -m "$message" --author "$author" -m "Built from upstream commit $commit"
   $agit push "$downstream" "$branch"
 fi
 
