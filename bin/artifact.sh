@@ -72,14 +72,16 @@ $agit config core.bare false
 $agit remote add origin "$downstream" && echo "Setting artifact origin to $downstream"
 
 echo "Fetching downstream.  This may take a moment..."
-if $agit fetch --depth=1 -q origin "$branch"; then
+if $agit fetch --depth=1 -q origin "$branch" 2>/dev/null; then
   echo "Detected existing $branch branch. Starting from here."
   $agit branch "$branch" $($agit show-ref -s $branch)
   $agit symbolic-ref HEAD "refs/heads/$branch"
-elif $agit fetch --depth=1 -q origin "$srcbranch"; then
+
+elif $agit fetch --depth=1 -q origin "$srcbranch" 2>/dev/null; then
   echo "The $branch branch doesn't exist yet. Starting from $srcbranch"
   $agit branch "$branch" $($agit show-ref -s $srcbranch)
   $agit symbolic-ref HEAD "refs/heads/$branch"
+
 else
   error_out "Neither $branch or $srcbranch exist in the downstream. Cannot continue." 1
 fi
