@@ -97,7 +97,7 @@ jobs:
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Trust host key', command: 'mkdir -p ~/.ssh && echo $HOST_KEY >> ~/.ssh/known_hosts'}
-      - run: {name: 'Set git committer', command: 'git config --global user.email $GIT_AUTHOR_EMAIL && git config --global user.name $GIT_AUTHOR_NAME'}
+      - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -d $DOWNSTREAM -b $CIRCLE_BRANCH'}
 
