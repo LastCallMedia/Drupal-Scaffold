@@ -15,8 +15,8 @@ _(These are only needed for creating a new project repository.  Remove this sect
   composer create-project lastcall/drupal-scaffold PROJECTNAME
   ```
 2. Configure nvm to use the latest stable version `nvm install stable; nvm use stable;` 
-3. From the docroot: `yarn install` to install nodejs dependencies (or use `npm install` if you don't have yarn).
-4. From the docroot: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp  installed globally) to install bower and composer dependencies.
+3. From the repository root: `yarn install` to install nodejs dependencies (or use `npm install` if you don't have yarn).
+4. From the repository root: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp  installed globally) to install bower and composer dependencies.
 5. Edit the `composer.json`, `package.json`, and `bower.json` and rename the project as needed.
 6. Rename the scaffold theme to match the project (including JS and SCSS files).
 7. Initialize a new git repository and push work to it as normal
@@ -47,18 +47,11 @@ This tool is pre-configured for use on Pantheon.  Using it on Acquia or another 
 Using the Docker Images
 -----------------------
 
-#### Default configuration
+Run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).  The default Docker Compose configuration exposes the following ports:
 
-To use the standard configuration, just run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).
+* **8080**: Varnish, connected to Drupal.  This is a production-like environment.
+* **8081**: Drupal direct connection. Skips Varnish, which is great for local development.
+* **33306**: MySQL direct connection.  Useful for connecting to the database from the host machine.  A direct mysql connection can be made from the outside via: `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+* **8983**: Solr direct connection.  Useful for debugging via Apache Solr web interface.
 
-#### Development configuration
-
-The default setup only exposes port 80 from varnish to the outside world (exposed as port 8080 to the host). This is great for production-like environments, but not for development where you may not want a reverse proxy, or you may need to connect directly to MySQL using a tool like Sequel Pro.
-
-The standard `docker-compose.yml` can be overridden/added to by specifying multiple compose files when bringing the containers online. This project includes a `docker-compose.debug.yml` file that exposes ports for all of the relevant containers, allowing direct access to them from the host. You can leverage these debug ports by bringing the containers up with this command: `docker-compose -f docker-compose.yml -f docker-compose.debug.yml up`
-
-When the debug ports are exposed, the following services are available from the host:
-* Varnish: You can still access the site behind varnish as you would with only the default config at [http://localhost:8080](http://localhost:8080)
-* Drupal: You can directly access the Drupal site, bypassing the reverse proxy at [http://localhost:8081](http://localhost:8081) 
-* MySQL: You can make a direct connection from the command line using `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
-* Solr: The Solr web ui can be accessed at [http://localhost:8983](http://localhost:8983)
+Important: Should you choose to run this setup in production, you should always remove the debug ports (noted in `docker-compose.yml`) for security.

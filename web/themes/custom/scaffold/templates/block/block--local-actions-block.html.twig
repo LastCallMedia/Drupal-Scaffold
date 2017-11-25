@@ -1,10 +1,21 @@
-{% extends "block.html.twig" %}
 {#
-/**
- * @file
- * Theme override for local actions (primary admin actions.)
- */
+ Note: This template demonstrates two important Mannequin Drupal concepts:
+
+ 1. Using an array as a variable that gets concatenated on output.
+ 2. An unscoped extend statement.  You should avoid these if possible, but they do work.
+      Eg: Prefer using `extends "@stable/block/block.html.twig" to `extends "block.html.twig"
 #}
+{# @Component
+name: Local Actions
+group: Drupal>Block
+description: The local actions block displays relevant actions the user could take as buttons.
+samples:
+  Basic:
+    content:
+      action_1: ~rendered("<a class="button">Action 1</a>")
+      action_2: ~rendered("<a class="button">Action 2</a>")
+#}
+{% extends "block.html.twig" %}
 {% block content %}
   {% if content %}
     <nav class="button-group">{{ content }}</nav>

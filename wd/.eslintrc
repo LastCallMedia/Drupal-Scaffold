@@ -3,7 +3,7 @@
     "ecmaVersion": 2017
   },
   "env": {
-    "browser": false,
+    "node": true,
     "mocha": true
   },
   "globals": {
