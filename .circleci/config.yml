@@ -89,10 +89,12 @@ jobs:
     working_directory: /var/www/code
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
+        environment:
+          DOWNSTREAM: ssh://codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247@codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247.drush.in:2222/~/repository.git
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
-      - run: {name: 'Push to downstream', command: 'mv .artifact.gitignore .gitignore && git status && git ls-files -z --ignored --exclude-standard'}
+      - run: {name: 'Push Artifact', command: 'bin/artifact.sh -d $DOWNSTREAM -b $CIRCLE_BRANCH'}
 
 workflows:
   version: 2
@@ -100,4 +102,6 @@ workflows:
     jobs:
       - build
       - test: {requires: [build]}
-      - deploy: {requires: [build]}
+      - deploy:
+          requires: [build]
+
