@@ -94,8 +94,8 @@ jobs:
           HOST_KEY: '[codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247.drush.in]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSY3gnr0DrbqJJSnEFy6jazDmAdBm4Zs/EkWIQa7x31qgSYyYJMz5V+pk62lBf2BN42VtubwO83vW9G+yG2K1RGOvZJaK5GBvBb/Ws2ZPcp/4sNHpPzkdd75e5/Pk8AWA59XUbJcBWmrDrHMbWV1j2zqPPikxbqGeTTjSx4QR18LIRei5OwT6VQnaVnJqPAqFZ+oCbpr0DL96foL3UEY8EWT/6GH2cANEGZO4ppbhdDw4uG6TaI7S0lxWMQEVy+iwjCNH/nanjd73cwoYd90E0OVdgNDr3hVbIuE6sUW6UwlaAwuyOM/xJYPg1y0rF66958pyVJlZ9KD5A0kY3bHg7'
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Trust host key', command: 'echo $HOST_KEY >> /etc/ssh/known_hosts'}
       - run: {name: 'Install git/ssh', command: 'apt-get update && apt-get install -y --no-install-recommends openssh-client'}
+      - run: {name: 'Trust host key', command: 'echo $HOST_KEY >> /etc/ssh/known_hosts'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -d $DOWNSTREAM -b $CIRCLE_BRANCH'}
 
