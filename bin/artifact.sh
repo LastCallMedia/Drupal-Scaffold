@@ -95,10 +95,10 @@ if [ $skipcommit ]; then
   echo "Skipping final commit.  Changes are listed above."
 else
   if $agit diff-index --quiet HEAD; then
+    echo "Nothing to commit."
+  else
     $agit commit -m "$message" --author "$author" -m "Built from upstream commit $commit"
     $agit push "$downstream" "$branch"
-  else
-    echo "Nothing to commit."
   fi
 fi
 
