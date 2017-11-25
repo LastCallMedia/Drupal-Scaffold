@@ -106,9 +106,9 @@ jobs:
       - run:
           name: 'Ensure Multidev'
           command: |
-            curl -o /tmp/terminus.phar https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php /tmp/terminus.phar install
-            terminus auth:login --machine-token=$PMACHINE
-            terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
+            composer global require pantheon-systems/terminus
+            ~/.composer/bin/terminus auth:login --machine-token=$PMACHINE
+            ~/.composer/bin/terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && ~/.composer/bin/terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
 
 workflows:
   version: 2
