@@ -1,16 +1,22 @@
 # Changelog
 
-Unreleased
-----------
-* Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
+## [Unreleased]
+### Changed
 * Remove default setting for SIMPLETEST_DB - let it fall back to whatever connection is defined in settings.php.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
-* Recommend code linting be run locally via `composer lint` script instead of `gulp check`.
+* Enabled Drupal js behaviors in Mannequin by default.
+
+### Added
+* Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
+* Add a selenium container to the default Docker Compose stack.
 * Add phpcs.xml.dist to the repository root so we have the ability to configure rules on a per-site basis.
 * Add .eslintignore to the repository root so we have more granularity on what files get linted.
-* Recommend testing be run locally via `composer test` instead of `gulp test`.
-* Enabled Drupal js behaviors in Mannequin by default.
+
+### Removed
 * Removed Pattern Library module
+* Removed dependency installation using `gulp install`.  Use `composer install` instead.
+* Removed testing using `gulp test`.  Use `composer test` instead.
+* Removed linting using `gulp check`.  Use `composer lint` instead.
 
 ## [1.4.0] - 2017-10-19
 ### Changed
