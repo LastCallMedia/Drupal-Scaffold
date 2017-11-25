@@ -89,7 +89,7 @@ fi
 find . -name .artifact.gitignore -exec sh -c 'mv {} $(dirname {})/.gitignore' \;
 
 $agit add .
-$agit ls-files -z --ignored --exclude-standard | xargs -0 $agit rm -r --cached --ignore-unmatch
+#$agit ls-files -z --ignored --exclude-standard | xargs -0 $agit rm -r --cached --ignore-unmatch
 if [ $skipcommit ]; then
   $agit commit --dry-run -m="$message" --author="$author" -m "Built from upstream commit $commit"
 else
