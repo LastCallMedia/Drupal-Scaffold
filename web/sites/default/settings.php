@@ -769,6 +769,8 @@ $settings['file_scan_ignore_directories'] = [
  */
 $settings['entity_update_batch_size'] = 50;
 
+require __DIR__.'/settings.pantheon.php';
+
 /**
  * Load environment-specific configuration overrides, if applicable.
  */
