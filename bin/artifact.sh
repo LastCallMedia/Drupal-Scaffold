@@ -37,7 +37,6 @@ error_out() {
 
 test -d ".git" || error_out "Must be run from a git repository root." 1
 
-skipcommit=false
 message=$(git show --quiet --format=%B)
 author=$(git show --quiet --format='%aN <%ae>')
 branch=$(git symbolic-ref --short HEAD 2>/dev/null || true)
