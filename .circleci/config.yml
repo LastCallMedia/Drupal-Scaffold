@@ -104,11 +104,11 @@ jobs:
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -d $DOWNSTREAM -b $CIRCLE_BRANCH'}
       - run:
-        name: 'Ensure Multidev'
-        command: |
-          curl -o /tmp/terminus.phar https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php /tmp/terminus.phar install
-          terminus auth:login --machine-token=$PMACHINE
-          terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
+          name: 'Ensure Multidev'
+          command: |
+            curl -o /tmp/terminus.phar https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php /tmp/terminus.phar install
+            terminus auth:login --machine-token=$PMACHINE
+            terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"}
 
 workflows:
   version: 2
