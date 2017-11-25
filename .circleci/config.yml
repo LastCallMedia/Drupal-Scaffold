@@ -93,7 +93,7 @@ jobs:
           DOWNSTREAM: ssh://codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247@codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247.drush.in:2222/~/repository.git
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Install git/ssh', command: 'apt-get update && apt-get install git ssh'}
+      - run: {name: 'Install git/ssh', command: 'apt-get update && apt-get install -y --no-install-recommends openssh-client'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -d $DOWNSTREAM -b $CIRCLE_BRANCH'}
 
