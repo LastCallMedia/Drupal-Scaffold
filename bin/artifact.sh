@@ -94,8 +94,12 @@ if [ $skipcommit ]; then
   $agit commit --dry-run -m "$message" --author "$author" -m "Built from upstream commit $commit"
   echo "Skipping final commit.  Changes are listed above."
 else
-  $agit commit -m "$message" --author "$author" -m "Built from upstream commit $commit"
-  $agit push "$downstream" "$branch"
+  if $agit diff-index --quiet HEAD; then
+    $agit commit -m "$message" --author "$author" -m "Built from upstream commit $commit"
+    $agit push "$downstream" "$branch"
+  else
+    echo "Nothing to commit."
+  fi
 fi
 
 # Reset .gitignore files and remove .artifact.
