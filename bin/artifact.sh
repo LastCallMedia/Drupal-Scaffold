@@ -40,7 +40,7 @@ test -d ".git" || error_out "Must be run from a git repository root." 1
 skipcommit=false
 message=$(git show --quiet --format=%B)
 author=$(git show --quiet --format='%aN <%ae>')
-branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+branch=$(git symbolic-ref --short HEAD 2>/dev/null || true)
 commit=$(git show --quiet --format=%h)
 srcbranch=master
 agit="git --git-dir=.artifact"
@@ -62,7 +62,9 @@ test -n "$message" || error_out "Empty message is not allowed." 1
 test ! -e ".artifact" || error_out "Artifact directory already exists at .artifact. Remove this directory before continuing." 1
 
 # Hard ignore the .artifact directory.
-grep -Fxq ".artifact" .git/info/exclude || echo ".artifact" >> .git/info/exclude
+grep -Fxq ".artifact" .git/info/exclude || {
+  mkdir -p .git/info && echo ".artifact" >> .git/info/exclude
+}
 
 # Setup the .artifact repository:
 git init --bare .artifact
