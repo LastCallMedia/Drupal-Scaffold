@@ -8,7 +8,7 @@
 * Replace `ci/push-to-downstream.sh` with `bin/artifact.sh`.  This script should be faster, and handles nested .artifact.gitignore files.
 
 ### Added
-* Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
+* Add a default hash salt to settings.docker.php, overrideable using the DRUPAL_HASH_SALT environment variable.
 * Add a selenium container to the default Docker Compose stack.
 * Add `phpcs.xml.dist` to the repository root so we have the ability to configure rules on a per-site basis.
 * Add `.eslintignore` to the repository root so we have more granularity on what files get linted.
