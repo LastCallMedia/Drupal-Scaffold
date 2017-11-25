@@ -5,6 +5,7 @@
 * Remove default setting for SIMPLETEST_DB - let it fall back to whatever connection is defined in settings.php.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 * Enabled Drupal js behaviors in Mannequin by default.
+* Replace `ci/push-to-downstream.sh` with `bin/artifact.sh`.  This script should be faster, and handles nested .artifact.gitignore files.
 
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the HASH_SALT environment variable.
