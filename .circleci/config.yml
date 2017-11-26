@@ -107,7 +107,7 @@ jobs:
           name: 'Ensure Multidev'
           command: |
             composer global require pantheon-systems/terminus
-            echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV
+            echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV && source $BASH_ENV
             terminus auth:login --machine-token=$PMACHINE
             terminus env:info "$PSITE.$CIRCLE_BRANCH" > /dev/null 2>&1 || { echo "Creating environment... " && terminus env:create "$PSITE.$PSRCENV" "$CIRCLE_BRANCH"; }
 workflows:
