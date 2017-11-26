@@ -42,13 +42,13 @@ while getopts "hp:s:i:n" opt; do
   esac
 done
 
-test -n "$site" || error_out "Site must be set using the -s flag or the TERMINUS_SITE environment variable" 1
+test -n "$site" || error_out "Site must be set using the -i flag or the TERMINUS_SITE environment variable" 1
 
 multidevs=$(terminus multidev:list --field=id "$site")
 
 IFS=$'\n';
 for multidev in $multidevs; do
-  if [[ "$multidev" =~ $pattern ]]; then
+  if [[ "$multidev" = $pattern ]]; then
     if ! git ls-remote --quiet --exit-code "$source" "$multidev" > /dev/null 2>&1; then
       echo "Deleting $multidev environment."
       [[ $dryrun -eq 1 ]] || terminus multidev:delete --delete-branch "$site.$multidev"

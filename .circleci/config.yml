@@ -111,8 +111,8 @@ jobs:
             echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV && source $BASH_ENV
             terminus auth:login --machine-token=$PMACHINE
       - run: {name: 'Ensure multidev', command: 'bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $PSRCENV'}
-      - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p p-.* -n'}
-      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $DOWNSTREAM -n'}
+      - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p "p-*" -n'}
+      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $DOWNSTREAM -p "p-*" -n'}
 workflows:
   version: 2
   build_test_release:
