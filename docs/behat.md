@@ -1,6 +1,6 @@
 Behat
 =====
-Behat is included out of the box.
+[Behat](http://behat.org/en/latest/) is installed with the [Behat Drupal Extension](https://behat-drupal-extension.readthedocs.io/en/3.1/) at `vendor/bin/behat`.
 
 Configuration
 -------------
