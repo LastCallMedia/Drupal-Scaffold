@@ -18,7 +18,7 @@ Builds a git artifact from a source repository.
 
 Options:
   -h: Show help
-  -d: Set downstream URL (required)
+  -a: Set artifact git repository URL (required)
   -b: Set downstream branch Defaults to current source repo branch.
   -m: Set commit message.  Defaults to last source repo commit message.
   -n: Dry run - display changes instead of committing and pushing.
@@ -46,8 +46,8 @@ agit="git --git-dir=.artifact"
 
 while getopts "hd:b:m:n" opt; do
   case "$opt" in
-    h) usage;;
-    d) downstream=$OPTARG;;
+    h) usage; exit 0;;
+    a) artifact=$OPTARG;;
     b) branch=$OPTARG;;
     m) message=$OPTARG;;
     n) skipcommit=true;;
@@ -56,7 +56,7 @@ done
 
 test -n "$branch" || error_out "Branch must be set by using the -b flag." 1
 git check-ref-format --branch "$branch" > /dev/null 2>&1 || error_out "Invalid branch name $branch" 1
-test -n "$downstream" || error_out "Downstream must be set by using the -d flag." 1
+test -n "$artifact" || error_out "Downstream must be set by using the -d flag." 1
 test -n "$message" || error_out "Empty message is not allowed." 1
 test ! -e ".artifact" || error_out "Artifact directory already exists at .artifact. Remove this directory before continuing." 1
 
@@ -69,7 +69,7 @@ grep -Fxq ".artifact" .git/info/exclude || {
 git init --bare .artifact
 grep -Fxq ".artifact" .artifact/info/exclude || echo ".artifact" >> .artifact/info/exclude
 $agit config core.bare false
-$agit remote add origin "$downstream" && echo "Setting artifact origin to $downstream"
+$agit remote add origin "$artifact" && echo "Setting artifact origin to $artifact"
 
 echo "Fetching downstream.  This may take a moment..."
 if $agit fetch --depth=1 -q origin "$branch" 2>/dev/null; then
@@ -98,7 +98,7 @@ else
     echo "Nothing to commit."
   else
     $agit commit -m "$message" --author "$author" -m "Built from upstream commit $commit"
-    $agit push "$downstream" "$branch"
+    $agit push "$artifact" "$branch"
   fi
 fi
 

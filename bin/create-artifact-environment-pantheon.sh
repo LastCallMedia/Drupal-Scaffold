@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Cleanup multidev environments.
+# Ensure a multidev environment exists for a branch.
 #
 set -e
 
