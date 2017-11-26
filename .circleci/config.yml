@@ -11,7 +11,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /var/www/code
+    working_directory: /var/www
     docker:
       - image: lastcallmedia/php:7.0-dev
     steps:
@@ -38,16 +38,16 @@ jobs:
           paths: [ vendor, web/core, web/modules/contrib, web/themes/contrib ]
       - run: {name: "Execute build", command: "gulp build" }
       - persist_to_workspace:
-          root: /var/www
-          paths: [code]
+          root: /var
+          paths: [www]
 
   test:
-    working_directory: /var/www/code
+    working_directory: /var/www
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
         environment:
           DOCKER_ENV: ci
-          APACHE_DOCROOT: /var/www/code/web
+          APACHE_DOCROOT: /var/www/web
           MYSQL_USER: circle
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
@@ -61,7 +61,7 @@ jobs:
       - image: selenium/standalone-chrome
         name: selenium
     steps:
-      - attach_workspace: {at: /var/www}
+      - attach_workspace: {at: /var}
       - run: {name: 'Setup artifact directories', command: 'mkdir /tmp/junit /tmp/artifacts && chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /tmp/junit'}
       # Run linting steps up front.  If these fail, they should provide fast feedback.
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
@@ -86,7 +86,7 @@ jobs:
       - store_artifacts: {path: '/tmp/artifacts'}
 
   deploy:
-    working_directory: /var/www/code
+    working_directory: /var/www
     docker:
       - image: lastcallmedia/php:7.0-dev # Primary image
         environment:
@@ -98,7 +98,7 @@ jobs:
           PSITE: scaffold
           PSRCENV: dev
     steps:
-      - attach_workspace: {at: /var/www}
+      - attach_workspace: {at: /var}
       - run: {name: 'Trust host key', command: 'mkdir -p ~/.ssh && echo $HOST_KEY >> ~/.ssh/known_hosts'}
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
