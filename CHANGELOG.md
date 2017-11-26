@@ -14,6 +14,7 @@
 * Add `phpcs.xml.dist` to the repository root so we have the ability to configure rules on a per-site basis.
 * Add `.eslintignore` to the repository root so we have more granularity on what files get linted.
 * Add `pantheon.yml` for configuring web docroot in Pantheon deployments.
+* Add documentation files for all included tools in `docs/`.
 
 ### Removed
 * Removed Pattern Library module
