@@ -7,6 +7,7 @@
 * Enabled Drupal js behaviors in Mannequin by default.
 * Replace `ci/push-to-downstream.sh` with `bin/artifact.sh`.  This script should be faster, and handles nested .artifact.gitignore files.
 * Use CACHE_HOST, CACHE_PORT, CACHE_PASSWORD in settings.docker.php instead of REDIS_* equivalents.  Bring into line with Pantheon settings.php.
+* Replace environment variables in the default CircleCI build: DOWNSTREAM -> ARTIFACT, PSITE -> TERMINUS_SITE
 
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the DRUPAL_HASH_SALT environment variable.
