@@ -44,7 +44,7 @@ commit=$(git show --quiet --format=%h)
 srcbranch=master
 agit="git --git-dir=.artifact"
 
-while getopts "hd:b:m:n" opt; do
+while getopts "ha:b:m:n" opt; do
   case "$opt" in
     h) usage; exit 0;;
     a) artifact=$OPTARG;;
