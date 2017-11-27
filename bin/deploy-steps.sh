@@ -15,7 +15,7 @@ drush -r "$webroot" updb --entity-updates
 
 # In this silly example, we just set the default theme,
 # but in reality you would probably want to use drush cim -y
-drush en -y scaffold
-drush config-set -y system.theme default scaffold
+drush -r "$webroot" en -y scaffold
+drush -r "$webroot" config-set -y system.theme default scaffold
 # drush -r "$webroot" cim -y
 
