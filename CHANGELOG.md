@@ -7,7 +7,7 @@
 * Enabled Drupal js behaviors in Mannequin by default.
 * Replace `ci/push-to-downstream.sh` with `bin/artifact.sh`.  This script should be faster, and handles nested .artifact.gitignore files.
 * Use CACHE_HOST, CACHE_PORT, CACHE_PASSWORD in settings.docker.php instead of REDIS_* equivalents.  Bring into line with Pantheon settings.php.
-* Replace environment variables in the default CircleCI build: DOWNSTREAM -> ARTIFACT, PSITE -> TERMINUS_SITE
+* Replace environment variables in the default CircleCI build: DOWNSTREAM -> ARTIFACT, PSITE -> TERMINUS_SITE, PSRCENV -> TERMINUS_SOURCE_ENVIRONMENT
 
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the DRUPAL_HASH_SALT environment variable.
@@ -16,6 +16,14 @@
 * Add `.eslintignore` to the repository root so we have more granularity on what files get linted.
 * Add `pantheon.yml` for configuring web docroot in Pantheon deployments.
 * Add documentation files for all included tools in `docs/`.
+* Add shell scripts for:
+  * `artifact.sh`: Build an artifact and push to a remote repository (replaces `push-to-downstream.sh`)
+  * `create-artifact-environment-pantheon.sh`: Create a new multidev for a branch.
+  * `deploy-steps.sh`: Contains deployment steps for this site.  Meant to be customized.
+  * `json-to-bash.sh`: Converts a single level JSON object into bash export statements.
+  * `prune-artifact-branches.sh`: Prune branches off of an artifact repository that no longer exist on a source repository.
+  * `prune-artifact-environments-pantheon.sh`: Prune multidev environments for branches that no longer exist on a source repository.
+  * `refresh-local.sh`: Contains the "refresh" procedure for the current site for updating a local environment.  Meant to be customized.
 
 ### Removed
 * Removed Pattern Library module
