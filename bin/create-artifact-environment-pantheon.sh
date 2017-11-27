@@ -30,7 +30,7 @@ error_out() {
 
 pattern=".*"
 site="$TERMINUS_SITE"
-source="live"
+source="${TERMINUS_SOURCE_ENVIRONMENT:-live}"
 dryrun=0
 while getopts "hb:i:s:n" opt; do
   case "$opt" in

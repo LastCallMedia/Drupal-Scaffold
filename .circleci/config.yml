@@ -52,6 +52,8 @@ jobs:
           MYSQL_PASSWORD: circle
           MYSQL_DATABASE: circle
           MYSQL_HOST: 127.0.0.1
+          TERMINUS_SITE: scaffold
+          TERMINUS_SOURCE_ENVIRONMENT: dev
       - image: mysql:5.6
         environment:
           MYSQL_USER: circle
@@ -67,9 +69,10 @@ jobs:
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
+      - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token=$PMACHINE'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
-      - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
+      - run: {name: 'Refresh Site', command: 'bin/refresh-local-pantheon.sh'}
       - run:
           name: "Prepare site"
           command: |
@@ -78,6 +81,7 @@ jobs:
             mkdir web/sites/simpletest
             chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest
             chmod g+s web/sites/default/files web/sites/simpletest
+      - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
       - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
@@ -94,7 +98,7 @@ jobs:
           GIT_AUTHOR_EMAIL: 'sysadmin@lastcallmedia.com'
           # PMACHINE is a hidden environment variable that must be set.
           TERMINUS_SITE: scaffold
-          PSRCENV: dev
+          TERMINUS_SOURCE_ENVIRONMENT: dev
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token=$PMACHINE'}
@@ -103,7 +107,7 @@ jobs:
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -a $GIT_URL -b $CIRCLE_BRANCH'}
-      - run: {name: 'Ensure multidev', command: 'bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $PSRCENV'}
+      - run: {name: 'Ensure multidev', command: 'bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
       - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p "p-*"'}
       - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $GIT_URL -p "p-*"'}
 workflows:
