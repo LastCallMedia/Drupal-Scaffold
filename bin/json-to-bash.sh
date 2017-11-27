@@ -5,6 +5,12 @@
  *
  */
 $obj = json_decode(file_get_contents('php://stdin'));
+if(json_last_error()) {
+  throw new Exception(sprintf('JSON failed to decode: %s', json_last_error_msg()), json_last_error());
+}
+if(!$obj) {
+  exit(1);
+}
 foreach($obj as $k => $v) {
   if(!is_scalar($v)) {
     throw new \Exception(sprintf('Invalid non-scalar value for %s', $k));

@@ -103,7 +103,7 @@ jobs:
             composer global require pantheon-systems/terminus
             echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV && source $BASH_ENV
             terminus auth:login --machine-token=$PMACHINE
-            terminus connection:info --fields=git_host,git_port,git_url --format=json | bin/json_to_bash.sh >> $BASH_ENV
+            terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | bin/json_to_bash.sh >> $BASH_ENV
       - run: {name: 'Trust host key', command: 'ssh-keyscan -p $GIT_PORT $GIT_HOST >> /etc/ssh/ssh_known_hosts'}
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
