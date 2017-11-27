@@ -32,7 +32,6 @@ services:
     volumes:
       - ./docker/default.vcl:/etc/varnish/default.vcl
 
-
   drupal:
     image: "lastcallmedia/php:7.0-dev"
     ports:
@@ -53,6 +52,8 @@ services:
       - REDIS_HOSTNAME=redis
       - "SITE_NAME=${SITE_NAME:-scaffold}"
       - DOCKER_ENV=local
+      - TERMINUS_SITE=scaffold
+      - TERMINUS_SOURCE_ENVIRONMENT=dev
     working_dir: /var/www/web
 
   mysql:
