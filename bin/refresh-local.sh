@@ -14,12 +14,13 @@ Options:
   -i: Set the Pantheon site that will be used (defaults to TERMINUS_SITE).
   -s: Set the Pantheon environment that will be used (defaults to TERMINUS_SOURCE_ENVIRONMENT/live)
   -c: Set the cache directory to work from.
+  -d: Run deployment steps after refresh
   -n: Dry run (does not create environment).
 
 Usage:
-  Refresh local site from a Pantheon site named 'mysite''s dev environment.
+  Refresh local site from a Pantheon site named 'mysite''s dev environment, and run deployment steps afterward.
 
-  $0 -i mysite -s dev -c /tmp/mysite
+  $0 -i mysite -s dev -c /tmp/mysite -d
 "
 }
 
@@ -31,13 +32,15 @@ error_out() {
 site="$TERMINUS_SITE"
 source="${TERMINUS_SOURCE_ENVIRONMENT:-live}"
 cache="/tmp/$(date +%s)"
+deploy=0
 dryrun=0
-while getopts "hi:s:c:n" opt; do
+while getopts "hdi:s:c:n" opt; do
   case "$opt" in
     h) usage; exit 0;;
     i) site=$OPTARG;;
     s) source=$OPTARG;;
     c) cache=$OPTARG;;
+    d) deploy=1;;
     n) dryrun=1;;
   esac
 done
@@ -62,3 +65,8 @@ pushd web > /dev/null
   zcat "$filename" | ../vendor/bin/drush sql-cli
   echo "Backup successfully imported"
 popd > /dev/null
+
+if [[ "$deploy" -eq 1 ]]; then
+  DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  "$DIR/deploy-steps.sh"
+fi

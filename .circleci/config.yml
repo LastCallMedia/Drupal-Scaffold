@@ -72,7 +72,7 @@ jobs:
       - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token=$PMACHINE'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
-      - run: {name: 'Refresh Site', command: 'bin/refresh-local-pantheon.sh'}
+      - run: {name: 'Refresh Site', command: 'bin/refresh-local.sh -d'}
       - run:
           name: "Prepare site"
           command: |
@@ -107,7 +107,7 @@ jobs:
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -a $GIT_URL -b $CIRCLE_BRANCH'}
-      - run: {name: 'Ensure multidev', command: 'bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
+      - run: {name: 'Ensure multidev', command: 'test $CIRCLE_BRANCH == "master" || bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
       - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p "p-*"'}
       - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $GIT_URL -p "p-*"'}
 workflows:
