@@ -83,9 +83,10 @@ jobs:
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
       - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
-      - run: {name: 'Run WDIO', command: 'node_modules/.bin/wdio wd/wdio.conf.js --b http://$(hostname) && cp -R wd/screenshots /tmp/artifacts/wdio', environment: {JUNIT: '/tmp/junit'}}
+      - run: {name: 'Run WDIO', command: 'node_modules/.bin/wdio wd/wdio.conf.js --b http://$(hostname)', environment: {JUNIT: '/tmp/junit'}}
       - store_test_results: { path: '/tmp/junit' }
       - store_artifacts: {path: '/tmp/artifacts'}
+      - store_artifacts: {path: '/var/www/wd/screenshots'}
 
   deploy:
     working_directory: /var/www/code
