@@ -92,27 +92,25 @@ jobs:
         environment:
           GIT_AUTHOR_NAME: 'Last Call Media Automation'
           GIT_AUTHOR_EMAIL: 'sysadmin@lastcallmedia.com'
-          ARTIFACT: ssh://codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247@codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247.drush.in:2222/~/repository.git
-          HOST_KEY: '[codeserver.dev.58ceb48b-e86e-4c4d-beac-a9a886371247.drush.in]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSY3gnr0DrbqJJSnEFy6jazDmAdBm4Zs/EkWIQa7x31qgSYyYJMz5V+pk62lBf2BN42VtubwO83vW9G+yG2K1RGOvZJaK5GBvBb/Ws2ZPcp/4sNHpPzkdd75e5/Pk8AWA59XUbJcBWmrDrHMbWV1j2zqPPikxbqGeTTjSx4QR18LIRei5OwT6VQnaVnJqPAqFZ+oCbpr0DL96foL3UEY8EWT/6GH2cANEGZO4ppbhdDw4uG6TaI7S0lxWMQEVy+iwjCNH/nanjd73cwoYd90E0OVdgNDr3hVbIuE6sUW6UwlaAwuyOM/xJYPg1y0rF66958pyVJlZ9KD5A0kY3bHg7'
           # PMACHINE is a hidden environment variable that must be set.
           TERMINUS_SITE: scaffold
           PSRCENV: dev
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Trust host key', command: 'mkdir -p ~/.ssh && echo $HOST_KEY >> ~/.ssh/known_hosts'}
-      - run: {name: 'Trust Github', command: 'ssh-keyscan github.com >> /root/.ssh/known_hosts'}
-      - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
-      - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
-      - run: {name: 'Push Artifact', command: 'bin/artifact.sh -a $ARTIFACT -b $CIRCLE_BRANCH'}
       - run:
           name: 'Set up Terminus'
           command: |
             composer global require pantheon-systems/terminus
             echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV && source $BASH_ENV
             terminus auth:login --machine-token=$PMACHINE
+            terminus connection:info --fields=git_host,git_port,git_url --format=json | bin/json_to_bash.sh >> $BASH_ENV
+      - run: {name: 'Trust host key', command: 'ssh-keyscan -p $GIT_PORT $GIT_HOST >> /etc/ssh/ssh_known_hosts'}
+      - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
+      - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
+      - run: {name: 'Push Artifact', command: 'bin/artifact.sh -a $GIT_URL -b $CIRCLE_BRANCH'}
       - run: {name: 'Ensure multidev', command: 'bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $PSRCENV'}
       - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p "p-*"'}
-      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $ARTIFACT -p "p-*"'}
+      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $GIT_URL -p "p-*"'}
 workflows:
   version: 2
   build_test_release:
