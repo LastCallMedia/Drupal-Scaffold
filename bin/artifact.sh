@@ -9,7 +9,7 @@
 # repository can have entirely different .gitignore files -- any
 # files named .artifact.gitignore will be used as the .gitignore
 # in whatever directory they are found in.
-#
+
 set -e
 
 usage() {
