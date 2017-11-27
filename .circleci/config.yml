@@ -97,11 +97,8 @@ jobs:
           PSRCENV: dev
     steps:
       - attach_workspace: {at: /var/www}
-      - restore_cache: {name: 'Restore Terminus Cache', keys: [v1-terminus]}
-      - run: {name: 'Install terminus', command: "composer global require pantheon-systems/terminus && echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> $BASH_ENV"}
-      - save_cache: {name: Save Terminus cache, key: v1-terminus, paths: [ /root/.composer ]}
       - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token=$PMACHINE'}
-      - run: {name: 'Terminus Variable Export', command: 'terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | bin/json-to-bash.sh >> $BASH_ENV'}
+      - run: {name: 'Export git variables', command: 'terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | bin/json-to-bash.sh >> $BASH_ENV'}
       - run: {name: 'Trust host key', command: 'ssh-keyscan -p $GIT_PORT $GIT_HOST >> /etc/ssh/ssh_known_hosts'}
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
