@@ -21,7 +21,8 @@
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
         "lastcall/drupal-scaffold-scripts": "dev-master",
-        "drupal/core": "^8.3.7"
+        "drupal/core": "^8.3.7",
+        "drupal-composer/drupal-scaffold": "^2.3"
     },
     "require-dev": {
         "drupal/console": "^1.0.1",
