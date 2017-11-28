@@ -78,7 +78,7 @@ jobs:
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Set up directories', command: 'mkdir web/sites/simpletest web/sites/default/files && chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest'}
-      - run: {name: 'Refresh Site', command: 'bin/refresh-local.sh -c /tmp/dbcache -d'}
+      - run: {name: 'Refresh Site', command: 'vendor/bin/refresh-local-pantheon -c /tmp/dbcache && bin/deploy-steps.sh'}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
@@ -98,14 +98,14 @@ jobs:
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"'}
-      - run: {name: 'Export git variables', command: 'terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | bin/json-to-bash.sh >> $BASH_ENV'}
+      - run: {name: 'Export git variables', command: 'terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | vendor/bin/json-to-bash.sh >> $BASH_ENV'}
       - run: {name: 'Trust host key', command: 'ssh-keyscan -p $GIT_PORT $GIT_HOST >> /etc/ssh/ssh_known_hosts'}
       - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
       - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
       - run: {name: 'Push Artifact', command: 'bin/artifact.sh -a $GIT_URL -b $CIRCLE_BRANCH'}
-      - run: {name: 'Ensure multidev', command: 'test $CIRCLE_BRANCH == "master" || bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
-      - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon.sh -p "p-*"'}
-      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches.sh -a $GIT_URL -p "p-*"'}
+      - run: {name: 'Ensure multidev', command: 'test $CIRCLE_BRANCH == "master" || vendor/bin/create-artifact-environment-pantheon.sh -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
+      - run: {name: 'Prune multidev environments', command: 'vendor/bin/prune-artifact-environments-pantheon.sh -p "p-*"'}
+      - run: {name: 'Prune branches', command: 'vendor/bin/prune-artifact-branches.sh -a $GIT_URL -p "p-*"'}
 workflows:
   version: 2
   build_test_release:

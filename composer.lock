@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d70881cb91ffd0d8f216bb92646c8b4c",
+    "content-hash": "d6001d64aedd9477a25bbeb46eb20f5e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1212,6 +1212,42 @@
                 "speedup"
             ],
             "time": "2017-05-27T04:45:45+00:00"
+        },
+        {
+            "name": "lastcall/drupal-scaffold-scripts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LastCallMedia/Drupal-Scaffold-Scripts.git",
+                "reference": "da4ff50b0b89ac2207d0513198d0dd3a47784482"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/da4ff50b0b89ac2207d0513198d0dd3a47784482",
+                "reference": "da4ff50b0b89ac2207d0513198d0dd3a47784482",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/artifact",
+                "bin/create-artifact-environment-pantheon",
+                "bin/json-to-bash",
+                "bin/prune-artifact-branches",
+                "bin/prune-artifact-environments-pantheon",
+                "bin/refresh-local-pantheon"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Bayliss",
+                    "email": "rob@lastcallmedia.com"
+                }
+            ],
+            "description": "Shell scripts for source/artifact Drupal builds.",
+            "time": "2017-11-28T14:12:05+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -3739,7 +3775,7 @@
             "version": "8.2.12",
             "source": {
                 "type": "git",
-                "url": "https://github.com/klausi/coder.git",
+                "url": "https://git.drupal.org/project/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
             },
             "dist": {
@@ -7037,7 +7073,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "lastcall/drupal-scaffold-scripts": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
