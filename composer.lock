@@ -1263,12 +1263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LastCallMedia/Drupal-Scaffold-Scripts.git",
-                "reference": "8a0548827e2e30741385f7e6ae33e1d45869ed22"
+                "reference": "11e252d0f6465591a34dfa2509be23e1d33464a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/8a0548827e2e30741385f7e6ae33e1d45869ed22",
-                "reference": "8a0548827e2e30741385f7e6ae33e1d45869ed22",
+                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/11e252d0f6465591a34dfa2509be23e1d33464a0",
+                "reference": "11e252d0f6465591a34dfa2509be23e1d33464a0",
                 "shasum": ""
             },
             "bin": [
@@ -1291,7 +1291,7 @@
                 }
             ],
             "description": "Shell scripts for source/artifact Drupal builds.",
-            "time": "2017-12-01T00:18:45+00:00"
+            "time": "2017-12-01T15:30:07+00:00"
         },
         {
             "name": "masterminds/html5",
