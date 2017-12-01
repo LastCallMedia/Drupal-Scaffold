@@ -24,6 +24,20 @@
   * `prune-artifact-branches.sh`: Prune branches off of an artifact repository that no longer exist on a source repository.
   * `prune-artifact-environments-pantheon.sh`: Prune multidev environments for branches that no longer exist on a source repository.
   * `refresh-local.sh`: Contains the "refresh" procedure for the current site for updating a local environment.  Meant to be customized.
+* Add `drupal-scaffold` to maintain quasi-core files.  We are currently using a forked version of this plugin that allows a custom destination to be set.  See https://github.com/drupal-composer/drupal-scaffold/pull/69.  The following files are now being maintained by Drupal Scaffold:
+  * `.editorconfig`
+  * `.gitattributes`
+  * `web/.htaccess`
+  * `web/autoload.php`
+  * `web/index.php`
+  * `web/robots.txt`
+  * `web/update.php`
+  * `web/web.config`
+  * `web/sites/default/default.settings.php`
+  * `web/sites/default/pantheon.settings.php`
+  * `web/sites/default/development.services.yml`
+  * `web/sites/default/example.settings.local.php`
+  
 
 ### Removed
 * Removed Pattern Library module

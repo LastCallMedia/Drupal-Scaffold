@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "57a932bb1b2cd633a2f0a5e488309f53",
+    "content-hash": "ec8e2a3454b4dab4c0cc2854a371058b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -682,16 +682,16 @@
         },
         {
             "name": "drupal-composer/drupal-scaffold",
-            "version": "2.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/drupal-composer/drupal-scaffold.git",
-                "reference": "1374e1031b98beb502abea3854f361304965c628"
+                "url": "https://github.com/rbayliss/drupal-scaffold.git",
+                "reference": "70c008f597a725f2364168cd66fab700904f4f72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-scaffold/zipball/1374e1031b98beb502abea3854f361304965c628",
-                "reference": "1374e1031b98beb502abea3854f361304965c628",
+                "url": "https://api.github.com/repos/rbayliss/drupal-scaffold/zipball/70c008f597a725f2364168cd66fab700904f4f72",
+                "reference": "70c008f597a725f2364168cd66fab700904f4f72",
                 "shasum": ""
             },
             "require": {
@@ -714,25 +714,27 @@
                     "DrupalComposer\\DrupalScaffold\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
-            "time": "2017-05-05T21:26:28+00:00"
+            "support": {
+                "source": "https://github.com/rbayliss/drupal-scaffold/tree/master"
+            },
+            "time": "2017-11-29T13:40:59+00:00"
         },
         {
             "name": "drupal/core",
-            "version": "8.4.0",
+            "version": "8.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7"
+                "reference": "68d25c07b7306340900abc4020c38683a817f0eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d4be8e12d9e8b4db82ece760c632213247f56fa7",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7",
+                "url": "https://api.github.com/repos/drupal/core/zipball/68d25c07b7306340900abc4020c38683a817f0eb",
+                "reference": "68d25c07b7306340900abc4020c38683a817f0eb",
                 "shasum": ""
             },
             "require": {
@@ -795,6 +797,7 @@
                 "drupal/core-annotation": "self.version",
                 "drupal/core-assertion": "self.version",
                 "drupal/core-bridge": "self.version",
+                "drupal/core-class-finder": "self.version",
                 "drupal/core-datetime": "self.version",
                 "drupal/core-dependency-injection": "self.version",
                 "drupal/core-diff": "self.version",
@@ -906,7 +909,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-10-04T19:25:32+00:00"
+            "time": "2017-11-03T13:20:16+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -7115,7 +7118,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "lastcall/drupal-scaffold-scripts": 20
+        "lastcall/drupal-scaffold-scripts": 20,
+        "drupal-composer/drupal-scaffold": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

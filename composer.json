@@ -12,6 +12,10 @@
         {
             "type": "composer",
             "url":  "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/rbayliss/drupal-scaffold"
         }
     ],
     "prefer-stable": true,
@@ -21,8 +25,8 @@
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
         "lastcall/drupal-scaffold-scripts": "dev-master",
-        "drupal/core": "^8.3.7",
-        "drupal-composer/drupal-scaffold": "^2.3"
+        "drupal/core": "^8.4",
+        "drupal-composer/drupal-scaffold": "dev-master"
     },
     "require-dev": {
         "drupal/console": "^1.0.1",
@@ -41,7 +45,26 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"]
         },
-        "patches": { }
+        "patches": { },
+        "drupal-scaffold": {
+            "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{version}/{path}",
+            "includes": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes",
+                "sites/example.settings.local.php": "sites/default/example.settings.local.php",
+                "sites/development.services.yml": "sites/default/development.services.yml",
+                "sites/default/settings.pantheon.php": "sites/default/settings.pantheon.php"
+            },
+            "excludes": [
+                ".csslintrc",
+                ".eslintrc.json",
+                ".eslintignore",
+                "sites/example.sites.php"
+            ],
+            "initial": {
+                "sites/default/default.services.yml": "sites/default/services.yml"
+            }
+        }
     },
     "scripts": {
         "lint": ["@lint:composer", "@lint:phpcs", "@lint:eslint"],
@@ -55,7 +78,9 @@
         "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js",
 
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
-        "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup"
+        "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
+
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
 
     }
 }
