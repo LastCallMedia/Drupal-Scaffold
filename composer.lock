@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec8e2a3454b4dab4c0cc2854a371058b",
+    "content-hash": "4347035672ef750444e56a5ff874211c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1263,12 +1263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LastCallMedia/Drupal-Scaffold-Scripts.git",
-                "reference": "da4ff50b0b89ac2207d0513198d0dd3a47784482"
+                "reference": "8a0548827e2e30741385f7e6ae33e1d45869ed22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/da4ff50b0b89ac2207d0513198d0dd3a47784482",
-                "reference": "da4ff50b0b89ac2207d0513198d0dd3a47784482",
+                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/8a0548827e2e30741385f7e6ae33e1d45869ed22",
+                "reference": "8a0548827e2e30741385f7e6ae33e1d45869ed22",
                 "shasum": ""
             },
             "bin": [
@@ -1291,7 +1291,7 @@
                 }
             ],
             "description": "Shell scripts for source/artifact Drupal builds.",
-            "time": "2017-11-28T14:12:05+00:00"
+            "time": "2017-12-01T00:18:45+00:00"
         },
         {
             "name": "masterminds/html5",
