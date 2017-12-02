@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "de4df40d65003d0fa05e7ab5fa1c08ce",
+    "content-hash": "61e413c2d745767d6ffe15f32f08efe8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1213,6 +1213,50 @@
                 "speedup"
             ],
             "time": "2017-05-27T04:45:45+00:00"
+        },
+        {
+            "name": "lastcall/composer-upstream-files",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
+                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/a547a1bd7f7fba678537719906d7e83c8efd0429",
+                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1"
+            },
+            "require-dev": {
+                "composer/composer": "^1.5",
+                "friendsofphp/php-cs-fixer": "^2.8",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "LastCall\\ComposerUpstreamFiles\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "LastCall\\ComposerUpstreamFiles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Bayliss",
+                    "email": "rob@lastcallmedia.com"
+                }
+            ],
+            "description": "Composer command to update application files from various upstream sources.",
+            "time": "2017-12-02T21:38:42+00:00"
         },
         {
             "name": "lastcall/drupal-scaffold-scripts",
@@ -4618,50 +4662,6 @@
             ],
             "description": "Composer plugin for requiring additional files from composer packages.",
             "time": "2017-10-01T20:30:08+00:00"
-        },
-        {
-            "name": "lastcall/composer-upstream-files",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
-                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/a547a1bd7f7fba678537719906d7e83c8efd0429",
-                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1"
-            },
-            "require-dev": {
-                "composer/composer": "^1.5",
-                "friendsofphp/php-cs-fixer": "^2.8",
-                "phpunit/phpunit": "^6.5"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "LastCall\\ComposerUpstreamFiles\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "LastCall\\ComposerUpstreamFiles\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Bayliss",
-                    "email": "rob@lastcallmedia.com"
-                }
-            ],
-            "description": "Composer command to update application files from various upstream sources.",
-            "time": "2017-12-02T21:38:42+00:00"
         },
         {
             "name": "lastcall/mannequin-core",
