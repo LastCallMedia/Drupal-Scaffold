@@ -5,7 +5,7 @@ use LastCall\Mannequin\Drupal\DrupalExtension;
 use LastCall\Mannequin\Core\MannequinConfig;
 
 $templateFinder = Finder::create()
-  ->in([__DIR__.'/web/themes/custom/scaffold/templates'])
+  ->in([__DIR__.'/web/themes/custom/*/templates'])
   ->files()
   ->name('*.html.twig');
 
