@@ -21,4 +21,5 @@ bower_components
 # Build artifacts and tools:
 /artifacts
 web/themes/custom/*/dist
+web/modules/custom/*/dist
 /mannequin
