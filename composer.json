@@ -12,10 +12,6 @@
         {
             "type": "composer",
             "url":  "https://packages.drupal.org/8"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/rbayliss/drupal-scaffold"
         }
     ],
     "prefer-stable": true,
@@ -25,8 +21,7 @@
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
         "lastcall/drupal-scaffold-scripts": "dev-master",
-        "drupal/core": "^8.4",
-        "drupal-composer/drupal-scaffold": "dev-master"
+        "drupal/core": "^8.4"
     },
     "require-dev": {
         "drupal/console": "^1.0.1",
@@ -36,7 +31,8 @@
         "mikey179/vfsStream": "^1.2",
         "phpunit/phpunit": ">=4.8.35 <5",
         "drush/drush": "^8.1",
-        "lastcall/mannequin-drupal": "~1.0"
+        "lastcall/mannequin-drupal": "~1.0",
+        "lastcall/composer-upstream-files": "~1.0"
     },
     "extra": {
         "installer-paths": {
@@ -46,23 +42,31 @@
             "web/themes/contrib/{$name}": ["type:drupal-theme"]
         },
         "patches": { },
-        "drupal-scaffold": {
-            "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{version}/{path}",
-            "includes": {
-                ".editorconfig": "../.editorconfig",
-                ".gitattributes": "../.gitattributes",
-                "sites/example.settings.local.php": "sites/default/example.settings.local.php",
-                "sites/development.services.yml": "sites/default/development.services.yml",
-                "sites/default/settings.pantheon.php": "sites/default/settings.pantheon.php"
+        "upstream-files": {
+            "tokens": {
+                "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/circle20",
+                "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}",
+                "drops": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{{drupal/core.version}}"
             },
-            "excludes": [
-                ".csslintrc",
-                ".eslintrc.json",
-                ".eslintignore",
-                "sites/example.sites.php"
-            ],
-            "initial": {
-                "sites/default/default.services.yml": "sites/default/services.yml"
+            "files": {
+                "{{scaffold}}/.gitignore" : ".gitignore",
+                "{{scaffold}}/.artifact.gitignore" : ".artifact.gitignore",
+                "{{scaffold}}/.circleci/config.yml" : "./.circleci/config.yml",
+                "{{scaffold}}/bin/deploy-steps.sh": "bin/deploy-steps.sh",
+                "{{scaffold}}/docker/default.vcl": "docker/default.vcl",
+                "{{scaffold}}/docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
+                "{{drupal}}/.editorconfig": ".editorconfig",
+                "{{drupal}}/.gitattributes": ".gitattributes",
+                "{{drupal}}/.htaccess": "web/.htaccess",
+                "{{drupal}}/index.php": "web/index.php",
+                "{{drupal}}/update.php": "web/update.php",
+                "{{drupal}}/robots.txt": "web/robots.txt",
+                "{{drupal}}/web.config": "web/web.config",
+                "{{drupal}}/sites/default/default.settings.php": "web/sites/default/default.settings.php",
+                "{{drupal}}/sites/default/default.services.yml": "web/sites/default/default.services.yml",
+                "{{drupal}}/sites/example.settings.local.php": "web/sites/default/example.settings.local.php",
+                "{{drupal}}/sites/development.services.yml": "web/sites/default/development.services.yml",
+                "{{drops}}/sites/default/settings.pantheon.php": "web/sites/default/settings.pantheon.php"
             }
         }
     },
