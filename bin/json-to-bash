@@ -1,0 +1,32 @@
+#! /usr/bin/env php
+<?php
+/**
+ * Converts JSON from stdin to BASH environment variable exports.
+ *
+ * Example:
+ *
+ *  echo '{"foo":"bar"}' | json-to-bash
+ *
+ * Outputs:
+ *  export FOO='bar'
+ */
+$obj = json_decode(file_get_contents('php://stdin'));
+try {
+  if(json_last_error()) {
+    throw new Exception(sprintf('JSON failed to decode: %s', json_last_error_msg()), json_last_error());
+  }
+  foreach($obj as $k => $v) {
+    if(!is_scalar($v)) {
+      throw new \Exception(sprintf('Invalid non-scalar value for %s', $k));
+    }
+    if(!preg_match('/[A-Z1-9_]/', strtoupper($k))) {
+      throw new \Exception(sprintf('Invalid key: %s', $k));
+    }
+    print sprintf("export %s=%s\n", strtoupper($k), escapeshellarg($v));
+  }
+}
+catch(\Exception $e) {
+    file_put_contents('php://stderr', $e->getMessage());
+    exit($e->getCode() === 0 ? 1 : $e->getCode());
+}
+
