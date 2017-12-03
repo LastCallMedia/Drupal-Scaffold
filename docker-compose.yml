@@ -54,6 +54,7 @@ services:
       - DOCKER_ENV=local
       - TERMINUS_SITE=scaffold
       - TERMINUS_SOURCE_ENVIRONMENT=dev
+      - TERMINUS_MACHINE_TOKEN
     working_dir: /var/www/web
 
   mysql:

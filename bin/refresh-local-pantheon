@@ -50,6 +50,11 @@ mkdir -p "$cache"
 
 filename="$cache/db.sql.gz"
 
+# Auto-login if possible.
+if [ -n "$TERMINUS_MACHINE_TOKEN" ]; then
+  terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
+fi
+
 # Allow caching of the backup file by passing a cache directory.
 if [[ ! -f "$filename" ]]; then
   echo "Retrieving backup of $source from Pantheon"
