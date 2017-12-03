@@ -93,6 +93,9 @@
         }
     },
     "scripts": {
+        "build": "node_modules/.bin/gulp build",
+        "build:watch": "node_modules/.bin/gulp build:watch",
+
         "lint": ["@lint:composer", "@lint:phpcs", "@lint:eslint"],
         "lint:composer": "@composer validate",
         "lint:phpcs": "phpcs",
@@ -105,8 +108,5 @@
 
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
         "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
-
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-
     }
 }
