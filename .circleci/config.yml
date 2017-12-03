@@ -74,11 +74,10 @@ jobs:
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
-      - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Set up directories', command: 'mkdir web/sites/simpletest web/sites/default/files && chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest'}
-      - run: {name: 'Refresh Site', command: 'bin/refresh-local-pantheon -c /tmp/dbcache && bin/deploy-steps.sh'}
+      - run: {name: 'Refresh Site', command: 'composer site:import'}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
