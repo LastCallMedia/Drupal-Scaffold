@@ -2061,6 +2061,10 @@ kind-of@^4.0.0:
   dependencies:
     is-buffer "^1.1.5"
 
+lastcall-artifact.sh@^0.2.2:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/lastcall-artifact.sh/-/lastcall-artifact.sh-0.2.3.tgz#eb001213a4ca0bb52b0cfc284e3501c87b7fc70e"
+
 lastcall-gulp-drupal-tasks@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/lastcall-gulp-drupal-tasks/-/lastcall-gulp-drupal-tasks-2.0.0.tgz#19b0cfd66adea39e1c7f645a42882fb587bff664"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "09b15988e66941a4c32feaa58328932f",
+    "content-hash": "4fcc15156dea5e870274202ed9b840fc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1213,86 +1213,6 @@
                 "speedup"
             ],
             "time": "2017-05-27T04:45:45+00:00"
-        },
-        {
-            "name": "lastcall/composer-upstream-files",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
-                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/a547a1bd7f7fba678537719906d7e83c8efd0429",
-                "reference": "a547a1bd7f7fba678537719906d7e83c8efd0429",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1"
-            },
-            "require-dev": {
-                "composer/composer": "^1.5",
-                "friendsofphp/php-cs-fixer": "^2.8",
-                "phpunit/phpunit": "^6.5"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "LastCall\\ComposerUpstreamFiles\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "LastCall\\ComposerUpstreamFiles\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Bayliss",
-                    "email": "rob@lastcallmedia.com"
-                }
-            ],
-            "description": "Composer command to update application files from various upstream sources.",
-            "time": "2017-12-02T21:38:42+00:00"
-        },
-        {
-            "name": "lastcall/drupal-scaffold-scripts",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LastCallMedia/Drupal-Scaffold-Scripts.git",
-                "reference": "f7233e1c23a1c7bbe9d48560a9f4caf26b01bdb1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Drupal-Scaffold-Scripts/zipball/f7233e1c23a1c7bbe9d48560a9f4caf26b01bdb1",
-                "reference": "f7233e1c23a1c7bbe9d48560a9f4caf26b01bdb1",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/artifact",
-                "bin/create-artifact-environment-pantheon",
-                "bin/json-to-bash",
-                "bin/prune-artifact-branches",
-                "bin/prune-artifact-environments-pantheon",
-                "bin/refresh-local-pantheon"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Bayliss",
-                    "email": "rob@lastcallmedia.com"
-                }
-            ],
-            "description": "Shell scripts for source/artifact Drupal builds.",
-            "time": "2017-12-01T17:40:52+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -4664,6 +4584,50 @@
             "time": "2017-10-01T20:30:08+00:00"
         },
         {
+            "name": "lastcall/composer-upstream-files",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
+                "reference": "48a7507cdaac561190b954888d2cc4f5649e98b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/48a7507cdaac561190b954888d2cc4f5649e98b5",
+                "reference": "48a7507cdaac561190b954888d2cc4f5649e98b5",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1"
+            },
+            "require-dev": {
+                "composer/composer": "^1.5",
+                "friendsofphp/php-cs-fixer": "^2.8",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "LastCall\\ComposerUpstreamFiles\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "LastCall\\ComposerUpstreamFiles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Bayliss",
+                    "email": "rob@lastcallmedia.com"
+                }
+            ],
+            "description": "Composer command to update application files from various upstream sources.",
+            "time": "2017-12-02T21:59:44+00:00"
+        },
+        {
             "name": "lastcall/mannequin-core",
             "version": "1.0.7",
             "source": {
@@ -7130,9 +7094,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "lastcall/drupal-scaffold-scripts": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

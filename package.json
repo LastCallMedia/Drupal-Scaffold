@@ -10,6 +10,7 @@
     "foundation-sites": "^6.4.3",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
+    "lastcall-artifact.sh": "^0.2.2",
     "lastcall-gulp-drupal-tasks": "^2.0.0",
     "lastcall-scaffold-webdriver": "file:wd",
     "yargs": "^9.0"
