@@ -11,9 +11,12 @@
 # This configuration depends on the following environment variables being exported from
 # the UI:
 #
+#   * TERMINUS_MACHINE_TOKEN
+#
+# It also depends on the following environment variables declared in .site.env:
+# 
 #   * TERMINUS_SITE
 #   * TERMINUS_SOURCE_ENVIRONMENT
-#   * TERMINUS_MACHINE_TOKEN
 #
 version: 2
 jobs:
