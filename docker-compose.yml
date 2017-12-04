@@ -42,19 +42,20 @@ services:
     links:
       - mysql
       - redis
+    env_file: [.drupal.env]
     environment:
-      # @docroot:
-      - APACHE_DOCROOT=/var/www/web
-      - MYSQL_HOST=mysql
-      - MYSQL_PASSWORD=drupal
-      - MYSQL_USER=drupal
-      - MYSQL_DATABASE=drupal
-      - REDIS_HOSTNAME=redis
-      - "SITE_NAME=${SITE_NAME:-scaffold}"
-      - DOCKER_ENV=local
-      - TERMINUS_SITE=scaffold
-      - TERMINUS_SOURCE_ENVIRONMENT=dev
-      - TERMINUS_MACHINE_TOKEN
+      APACHE_DOCROOT: /var/www/web
+      MYSQL_HOST: mysql
+      MYSQL_PASSWORD: drupal
+      MYSQL_USER: drupal
+      MYSQL_DATABASE: drupal
+      CACHE_HOST: redis
+      DOCKER_ENV: local
+      # SITE_NAME: # Set in .drupal.env
+      # TERMINUS_SITE: # Set in .drupal.env
+      # TERMINUS_SOURCE_ENVIRONMENT: # Set in .drupal.env
+      TERMINUS_MACHINE_TOKEN: # Optionally set in .env.
+      XDEBUG_CONFIG: # Optionally set in .env.
     working_dir: /var/www/web
 
   mysql:
