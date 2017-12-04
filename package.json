@@ -6,6 +6,7 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
+    "eslint": "^4.12.1",
     "foundation-sites": "^6.4.3",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
