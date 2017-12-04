@@ -14,7 +14,7 @@
 #   * TERMINUS_MACHINE_TOKEN
 #
 # It also depends on the following environment variables declared in .site.env:
-# 
+#
 #   * TERMINUS_SITE
 #   * TERMINUS_SOURCE_ENVIRONMENT
 #

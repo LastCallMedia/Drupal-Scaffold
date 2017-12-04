@@ -1,8 +1,21 @@
-Upgrade Guide
-=============
+Initial Setup and Upgrading
+===========================
 
-2.0
----
+Initial Setup
+-------------
+* Set the name of your project in `composer.json`
+* Set the name of your project in `package.json`
+* Set the following environment variables in .site.env:
+  * TERMINUS_SITE
+  * TERMINUS_SOURCE_ENVIRONMENT
+* Set the following evironment variable in .env, or by exporting it in your ~/.bashrc or ~/.bash_profile files.
+  * TERMINUS_MACHINE_TOKEN
+* Rename the `scaffold` theme to whatever you want your theme to be called.
+
+Upgrading
+---------
+
+### 2.0
 * Add `composer-upstream-files` package: `composer require --no-update lastcall/composer-upstream-files:^1.0`
 * Copy over `upstream-files` section of [`composer.json`](../composer.json)
 * Copy over `scripts` from [`composer.json`](../composer.json)
