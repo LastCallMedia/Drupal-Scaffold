@@ -79,12 +79,12 @@ jobs:
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
-      - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Set up directories', command: 'mkdir web/sites/simpletest web/sites/default/files && chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest'}
-      - run: {name: 'Set cache invalidator', command: 'date +%Y-%m > /tmp/cache-indicator'}
-      - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}-{{ checksum "docker/drupal.env" }}-{{ .Environment.TERMINUS_MACHINE_TOKEN }}'}
+      - run: {name: 'Set DB cache invalidator', command: 'echo "$(date +%Y-%m)-$TERMINUS_MACHINE_TOKEN-$TERMINUS_SITE-$TERMINUS_SOURCE_ENV" > /tmp/cache-indicator' }
+      - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}'}
+      - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - run: {name: 'Refresh Site', command: 'composer site:import'}
-      - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}-{{ checksum "docker/drupal.env" }}-{{ .Environment.TERMINUS_MACHINE_TOKEN }}', paths: ['/tmp/site-import-cache']}
+      - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}', paths: ['/tmp/site-import-cache']}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
