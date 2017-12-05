@@ -1,7 +1,7 @@
 Composer
 ========
 
-We recommend using [Composer](https://getcomposer.org) to manage all third party PHP code dependencies, include contributed Drupal modules and themes.
+We recommend using [Composer](https://getcomposer.org) to manage all third party PHP code dependencies, include contributed Drupal modules and themes.  Composer comes pre-installed in the `drupal` container.
 
 Installing a new Module/Theme/Library
 -------------------------------------
