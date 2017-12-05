@@ -26,6 +26,7 @@ As soon as you're up and running, you will want to remove the references to the 
 - [ ] Rename the `scaffold` theme to something that fits your project.
 - [ ] Open [`docker/drupal.env`](../docker/drupal.env) and set the environment variables there.
 - [ ] Copy [`.env.example`](../.env.example) to `.env` and optionally set the variables in this file. This file should not be committed.
+- [ ] Customize README.md by renaming, and removing everything above the horizontal rule.
 
 Upgrading From a Previous Version
 ---------------------------------

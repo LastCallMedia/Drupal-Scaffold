@@ -5,31 +5,44 @@ LCM Drupal 8 Scaffolding
 
 This is a boilerplate Drupal 8 build that bundles some standard tools to make it a good starting point for an enterprise scale Drupal build.  It is conceptually similar to [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold), but it has a much simpler (and more manual) Composer setup, and includes additional tools.  For additional information on this project, see the [2016 Badcamp presentation slides](https://2016.badcamp.net/sites/default/files/session-files/FirstClassDevelopmentWorkflow.pdf)
 
-Initial Project Setup
------
+Starting a New Project
+----------------------
+- [ ] Use composer to create a new project, starting from this repository as a template:
+    ```bash
+    composer create-project lastcall/drupal-scaffold PROJECTNAME
+    ```
+- [ ] Bring up the Docker containers and enter the Drupal container.
+    ```bash
+    docker-compose up -d drupal varnish
+    docker-compose exec drupal /bin/bash
+    ```
+- [ ] From the repository root (`/var/www` inside the Drupal container), install NPM and composer dependencies:
+    ```bash
+    yarn install
+    composer install
+    ```
+- [ ] Visit the Drupal site in your browser to install Drupal and continue.  The default URL will be `http://localhost:8080`.
 
-_(These are only needed for creating a new project repository.  Remove this section of the readme once you are done.)_
+See the [documentation](docs/) for next steps.
 
-1. Run the following command to clone this project down.  Replace PROJECTNAME with the name of the folder you want to create for the project.
-  ```
-  composer create-project lastcall/drupal-scaffold PROJECTNAME
-  ```
-2. Configure nvm to use the latest stable version `nvm install stable; nvm use stable;` 
-3. From the repository root: `yarn install` to install nodejs dependencies (or use `npm install` if you don't have yarn).
-4. From the repository root: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp  installed globally) to install bower and composer dependencies.
-5. Edit the `composer.json`, `package.json`, and `bower.json` and rename the project as needed.
-6. Rename the scaffold theme to match the project (including JS and SCSS files).
-7. Initialize a new git repository and push work to it as normal
+---------------------------------------------
 
 Getting started on an already prepared project
 ----------------------------------------------
 _(These will be used when working from a repo already prepared for a specific project)_
 
 1. Clone the repository to your local environment
-2. Initalize nvm: `nvm install`
-3. Install node packages: `yarn install`  (or use `npm install` if you don't have yarn).
-4. Install composer and bower packages: `gulp install` (or `node_modules/.bin/gulp install` if you don't have gulp installed globally)
-5. Commit and push work to repository as normal
+2. Start the Docker environment and shell in:
+    ```bash
+    docker-compose up -d drupal varnish
+    docker-compose exec drupal /bin/bash
+    ```
+3. Install dependencies:
+    ```bash
+    composer install
+    yarn install
+    ```
+4. Run `composer site:import` to pull down a copy of the site's database.
 
 Adding Modules/Themes
 ---------------------

@@ -4,7 +4,7 @@ Behat
 
 Configuration
 -------------
-Behat configuration lives in `behat.yml` in the repository root.  The FeatureContext and all feature definitions live in the `features` directory.
+Behat configuration lives in `behat.yml` in the repository root.  The tests themselves - `FeatureContext` and all feature definitions - live in the `features` directory.
 
 Running
 -------
