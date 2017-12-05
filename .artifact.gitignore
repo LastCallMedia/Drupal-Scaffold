@@ -4,6 +4,7 @@ web/sites/*/files
 web/sites/*/settings.local.php
 web/sites/simpletest/*
 .env
+.env.example
 docker-compose.override.yml
 
 # Build tools not required in production:
