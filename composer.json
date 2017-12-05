@@ -75,6 +75,7 @@
                 "{{scaffold}}/wd/package.json": "wd/package.json",
                 "{{scaffold}}/wd/wdio.conf.js": "wd/wdio.conf.js",
                 "{{scaffold}}/docker/default.vcl": "docker/default.vcl",
+                "{{scaffold}}/docker/drupal.env": "docker/drupal.env",
                 "{{scaffold}}/docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
                 "{{scaffold}}/web/sites/default/settings.docker.php": "web/sites/default/settings.docker.php",
                 "{{drupal}}/.editorconfig": ".editorconfig",
