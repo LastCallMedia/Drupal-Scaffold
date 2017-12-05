@@ -118,7 +118,11 @@ workflows:
   build_test_release:
     jobs:
       - build
-      - test: {requires: [build]}
-      - deploy:
+      - test:
+          context: org-global
           requires: [build]
-
+      - deploy:
+          context: org-global
+          requires: [build]
+          filters:
+            only: [/p-.*/, master]
