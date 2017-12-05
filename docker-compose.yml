@@ -42,7 +42,7 @@ services:
     links:
       - mysql
       - redis
-    env_file: [.drupal.env]
+    env_file: [.site.env]
     environment:
       APACHE_DOCROOT: /var/www/web
       MYSQL_HOST: mysql
@@ -51,11 +51,13 @@ services:
       MYSQL_DATABASE: drupal
       CACHE_HOST: redis
       DOCKER_ENV: local
-      # SITE_NAME: # Set in .drupal.env
-      # TERMINUS_SITE: # Set in .drupal.env
-      # TERMINUS_SOURCE_ENVIRONMENT: # Set in .drupal.env
+      # SITE_NAME: # Set in .site.env
+      # TERMINUS_SITE: # Set in .site.env
+      # TERMINUS_SOURCE_ENVIRONMENT: # Set in .site.env
       TERMINUS_MACHINE_TOKEN: # Optionally set in .env.
       XDEBUG_CONFIG: # Optionally set in .env.
+      BLACKFIRE_CLIENT_ID: # Optionally set in .env.
+      BLACKFIRE_CLIENT_TOKEN: # Optionally set in .env.
     working_dir: /var/www/web
 
   mysql:
@@ -76,6 +78,12 @@ services:
 
   selenium:
     image: "selenium/standalone-chrome"
+
+  blackfire:
+    image: "blackfire/blackfire"
+    environment:
+      BLACKFIRE_SERVER_ID: # Set in .env if you want to use Blackfire.
+      BLACKFIRE_SERVER_TOKEN: # Set in .env if you want to use Blackfire.
 
   # You need to add the search_api_solr module before you can create this
   # container, since we need the configuration files.

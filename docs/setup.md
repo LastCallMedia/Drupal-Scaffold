@@ -5,7 +5,7 @@ Initial Setup
 -------------
 * Set the name of your project in `composer.json`
 * Set the name of your project in `package.json`
-* Set the following environment variables in .site.env:
+* Set the following environment variables in `.site.env`.  See this file for more information:
   * TERMINUS_SITE
   * TERMINUS_SOURCE_ENVIRONMENT
 * Set the following evironment variable in .env, or by exporting it in your ~/.bashrc or ~/.bash_profile files.
