@@ -125,4 +125,5 @@ workflows:
           context: org-global
           requires: [build]
           filters:
-            only: ['/p-.*/', 'master']
+            branches:
+              only: ['/p-.*/', 'master']
