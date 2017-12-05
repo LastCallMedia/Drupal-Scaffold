@@ -1,7 +1,7 @@
 Pantheon
 ========
 
-This project comes pre-configured for deployment on Pantheon.  
+This project comes pre-configured for deployment on Pantheon.
 
 Not hosting on Pantheon?
 ------------------------
