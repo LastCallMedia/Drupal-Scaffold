@@ -18,5 +18,3 @@ Uninstalling
 2. Edit `composer.json` to remove the `build` and `build:watch` scripts.
 3. Delete `gulpconfig.js` and `gulpfile.js`
 4. Commit changes.
-
-
