@@ -54,7 +54,7 @@
                 "{{scaffold}}/.eslintignore": ".eslintignore",
                 "{{scaffold}}/.eslintrc": ".eslintrc",
                 "{{scaffold}}/.mannequin.php": ".mannequin.php",
-                "{{scaffold}}/.env.default": ".env.default",
+                "{{scaffold}}/.env.example": ".env.example",
                 "{{scaffold}}/behat.yml": "behat.yml",
                 "{{scaffold}}/docker-compose.yml": "docker-compose.yml",
                 "{{scaffold}}/gulpconfig.js": "gulpconfig.js",
