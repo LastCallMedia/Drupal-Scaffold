@@ -24,6 +24,7 @@
   * [`prune-artifact-environments-pantheon`](bin/prune-artifact-environments-pantheon): Prune multidev environments for branches that no longer exist on a source repository.
   * [`refresh-local-pantheon`](bin/refresh-local-pantheon): Encapsulates commands required to grab a fresh copy of the site DB from production from Pantheon and import it locally.
 * Add [Composer Upstream Files](https://github.com/LastCallMedia/Composer-Upstream-Files) to ease maintenance burden of upstream files like Drupal's quasi-core files, and Scaffold related files.  See the `upstream-files` section of `composer.json` for a current list of the files that are capable of being updated by this Composer command.
+* Add [Blackfire](https://blackfire.io) to support performance optimization and profiling.  See [the Blackfire documentation](docs/tools/blackfire.md) for more information.
 
 ### Removed
 * Removed Pattern Library module
