@@ -30,7 +30,7 @@ error_out() {
 
 site="$TERMINUS_SITE"
 source="${TERMINUS_SOURCE_ENVIRONMENT:-live}"
-cache="/tmp/$(date +%s)"
+cache="/tmp/site-import-cache"
 dryrun=0
 while getopts "hi:s:c:n" opt; do
   case "$opt" in
@@ -48,22 +48,25 @@ test -n "$source" || error_out "Source environment must be set using the -s flag
 
 mkdir -p "$cache"
 
-filename="$cache/db.sql.gz"
-
 # Auto-login if possible.
 if [ -n "$TERMINUS_MACHINE_TOKEN" ]; then
   terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 fi
 
+# Grab the name of the latest backup from Pantheon.
+filename=$(terminus backup:info "$site.$source" --element=db --field=file)
+
 # Allow caching of the backup file by passing a cache directory.
-if [[ ! -f "$filename" ]]; then
+if [[ ! -f "$cache/$filename" ]]; then
   echo "Retrieving backup of $source from Pantheon"
-  terminus backup:get "$site.$source" --element=db --to="$filename"
-  echo "Backup saved to $filename"
+  terminus backup:get "$site.$source" --element=db --to="$cache/$filename"
+  echo "Backup saved to $cache/$filename"
+else
+  echo "Backup already exists in $cache/$filename"
 fi
 
 pushd web > /dev/null
   ../vendor/bin/drush sql-drop -y
-  zcat "$filename" | ../vendor/bin/drush sql-cli
+  zcat "$cache/$filename" | ../vendor/bin/drush sql-cli
   echo "Backup successfully imported"
 popd > /dev/null
