@@ -9,9 +9,9 @@ Drush configuration and extra commands can be added in the `drush/` directory in
 
 Running
 -------
-Inside of the `drupal` container, you can run Drush just by typing `drush`.  Examples:
-* `drush uli`
-* `drush en page_cache`
+Inside of the `drupal` container, Drush is already installed. You can run it just by typing `drush`.  Examples:
+* `drush uli` - Generate a one time login link.
+* `drush en page_cache` - Enable the page cache module.
 
 Uninstalling
 ------------

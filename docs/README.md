@@ -24,8 +24,9 @@ Customizing your Project
 As soon as you're up and running, you will want to remove the references to the "scaffold" nature of this project and make it your own.
 - [ ] Set the name of your project under the `name` key in `composer.json` and `package.json`.  You don't ever need to publish the project using Composer or NPM, but it will help new developers get oriented.
 - [ ] Rename the `scaffold` theme to something that fits your project.
-- [ ] Open [`docker/drupal.env`](../docker/drupal.env) and set the environment variables there.
-- [ ] Copy [`.env.example`](../.env.example) to `.env` and optionally set the variables in this file. This file should not be committed.
+- [ ] Open [`docker/drupal.env`](/docker/drupal.env) and set the environment variables there.
+- [ ] Open [`bin/deploy-steps`](/bin/deploy-steps) and choose the deployment steps you want to use.
+- [ ] Copy [`.env.example`](/.env.example) to `.env` and optionally set the variables in this file. This file should not be committed.
 - [ ] Customize README.md by renaming, and removing everything above the horizontal rule.
 
 Upgrading From a Previous Version
