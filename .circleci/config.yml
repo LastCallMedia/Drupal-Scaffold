@@ -1,0 +1,132 @@
+# This CircleCI configuration executes 3 different jobs:
+#   * build: Install dependencies and build static assets
+#   * test: Run all unit and functional tests
+#   * deploy: Push artifact code to a remote git repository.
+#
+# In this configuration, deployment happens regardless of testing outcome.
+# Assuming you wait until tests pass before merging any PRs or deploying from dev
+# to prod, this enables much faster local -> multidev deployment cycles without
+# increasing risk.
+#
+# This configuration depends on the following environment variables being exported from
+# the UI:
+#
+#   * TERMINUS_MACHINE_TOKEN
+#
+# It also depends on the following environment variables declared in docker/drupal.env:
+#
+#   * TERMINUS_SITE
+#   * TERMINUS_SOURCE_ENVIRONMENT
+#
+version: 2
+jobs:
+  build:
+    working_directory: /var/www/code
+    docker:
+      - image: lastcallmedia/php:7.0-dev
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn cache
+          keys:
+            - site-yarn-v1-{{ checksum "yarn.lock" }}
+            - site-yarn-v1-
+      - run: {name: "Yarn install", command: "yarn install --pure-lockfile" }
+      - save_cache:
+          name: Save Yarn cache
+          key: site-yarn-v1-{{ checksum "yarn.lock" }}
+          paths: [ node_modules ]
+      - restore_cache:
+          name: Restore Composer cache
+          keys:
+            - site-composer-v1-{{ checksum "composer.lock" }}
+            - site-composer-v1-
+      - run: {name: 'Composer install', command: 'composer install'}
+      - save_cache:
+          name: Save Composer cache
+          key: site-composer-v1-{{ checksum "composer.lock" }}
+          paths: [ vendor, web/core, web/modules/contrib, web/themes/contrib ]
+      - run: {name: "Execute build", command: "gulp build" }
+      - persist_to_workspace:
+          root: /var/www
+          paths: [code]
+
+  test:
+    working_directory: /var/www/code
+    docker:
+      - image: lastcallmedia/php:7.0-dev # Primary image
+        environment:
+          DOCKER_ENV: ci
+          APACHE_DOCROOT: /var/www/code/web
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_HOST: 127.0.0.1
+      - image: mysql:5.6
+        environment:
+          MYSQL_USER: circle
+          MYSQL_PASSWORD: circle
+          MYSQL_DATABASE: circle
+          MYSQL_RANDOM_ROOT_PASSWORD: 1
+      - image: selenium/standalone-chrome
+        name: selenium
+    steps:
+      - attach_workspace: {at: /var/www}
+      - run:
+          name: Prepare Environment
+          command: |
+            echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV && source /var/www/code/docker/drupal.env
+            mkdir /tmp/junit /tmp/artifacts web/sites/simpletest web/sites/default/files && chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /tmp/junit web/sites/default/files web/sites/simpletest
+            terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
+            terminus backup:info "$TERMINUS_SITE.$TERMINUS_SOURCE_ENVIRONMENT" --element=db --field=file > /tmp/db-cache-indicator
+      # Run linting steps up front.  If these fail, they should provide fast feedback.
+      - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
+      - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
+      - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
+      - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
+      - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
+      - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}'}
+      - run: {name: 'Refresh Site', command: 'composer site:import -- -c /tmp/db-cache'}
+      - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}', paths: ['/tmp/db-cache']}
+      - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
+      # Run PHPUnit as www-data to support BrowserTestBase installing the site.
+      - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
+      - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
+      - run: {name: 'Run WDIO', command: 'node_modules/.bin/wdio wd/wdio.conf.js --b http://$(hostname)', environment: {JUNIT: '/tmp/junit'}}
+      - store_test_results: { path: '/tmp/junit' }
+      - store_artifacts: {path: '/tmp/artifacts'}
+      - store_artifacts: {path: '/var/www/wd/screenshots'}
+
+  deploy:
+    working_directory: /var/www/code
+    docker:
+      - image: lastcallmedia/php:7.0-dev # Primary image
+        environment:
+          GIT_AUTHOR_NAME: 'Last Call Media Automation'
+          GIT_AUTHOR_EMAIL: 'sysadmin@lastcallmedia.com'
+    steps:
+      - attach_workspace: {at: /var/www}
+      - run: {name: 'Source environment variables', command: 'echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV'}
+      - run: {name: 'Terminus Login', command: 'terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"'}
+      - run: {name: 'Export git variables', command: 'terminus connection:info --fields=git_host,git_port,git_url --format=json "$TERMINUS_SITE.dev" | bin/json-to-bash >> $BASH_ENV'}
+      - run: {name: 'Trust host key', command: 'ssh-keyscan -p $GIT_PORT $GIT_HOST >> /etc/ssh/ssh_known_hosts'}
+      - run: {name: 'Set git committer', command: 'git config --global user.email "$GIT_AUTHOR_EMAIL" && git config --global user.name "$GIT_AUTHOR_NAME"'}
+      - run: {name: 'Lean Composer install', command: 'composer install --no-dev -o'}
+      - run: {name: 'Push Artifact', command: 'node_modules/.bin/artifact.sh -a $GIT_URL -b $CIRCLE_BRANCH'}
+      - run: {name: 'Ensure multidev', command: 'test $CIRCLE_BRANCH == "master" || bin/create-artifact-environment-pantheon -b $CIRCLE_BRANCH -s $TERMINUS_SOURCE_ENVIRONMENT'}
+      - run: {name: 'Prune multidev environments', command: 'bin/prune-artifact-environments-pantheon -p "p-*"'}
+      - run: {name: 'Prune branches', command: 'bin/prune-artifact-branches -a $GIT_URL -p "p-*"'}
+workflows:
+  version: 2
+  build_test_release:
+    jobs:
+      - build
+      - test:
+          context: org-global
+          requires: [build]
+      - deploy:
+          context: org-global
+          requires: [build]
+          filters:
+            branches:
+              only: ['/p-.*/', 'master']

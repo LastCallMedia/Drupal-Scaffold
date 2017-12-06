@@ -1,8 +1,40 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
 * Enabled Drupal js behaviors in Mannequin by default.
+* Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
+* Use `CACHE_HOST`, `CACHE_PORT`, `CACHE_PASSWORD` in `settings.docker.php` instead of REDIS_* equivalents.  This brings us into line with Pantheon's environment variables.
+* Replace environment variables in the default CircleCI build: `PSITE` -> `TERMINUS_SITE`, `PSRCENV` -> `TERMINUS_SOURCE_ENVIRONMENT`, `PMACHINE` -> `TERMINUS_MACHINE_TOKEN`.  These variables will remain consistent with what we use in Docker.
+* Use `yarn` in all documentation, CircleCI steps.  Yarn is a drop-in replacement for `npm` that is much faster.
+* Configure ESLint through `.eslintignore` in repository root rather than custom Gulp configuration.
+* Configure PHPCS through `phpcs.xml.dist` in repository root rather than custom Gulp configuration.
+* Upgrade to [CircleCI 2.0](.circleci/config.yml). Circle 2.0 brings down build times and lets us keep the build environment much closer to the local development environment by using Docker.
+
+### Added
+* Add a default hash salt to settings.docker.php, overrideable using the `DRUPAL_HASH_SALT` environment variable.
+* Add a selenium container to the default Docker Compose stack. Selenium is a powerful front end testing and automation tool that allows for cross-browser testing, and replaces the deprecated PhantomJS.
+* Add `pantheon.yml` for configuring web docroot in Pantheon deployments.
+* Start keeping documentation in `docs/`.
+* Add shell scripts for:
+  * [`create-artifact-environment-pantheon`](bin/create-artifact-environment-pantheon): Create a new multidev for a branch.
+  * [`deploy-steps`](bin/deploy-steps): Contains deployment steps for this site.  Meant to be customized.
+  * [`json-to-bash`](bin/json-to-bash): Converts a single level JSON object into bash export statements.
+  * [`prune-artifact-branches`](bin/prune-artifact-branches): Prune branches off of an artifact repository that no longer exist on a source repository.
+  * [`prune-artifact-environments-pantheon`](bin/prune-artifact-environments-pantheon): Prune multidev environments for branches that no longer exist on a source repository.
+  * [`refresh-local-pantheon`](bin/refresh-local-pantheon): Encapsulates commands required to grab a fresh copy of the site DB from production from Pantheon and import it locally.
+* Add [Composer Upstream Files](https://github.com/LastCallMedia/Composer-Upstream-Files) to ease maintenance burden of upstream files like Drupal's quasi-core files, and Scaffold related files.  See the `upstream-files` section of `composer.json` for a current list of the files that are capable of being updated by this Composer command.
+* Add [Blackfire](https://blackfire.io) to support performance optimization and profiling.  See [the Blackfire documentation](docs/tools/blackfire.md) for more information.
+
+### Removed
 * Removed Pattern Library module
+* Removed dependency installation using `gulp install`.  Use `composer install` instead.
+* Removed testing using `gulp test`.  Use `composer test` instead.
+* Removed linting using `gulp check`.  Use `composer lint` instead.
+* Removed BackstopJS due to instability and limited usefulness.  This tool is replaced by WebDriver.io.  See [documentation](docs/tools/wdio.md) for more information.
+* Removed Phantomas due to instability.  There is no replacement for this tool.
+* Removed `ci/push-to-downstream.sh` and replace with `node_modules/.bin/artifact.sh`, which is faster and handles nested .artifact.gitignores.  This is a new OSS package.  See [Artifact.sh](https://github.com/LastCallMedia/Artifact.sh).
+* Removed `DOWNSTREAM` environment variable from CircleCI configuration.  The downstream repository is now calculated automatically via Terminus.
 
 ## [1.4.0] - 2017-10-19
 ### Changed

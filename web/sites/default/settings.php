@@ -769,15 +769,14 @@ $settings['file_scan_ignore_directories'] = [
  */
 $settings['entity_update_batch_size'] = 50;
 
+// Always include a Pantheon settings file.
+require __DIR__.'/settings.pantheon.php';
+
 /**
  * Load environment-specific configuration overrides, if applicable.
  */
 if(FALSE !== getenv('DOCKER_ENV') && file_exists(__DIR__ . '/settings.docker.php')) {
   require __DIR__ . '/settings.docker.php';
-}
-// Always include a Pantheon settings file if one exists.
-if(file_exists(__DIR__ . '/settings.pantheon.php')) {
-  require __DIR__ . '/settings.pantheon.php';
 }
 // Include an optional local settings override.
 if(file_exists(__DIR__ . '/settings.local.php')) {

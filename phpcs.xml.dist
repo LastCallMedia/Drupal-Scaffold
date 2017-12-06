@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="lastcall_scaffold">
+  <description>PHP CodeSniffer configuration for this site.</description>
+  <file>./web/modules/custom</file>
+  <file>./web/themes/custom</file>
+  <file>./drush</file>
+  <file>./features</file>
+  <arg name="extensions" value="inc,install,module,php,profile,test,theme"/>
+
+  <exclude-pattern>*.css</exclude-pattern>
+
+  <rule ref="vendor/drupal/coder/coder_sniffer/Drupal/">/</rule>
+  <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice/">/</rule>
+
+</ruleset>

@@ -32,9 +32,8 @@ services:
     volumes:
       - ./docker/default.vcl:/etc/varnish/default.vcl
 
-
   drupal:
-    image: "lastcallmedia/php:7.0"
+    image: "lastcallmedia/php:7.0-dev"
     ports:
       - "${DRUPAL_PORT:-8081}:80" # Debug port - remove if you use for production hosting
       - "${MANNEQUIN_PORT:-8082}:8082" # Debug port - remove if you use for production hosting.
@@ -43,17 +42,23 @@ services:
     links:
       - mysql
       - redis
+    env_file: [docker/drupal.env]
     environment:
-      # @docroot:
-      - APACHE_DOCROOT=/var/www/web
-      - MYSQL_HOST=mysql
-      - MYSQL_PASSWORD=drupal
-      - MYSQL_USER=drupal
-      - MYSQL_DATABASE=drupal
-      - REDIS_HOSTNAME=redis
-      - "SITE_NAME=${SITE_NAME:-scaffold}"
-      - DOCKER_ENV=local
-    working_dir: /var/www/web
+      APACHE_DOCROOT: /var/www/web
+      MYSQL_HOST: mysql
+      MYSQL_PASSWORD: drupal
+      MYSQL_USER: drupal
+      MYSQL_DATABASE: drupal
+      CACHE_HOST: redis
+      DOCKER_ENV: local
+      # SITE_NAME: # Set in docker/drupal.env
+      # TERMINUS_SITE: # Set in docker/drupal.env
+      # TERMINUS_SOURCE_ENVIRONMENT: # Set in docker/drupal.env
+      TERMINUS_MACHINE_TOKEN: # Optionally set in .env.
+      XDEBUG_CONFIG: # Optionally set in .env.
+      BLACKFIRE_CLIENT_ID: # Optionally set in .env.
+      BLACKFIRE_CLIENT_TOKEN: # Optionally set in .env.
+    working_dir: /var/www
 
   mysql:
     image: "mysql:5.6"
@@ -70,6 +75,15 @@ services:
 
   redis:
     image: redis:3.2.4
+
+  selenium:
+    image: "selenium/standalone-chrome"
+
+  blackfire:
+    image: "blackfire/blackfire"
+    environment:
+      BLACKFIRE_SERVER_ID: # Set in .env if you want to use Blackfire.
+      BLACKFIRE_SERVER_TOKEN: # Set in .env if you want to use Blackfire.
 
   # You need to add the search_api_solr module before you can create this
   # container, since we need the configuration files.

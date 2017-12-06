@@ -6,18 +6,20 @@
   "private": true,
   "main": "gulpfile.js",
   "dependencies": {
+    "eslint": "^4.12.1",
     "foundation-sites": "^6.4.3",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
-    "ip": "^1.1.4",
-    "lastcall-gulp-drupal-tasks": "^1.0.0-rc4",
+    "lastcall-artifact.sh": "^0.2.2",
+    "lastcall-gulp-drupal-tasks": "^2.0.0",
+    "lastcall-scaffold-webdriver": "file:wd",
     "yargs": "^9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": ">= 5.0"
+    "node": ">= 6.0"
   },
   "author": ""
 }

@@ -1,0 +1,13 @@
+{
+  "name": "lastcall-scaffold-webdriver",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "wdio-junit-reporter": "^0.3.1",
+    "wdio-mocha-framework": "^0.5.11",
+    "wdio-visual-regression-service": "^0.8.0",
+    "webdriverio": "^4.9.9"
+  },
+  "main": "wdio.conf.js",
+  "files": ["package.json"]
+}
