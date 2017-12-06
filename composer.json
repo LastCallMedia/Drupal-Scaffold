@@ -43,7 +43,7 @@
         "patches": { },
         "upstream-files": {
             "tokens": {
-                "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/circle20",
+                "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/master",
                 "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}",
                 "drops": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{{drupal/core.version}}"
             },
@@ -56,6 +56,9 @@
                 "{{scaffold}}/.mannequin.php": ".mannequin.php",
                 "{{scaffold}}/.env.example": ".env.example",
                 "{{scaffold}}/behat.yml": "behat.yml",
+                "{{scaffold}}/docker/default.vcl": "docker/default.vcl",
+                "{{scaffold}}/docker/drupal.env": "docker/drupal.env",
+                "{{scaffold}}/docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
                 "{{scaffold}}/docker-compose.yml": "docker-compose.yml",
                 "{{scaffold}}/drush/drushrc.php": "drush/drushrc.php",
                 "{{scaffold}}/drush/policy.drush.inc": "drush/policy.drush.inc",
@@ -76,9 +79,6 @@
                 "{{scaffold}}/wd/.gitignore": "wd/.gitignore",
                 "{{scaffold}}/wd/package.json": "wd/package.json",
                 "{{scaffold}}/wd/wdio.conf.js": "wd/wdio.conf.js",
-                "{{scaffold}}/docker/default.vcl": "docker/default.vcl",
-                "{{scaffold}}/docker/drupal.env": "docker/drupal.env",
-                "{{scaffold}}/docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
                 "{{scaffold}}/web/sites/default/settings.docker.php": "web/sites/default/settings.docker.php",
                 "{{drupal}}/.editorconfig": ".editorconfig",
                 "{{drupal}}/.gitattributes": ".gitattributes",
