@@ -57,6 +57,8 @@
                 "{{scaffold}}/.env.example": ".env.example",
                 "{{scaffold}}/behat.yml": "behat.yml",
                 "{{scaffold}}/docker-compose.yml": "docker-compose.yml",
+                "{{scaffold}}/drush/drushrc.php": "drush/drushrc.php",
+                "{{scaffold}}/drush/policy.drush.inc": "drush/policy.drush.inc",
                 "{{scaffold}}/gulpconfig.js": "gulpconfig.js",
                 "{{scaffold}}/gulpfile.js": "gulpfile.js",
                 "{{scaffold}}/package.json": "package.json",

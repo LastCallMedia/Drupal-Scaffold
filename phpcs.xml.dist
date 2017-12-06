@@ -3,6 +3,8 @@
   <description>PHP CodeSniffer configuration for this site.</description>
   <file>./web/modules/custom</file>
   <file>./web/themes/custom</file>
+  <file>./drush</file>
+  <file>./features</file>
   <arg name="extensions" value="inc,install,module,php,profile,test,theme"/>
 
   <exclude-pattern>*.css</exclude-pattern>
