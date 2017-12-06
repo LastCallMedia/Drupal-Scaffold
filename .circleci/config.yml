@@ -78,7 +78,7 @@ jobs:
             echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV
             mkdir /tmp/junit /tmp/artifacts web/sites/simpletest web/sites/default/files && chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /tmp/junit web/sites/default/files web/sites/simpletest
             terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
-            terminus backups:info "$TERMINUS_SITE.$TERMINUS_SOURCE_ENVIRONMENT" --element=db --field=file > /tmp/db-cache-indicator
+            terminus backup:info "$TERMINUS_SITE.$TERMINUS_SOURCE_ENVIRONMENT" --element=db --field=file > /tmp/db-cache-indicator
       # Run linting steps up front.  If these fail, they should provide fast feedback.
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
