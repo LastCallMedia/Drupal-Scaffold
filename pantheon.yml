@@ -12,6 +12,11 @@ workflows:
       - type: webphp
         description: Run deployment steps.
         script: private/scripts/deploy-steps.php
+  create_cloud_development_environment:
+    after:
+      - type: webphp
+        description: Run deployment steps.
+        script: private/scripts/deploy-steps.php
   sync_code:
     after:
       - type: webphp
