@@ -3,18 +3,26 @@
 #
 # Execute deployment steps for this site.
 #
-# Customize this script to match your workflow.  It should be triggered
+# Customize this script to match your workflow.  It will be triggered
 # anytime the code is deployed to a Pantheon, local, or CI environment.
+#
+# This script will always be invoked from your docroot. Set paths accordingly.
 
 set -e
 
-bindir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-webroot="$bindir/../web"
+# Run all database updates.
+#
+# This step is recommended for all deployments.
+drush updatedb -y --entity-updates
 
-drush -r "$webroot" updb -y --entity-updates
-# drush -r "$webroot" cim -y
 
-# In this silly example, we just set the default theme,
-# but in reality you would probably want to use drush cim -y
-drush -r "$webroot" en -y scaffold
-drush -r "$webroot" config-set -y system.theme default scaffold
+# Import all config from the config directory.
+#
+# This step is recommended for all deployments (uncomment it).
+# drush config-import -y
+
+# Enable the scaffold theme and set it as the default.
+#
+# We do NOT recommend this step for your site. It is only here
+# for automated testing on the scaffold project itself.
+drush en -y scaffold && drush config-set -y system.theme default scaffold

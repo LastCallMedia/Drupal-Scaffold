@@ -109,7 +109,7 @@
         "test:behat": "behat",
         "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js",
 
-        "site:import": ["bin/refresh-local-pantheon", "bin/deploy-steps"],
+        "site:import": ["bin/refresh-local-pantheon", "cd web; ../bin/deploy-steps; cd -"],
 
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
         "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup"
