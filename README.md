@@ -62,9 +62,9 @@ Using the Docker Images
 
 Run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).  The default Docker Compose configuration exposes the following ports:
 
-* **8080**: Varnish, connected to Drupal.  This is a production-like environment.
-* **8081**: Drupal direct connection. Skips Varnish, which is great for local development.
+* **8080**: Drupal direct connection. Skips Varnish, which is great for local development.
 * **33306**: MySQL direct connection.  Useful for connecting to the database from the host machine.  A direct mysql connection can be made from the outside via: `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+* **8085**: Varnish, connected to Drupal.  If you want to use Varnish, uncomment it in `docker-compose.yml`
 * **8983**: Solr direct connection.  Useful for debugging via Apache Solr web interface.
 
 Important: Should you choose to run this setup in production, you should always remove the debug ports (noted in `docker-compose.yml`) for security.
