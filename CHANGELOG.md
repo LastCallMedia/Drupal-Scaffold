@@ -10,6 +10,7 @@
 * Configure ESLint through `.eslintignore` in repository root rather than custom Gulp configuration.
 * Configure PHPCS through `phpcs.xml.dist` in repository root rather than custom Gulp configuration.
 * Upgrade to [CircleCI 2.0](.circleci/config.yml). Circle 2.0 brings down build times and lets us keep the build environment much closer to the local development environment by using Docker.
+* Disabled Varnish container by default, and moved Drupal to port 8080.  Varnish now runs on 8085 (when enabled).
 
 ### Added
 * Add a default hash salt to settings.docker.php, overrideable using the `DRUPAL_HASH_SALT` environment variable.
