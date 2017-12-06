@@ -72,19 +72,22 @@ jobs:
         name: selenium
     steps:
       - attach_workspace: {at: /var/www}
-      - run: {name: 'Source environment variables', command: 'echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV'}
-      - run: {name: 'Setup artifact directories', command: 'mkdir /tmp/junit /tmp/artifacts && chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /tmp/junit'}
+      - run:
+          name: Prepare Environment
+          command: |
+            echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV
+            mkdir /tmp/junit /tmp/artifacts web/sites/simpletest web/sites/default/files && chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /tmp/junit web/sites/default/files web/sites/simpletest
+            terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
+            terminus backups:info "$TERMINUS_SITE.$TERMINUS_SOURCE_ENVIRONMENT" --element=db --field=file > /tmp/db-cache-indicator
       # Run linting steps up front.  If these fail, they should provide fast feedback.
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
       - run: {name: 'Start Apache', command: '/usr/local/bin/apache2-foreground-enhanced', background: true}
-      - run: {name: 'Set up directories', command: 'mkdir web/sites/simpletest web/sites/default/files && chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP web/sites/default/files web/sites/simpletest'}
-      - run: {name: 'Set DB cache invalidator', command: 'echo "$(date +%Y-%m)-$TERMINUS_MACHINE_TOKEN-$TERMINUS_SITE-$TERMINUS_SOURCE_ENVIRONMENT" > /tmp/cache-indicator' }
-      - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}'}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
-      - run: {name: 'Refresh Site', command: 'composer site:import'}
-      - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/cache-indicator" }}', paths: ['/tmp/site-import-cache']}
+      - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}'}
+      - run: {name: 'Refresh Site', command: 'composer site:import -- -c /tmp/db-cache'}
+      - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}', paths: ['/tmp/db-cache']}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
