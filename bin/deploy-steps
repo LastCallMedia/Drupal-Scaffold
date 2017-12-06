@@ -16,7 +16,7 @@ set -e
 drush updatedb -y --entity-updates
 
 
-# Import all config from the config directory (recommended).
+# Import all config from the config directory.
 #
 # This step is recommended for all deployments (uncomment it).
 # drush config-import -y
