@@ -8,20 +8,17 @@
  */
 
 /**
- * List of tables whose *data* is skipped by the 'sql-dump' and 'sql-sync'
- * commands when the "--structure-tables-key=common" option is provided.
- * You may add specific tables to the existing array or add a new element.
+ * List of tables whose data we can skip during `sql-dump`.
  */
 $options['structure-tables']['common'] = [
   'cache_*',
   'history',
   'search_*',
   'sessions',
-  'watchdog'
+  'watchdog',
 ];
 
 /**
- * Make sql-dump default to using the 'common' structure tables, as defined
- * above.
+ * Use the 'common' structure tables when executing `sql-dump`.
  */
 $command_specific['sql-dump']['structure-tables-key'] = 'common';
