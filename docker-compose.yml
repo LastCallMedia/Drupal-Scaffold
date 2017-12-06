@@ -23,20 +23,11 @@ volumes:
   mysql_data:
 
 services:
-  varnish:
-    image: kardasz/varnish:latest
-    ports:
-      - ${VARNISH_PORT:-8080}:80
-    links:
-      - drupal
-    volumes:
-      - ./docker/default.vcl:/etc/varnish/default.vcl
-
   drupal:
     image: "lastcallmedia/php:7.0-dev"
     ports:
-      - "${DRUPAL_PORT:-8081}:80" # Debug port - remove if you use for production hosting
-      - "${MANNEQUIN_PORT:-8082}:8082" # Debug port - remove if you use for production hosting.
+      - "${DRUPAL_PORT:-8080}:80" # Debug port - remove if you use for production hosting
+      - "${MANNEQUIN_PORT:-8081}:8081" # Debug port - remove if you use for production hosting.
     volumes:
       - .:/var/www
     links:
@@ -84,6 +75,17 @@ services:
     environment:
       BLACKFIRE_SERVER_ID: # Set in .env if you want to use Blackfire.
       BLACKFIRE_SERVER_TOKEN: # Set in .env if you want to use Blackfire.
+
+  # You can use Varnish locally by unommenting this block.
+  # Access varnish on localhost:8085
+  #varnish:
+  #  image: kardasz/varnish:latest
+  #  ports:
+  #    - ${VARNISH_PORT:-8085}:80
+  #  links:
+  #    - drupal
+  #  volumes:
+  #    - ./docker/default.vcl:/etc/varnish/default.vcl
 
   # You need to add the search_api_solr module before you can create this
   # container, since we need the configuration files.
