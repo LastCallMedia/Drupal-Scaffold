@@ -69,7 +69,6 @@
                 "{{scaffold}}/phpcs.xml.dist": "phpcs.xml.dist",
                 "{{scaffold}}/phpunit.xml.dist": "phpunit.xml.dist",
                 "{{scaffold}}/bin/create-artifact-environment-pantheon": "bin/create-artifact-environment-pantheon",
-                "{{scaffold}}/bin/deploy-steps": "bin/deploy-steps",
                 "{{scaffold}}/bin/json-to-bash": "bin/json-to-bash",
                 "{{scaffold}}/bin/prune-artifact-branches": "bin/prune-artifact-branches",
                 "{{scaffold}}/bin/prune-artifact-environments-pantheon": "bin/prune-artifact-environments-pantheon",
@@ -79,6 +78,8 @@
                 "{{scaffold}}/wd/.gitignore": "wd/.gitignore",
                 "{{scaffold}}/wd/package.json": "wd/package.json",
                 "{{scaffold}}/wd/wdio.conf.js": "wd/wdio.conf.js",
+                "{{scaffold}}/web/private/scripts/deploy-steps.php": "web/private/scripts/deploy-steps.php",
+                "{{scaffold}}/web/private/scripts/new-relic.php": "web/private/scripts/new-relic.php",
                 "{{scaffold}}/web/sites/default/settings.docker.php": "web/sites/default/settings.docker.php",
                 "{{drupal}}/.editorconfig": ".editorconfig",
                 "{{drupal}}/.gitattributes": ".gitattributes",
@@ -109,7 +110,7 @@
         "test:behat": "behat",
         "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js",
 
-        "site:import": ["bin/refresh-local-pantheon", "cd web; ../bin/deploy-steps; cd -"],
+        "site:import": ["bin/refresh-local-pantheon", "cd web; php private/scripts/deploy-steps.php; cd -"],
 
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
         "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup"

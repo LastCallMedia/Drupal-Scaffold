@@ -3,3 +3,33 @@ web_docroot: true
 php_version: 7.0
 drush_version: 8
 
+# Quicksilver Platform Integration Hooks
+# https://pantheon.io/docs/pantheon-yml#quicksilver
+workflows:
+  # Code Deploys: Notify, Sanitize (if on test), Post to new relic, update db, and notify completion
+  clone_database:
+    after:
+      - type: webphp
+        description: Run deployment steps.
+        script: private/scripts/deploy-steps.php
+  create_cloud_development_environment:
+    after:
+      - type: webphp
+        description: Run deployment steps.
+        script: private/scripts/deploy-steps.php
+  sync_code:
+    after:
+      - type: webphp
+        description: Run deployment steps.
+        script: private/scripts/deploy-steps.php
+      - type: webphp
+        description: Mark New Relic deployment.
+        script: private/scripts/new-relic.php
+  deploy:
+    after:
+      - type: webphp
+        description: Run deployment steps.
+        script: private/scripts/deploy-steps.php
+      - type: webphp
+        description: Mark New Relic deployment.
+        script: private/scripts/new-relic.php

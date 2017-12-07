@@ -19,13 +19,13 @@
 * Start keeping documentation in `docs/`.
 * Add shell scripts for:
   * [`create-artifact-environment-pantheon`](bin/create-artifact-environment-pantheon): Create a new multidev for a branch.
-  * [`deploy-steps`](bin/deploy-steps): Contains deployment steps for this site.  Meant to be customized.
   * [`json-to-bash`](bin/json-to-bash): Converts a single level JSON object into bash export statements.
   * [`prune-artifact-branches`](bin/prune-artifact-branches): Prune branches off of an artifact repository that no longer exist on a source repository.
   * [`prune-artifact-environments-pantheon`](bin/prune-artifact-environments-pantheon): Prune multidev environments for branches that no longer exist on a source repository.
   * [`refresh-local-pantheon`](bin/refresh-local-pantheon): Encapsulates commands required to grab a fresh copy of the site DB from production from Pantheon and import it locally.
 * Add [Composer Upstream Files](https://github.com/LastCallMedia/Composer-Upstream-Files) to ease maintenance burden of upstream files like Drupal's quasi-core files, and Scaffold related files.  See the `upstream-files` section of `composer.json` for a current list of the files that are capable of being updated by this Composer command.
 * Add [Blackfire](https://blackfire.io) to support performance optimization and profiling.  See [the Blackfire documentation](docs/tools/blackfire.md) for more information.
+* Default Quicksilver hooks to mark New Relic deployment and execute deployment steps.
 
 ### Removed
 * Removed Pattern Library module
