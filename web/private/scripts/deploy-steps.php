@@ -5,6 +5,8 @@
  */
 echo "Starting deployment steps";
 
-passthru('../bin/deploy-steps');
+passthru('drush updatedb -y --entity-updates');
+
+passthru('drush en -y scaffold && drush config-set -y system.theme default scaffold');
 
 echo "Deployment steps complete";
