@@ -10,6 +10,7 @@
 
 set -e
 
+echo "Starting execution of script" 
 # Run all database updates.
 #
 # This step is recommended for all deployments.
