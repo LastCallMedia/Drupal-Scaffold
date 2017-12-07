@@ -3,7 +3,7 @@
  * @file
  * Execute deployment steps for this site.
  *
- * Customize this script to match your workflow.  This script will be triggered
+ * Customize this script to match your workflow.  It will be triggered
  * anytime the code is deployed to a Pantheon, local, or CI environment. We
  * recommend keeping deployment steps the same in all environments in order
  * to make deployment a consistent, predictable process.
