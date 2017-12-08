@@ -9,6 +9,7 @@ Running
 -------
 * `vendor/bin/phpcs` will lint all files that are set up for linting in the phpcs.xml.dist.
 * `vendor/bin/phpcs my/file.php` will lint one file.
+* Fix errors automatically: `vendor/bin/phpcbf`
 
 Uninstalling
 ------------

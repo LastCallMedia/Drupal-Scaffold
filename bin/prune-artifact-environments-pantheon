@@ -56,7 +56,7 @@ for multidev in $multidevs; do
   if [[ "$multidev" = $pattern ]]; then
     if ! git ls-remote --quiet --exit-code "$source" "$multidev" > /dev/null 2>&1; then
       echo "Deleting $multidev environment."
-      [[ $dryrun -eq 1 ]] || terminus multidev:delete --delete-branch "$site.$multidev"
+      [[ $dryrun -eq 1 ]] || terminus multidev:delete -y --delete-branch "$site.$multidev"
     fi
   fi
 done
