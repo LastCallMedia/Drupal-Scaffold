@@ -3,8 +3,8 @@ Scaffold Documentation
 
 Note: This page applies to the Last Call Media Drupal Scaffold project. Use this documentation to get a new project started, not for working on an existing project.
 
-Getting Started
----------------
+Starting a New Project
+----------------------
 - [ ] Use composer to create a new project, starting from this repository as a template:
     ```bash
     composer create-project lastcall/drupal-scaffold PROJECTNAME

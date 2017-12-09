@@ -25,6 +25,10 @@ Starting a New Project
 
 See the [scaffold documentation](docs/scaffold.md) for next steps.
 
+## Stop here!
+
+Everything below this line applies to scaffold projects that are already set up. The section below will be the start of your project's README.
+
 ---------------------------------------------
 
 Setting Up for Local Development
