@@ -23,48 +23,29 @@ Starting a New Project
     ```
 - [ ] Visit the Drupal site in your browser to install Drupal and continue.  The default URL will be `http://localhost:8080`.
 
-See the [documentation](docs/) for next steps.
+See the [scaffold documentation](docs/scaffold.md) for next steps.
 
 ---------------------------------------------
 
-Getting started on an already prepared project
-----------------------------------------------
+Setting Up for Local Development
+--------------------------------
 _(These will be used when working from a repo already prepared for a specific project)_
+Before you begin, you must have Docker and Docker Compose installed on your local machine.  For installation instructions, see the [Docker documentation](/docs/tools/docker.md).
 
-1. Clone the repository to your local environment
-2. Start the Docker environment and shell in:
+1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
+2. [Start](/docs/tools/docker.md#Running) the Docker environment and shell in:
     ```bash
-    docker-compose up -d drupal varnish
-    docker-compose exec drupal /bin/bash
+    docker-compose up -d drupal
+    docker-compose exec drupal bash
     ```
-3. Install dependencies:
+3. Install [Composer](/docs/tools/composer.md#Running) dependencies:
     ```bash
     composer install
+    ```
+4. Install [NPM](/docs/tools/npm.md#Running) dependencies:
+    ```bash
     yarn install
     ```
-4. Run `composer site:import` to pull down a copy of the site's database.
+5. Run `composer site:import` to pull down and import a copy of the site's database.
 
-Adding Modules/Themes
----------------------
-You can use composer to bring in modules and themes.  Just run:
-
-```
-composer require drupal/ctools
-```
-Contributed modules and themes are .gitignored by default, meaning you need to run `gulp install` each time you clone the repository down.
-
-Customizing the docroot
------------------------
-This tool is pre-configured for use on Pantheon.  Using it on Acquia or another host may require some adjustment of the docroot folder (currently web/).  We've tried to comment with "@docroot" in any locations where the docroot path is hard-coded to web/.
-
-Using the Docker Images
------------------------
-
-Run `docker-compose up`. This makes the site available behind Varnish at [http://localhost/8080](http://localhost:8080).  The default Docker Compose configuration exposes the following ports:
-
-* **8080**: Drupal direct connection. Skips Varnish, which is great for local development.
-* **33306**: MySQL direct connection.  Useful for connecting to the database from the host machine.  A direct mysql connection can be made from the outside via: `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
-* **8085**: Varnish, connected to Drupal.  If you want to use Varnish, uncomment it in `docker-compose.yml`
-* **8983**: Solr direct connection.  Useful for debugging via Apache Solr web interface.
-
-Important: Should you choose to run this setup in production, you should always remove the debug ports (noted in `docker-compose.yml`) for security.
+See the documentation(/docs) for more information on how to use the tools and how to use this project. For more information on the Docker stack, see the [Docker documenation](/docs/tools/docker.md).

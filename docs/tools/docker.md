@@ -3,6 +3,8 @@ Docker
 
 [Docker](https://docs.docker.com/) is an open platform for developers and sysadmins to build, ship, and run distributed applications. In this project, it is software that lives on your local machine that allows you to run preconfigured development environments without extensive configuration. Specifically, this project uses [Docker Compose](https://docs.docker.com/compose/) to define and run the local development environment.
 
+Note: The Docker configuration that comes with this project is not suitable for production hosting.  It is intended for use in local or development environments only.
+
 Installing
 ----------
 You must have `docker` and `docker-compose` installed on your local machine before using the Docker environments.  
@@ -30,6 +32,19 @@ Use the `docker-compose` command on your host to interact with Docker.
 * Remove all containers to reset your environment: `docker-compose down`
 
 Note that MySQL data will not be removed, even when you remove the `mysql` container.  To fully delete this data, use `docker-compose down -v`.
+
+Accessing the Containers
+------------------------
+When the containers are running, they are accessible on the following ports:
+
+* **8080**: Direct connection to Drupal running on Apache.
+* **33306**: Direct connection to MySQL.  Useful for connecting to the database from the host machine.  A direct mysql connection can be made from the outside via: `mysql -h 127.0.0.1 --port 33306 -u drupal -pdrupal drupal`
+
+Optional containers (must be enabled before you can use them):
+* **8085**: Varnish, connected to Drupal.  If you want to use Varnish, uncomment it in `docker-compose.yml`
+* **8983**: Solr direct connection.  Useful for debugging via Apache Solr web interface.
+
+Important: Should you choose to run this setup in production, you should always remove the debug ports (noted in `docker-compose.yml`) for security.
 
 Troubleshooting
 ---------------
