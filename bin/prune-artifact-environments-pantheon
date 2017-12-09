@@ -46,7 +46,7 @@ test -n "$site" || error_out "Site must be set using the -i flag or the TERMINUS
 
 # Auto-login if possible.
 if [ -n "$TERMINUS_MACHINE_TOKEN" ]; then
-  terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
+  [ -e ~/.terminus/cache/session ] || terminus auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 fi
 
 multidevs=$(terminus multidev:list --field=id "$site")
