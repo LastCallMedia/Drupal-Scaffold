@@ -13,7 +13,7 @@ Starting a New Project
     ```
 - [ ] Bring up the Docker containers and enter the Drupal container.
     ```bash
-    docker-compose up -d drupal varnish
+    docker-compose up -d drupal
     docker-compose exec drupal /bin/bash
     ```
 - [ ] From the repository root (`/var/www` inside the Drupal container), install NPM and composer dependencies:
@@ -33,7 +33,6 @@ Everything below this line applies to scaffold projects that are already set up.
 
 Setting Up for Local Development
 --------------------------------
-_(These will be used when working from a repo already prepared for a specific project)_
 Before you begin, you must have Docker and Docker Compose installed on your local machine.  For installation instructions, see the [Docker documentation](/docs/tools/docker.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.

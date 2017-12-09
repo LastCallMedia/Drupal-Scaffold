@@ -11,7 +11,7 @@ Starting a New Project
     ```
 - [ ] Bring up the Docker containers and enter the Drupal container.
     ```bash
-    docker-compose up -d drupal varnish
+    docker-compose up -d drupal
     docker-compose exec drupal /bin/bash
     ```
 - [ ] From the repository root (`/var/www` inside the Drupal container), install NPM and composer dependencies:
