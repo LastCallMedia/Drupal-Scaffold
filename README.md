@@ -36,7 +36,8 @@ Setting Up for Local Development
 Before you begin, you must have Docker and Docker Compose installed on your local machine.  For installation instructions, see the [Docker documentation](/docs/tools/docker.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
-2. [Start](/docs/tools/docker.md#Running) the Docker environment and shell in:
+2. If you haven't created and [set your Pantheon machine token](/docs/recipes/setting-machine-token.md), do that now.
+3. [Start](/docs/tools/docker.md#Running) the Docker environment and shell in:
     ```bash
     docker-compose up -d drupal
     docker-compose exec drupal bash
