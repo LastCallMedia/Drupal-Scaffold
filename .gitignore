@@ -23,3 +23,10 @@ bower_components
 web/themes/custom/*/dist
 web/modules/custom/*/dist
 /mannequin
+package-lock.json
+
+# Other stuff you don't want to commit:
+*.log
+*.sql*
+.idea
+.DS_Store
