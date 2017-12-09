@@ -29,7 +29,7 @@ services:
       - "${DRUPAL_PORT:-8080}:80" # Debug port - remove if you use for production hosting
       - "${MANNEQUIN_PORT:-8081}:8081" # Debug port - remove if you use for production hosting.
     volumes:
-      - .:/var/www
+      - .:/var/www${VOLUME_FLAGS-''}
     links:
       - mysql
       - redis
