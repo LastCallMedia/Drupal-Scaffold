@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: rbayliss
- * Date: 12/14/17
- * Time: 12:44 PM
- */
 
 namespace Project;
 
@@ -13,6 +7,9 @@ use Symfony\Component\Filesystem\Filesystem;
 use Composer\Script\Event;
 use Composer\Installer\PackageEvent;
 
+/**
+ * Handle composer events.
+ */
 class ComposerHandler {
 
   /**
@@ -21,11 +18,12 @@ class ComposerHandler {
    * Remove the manifests directory (we'll rely on remote manifests).
    *
    * @param \Composer\Script\Event $event
+   *   The event object.
    */
-  public static function postCreateProject() {
+  public static function postCreateProject(Event $event) {
     (new Filesystem())->remove([
-      __DIR__.'/Resources/manifests',
-      __DIR__.'/../manifest.json'
+      __DIR__ . '/Resources/manifests',
+      __DIR__ . '/../manifest.json',
     ]);
 
   }
@@ -34,27 +32,36 @@ class ComposerHandler {
    * Fired on composer install for each installed package.
    *
    * @param \Composer\Installer\PackageEvent $event
+   *   The event object.
    */
   public static function postPackageInstall(PackageEvent $event) {
-    CoreScriptHandler::vendorTestCodeCleanup($event);
+    if (class_exists(CoreScriptHandler::class)) {
+      CoreScriptHandler::vendorTestCodeCleanup($event);
+    }
   }
 
   /**
    * Fired on composer update for each updated package.
    *
    * @param \Composer\Installer\PackageEvent $event
+   *   The event object.
    */
   public static function postPackageUpdate(PackageEvent $event) {
-    CoreScriptHandler::vendorTestCodeCleanup($event);
+    if (class_exists(CoreScriptHandler::class)) {
+      CoreScriptHandler::vendorTestCodeCleanup($event);
+    }
   }
 
   /**
    * Fired on autoload dump (triggered by -o flag to composer install).
    *
    * @param \Composer\Script\Event $event
+   *   The event object.
    */
   public static function preAutoloadDump(Event $event) {
-    CoreScriptHandler::preAutoloadDump($event);
+    if (class_exists(CoreScriptHandler::class)) {
+      CoreScriptHandler::preAutoloadDump($event);
+    }
   }
 
 }
