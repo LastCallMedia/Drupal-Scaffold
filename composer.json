@@ -43,10 +43,11 @@
         "patches": { },
         "upstream-files": {
             "tokens": {
-                "webroot": "./web"
+                "webroot": "./web",
+                "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/master"
             },
             "manifests": [
-                "manifests/all.json"
+                "{{scaffold}}/manifests/all.json"
             ]
         }
     },
