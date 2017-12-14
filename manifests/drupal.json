@@ -1,0 +1,18 @@
+{
+  "tokens": {
+    "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}"
+  },
+  "files": {
+    "{{drupal}}/.editorconfig": ".editorconfig",
+    "{{drupal}}/.gitattributes": ".gitattributes",
+    "{{drupal}}/.htaccess": "{{webroot}}/.htaccess",
+    "{{drupal}}/index.php": "{{webroot}}/index.php",
+    "{{drupal}}/update.php": "{{webroot}}/update.php",
+    "{{drupal}}/robots.txt": "{{webroot}}/robots.txt",
+    "{{drupal}}/web.config": "{{webroot}}/web.config",
+    "{{drupal}}/sites/default/default.settings.php": "{{webroot}}/sites/default/default.settings.php",
+    "{{drupal}}/sites/default/default.services.yml": "{{webroot}}/sites/default/default.services.yml",
+    "{{drupal}}/sites/example.settings.local.php": "{{webroot}}/sites/default/example.settings.local.php",
+    "{{drupal}}/sites/development.services.yml": "{{webroot}}/sites/default/development.services.yml"
+  }
+}

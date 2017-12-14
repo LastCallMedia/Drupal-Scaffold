@@ -1,0 +1,8 @@
+{
+  "tokens": {
+    "drops": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{{drupal/core.version}}"
+  },
+  "files": {
+    "{{drops}}/sites/default/settings.pantheon.php": "{{webroot}}/sites/default/settings.pantheon.php"
+  }
+}
