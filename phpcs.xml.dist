@@ -5,9 +5,11 @@
   <file>./web/themes/custom</file>
   <file>./drush</file>
   <file>./features</file>
+  <file>./src</file>
   <arg name="extensions" value="inc,install,module,php,profile,test,theme"/>
 
   <exclude-pattern>*.css</exclude-pattern>
+  <exclude-pattern>*.md</exclude-pattern>
 
   <rule ref="vendor/drupal/coder/coder_sniffer/Drupal/">/</rule>
   <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice/">/</rule>

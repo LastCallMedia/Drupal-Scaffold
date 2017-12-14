@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "038d02b8496c31ac1be4b4b72110a183",
+    "content-hash": "743614d5cbdc7dcafaea1ecb43df9bd5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1653,7 +1653,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -4585,16 +4585,16 @@
         },
         {
             "name": "lastcall/composer-upstream-files",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
-                "reference": "9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279"
+                "reference": "aea76197b54f42861b4656703f95f4127248bd0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279",
-                "reference": "9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279",
+                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/aea76197b54f42861b4656703f95f4127248bd0f",
+                "reference": "aea76197b54f42861b4656703f95f4127248bd0f",
                 "shasum": ""
             },
             "require": {
@@ -4626,7 +4626,7 @@
                 }
             ],
             "description": "Composer command to update application files from various upstream sources.",
-            "time": "2017-12-12T00:43:32+00:00"
+            "time": "2017-12-14T13:34:25+00:00"
         },
         {
             "name": "lastcall/mannequin-core",
@@ -6688,7 +6688,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -6737,7 +6737,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
