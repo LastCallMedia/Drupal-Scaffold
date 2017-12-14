@@ -28,6 +28,7 @@
 * Add [Blackfire](https://blackfire.io) to support performance optimization and profiling.  See [the Blackfire documentation](docs/tools/blackfire.md) for more information.
 * Default Quicksilver hooks to mark New Relic deployment and execute deployment steps.
 * Add VOLUME_FLAGS environment variable in `.env.example` for user guided caching in Docker Compose. See https://docs.docker.com/compose/compose-file/#caching-options-for-volume-mounts-docker-for-mac.
+* Add a Composer script handler for the post-create-project event.  This handler will handle any conversion necessary to convert this project from an open source scaffolding tool to standard a Drupal site.
 
 ### Removed
 * Removed Pattern Library module
