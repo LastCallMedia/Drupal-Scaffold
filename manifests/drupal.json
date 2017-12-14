@@ -13,6 +13,6 @@
     "{{drupal}}/sites/default/default.settings.php": "{{webroot}}/sites/default/default.settings.php",
     "{{drupal}}/sites/default/default.services.yml": "{{webroot}}/sites/default/default.services.yml",
     "{{drupal}}/sites/example.settings.local.php": "{{webroot}}/sites/default/example.settings.local.php",
-    "{{drupal}}/sites/development.services.yml": "{{webroot}}/sites/default/development.services.yml",
+    "{{drupal}}/sites/development.services.yml": "{{webroot}}/sites/default/development.services.yml"
   }
 }
