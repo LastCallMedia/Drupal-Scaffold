@@ -2,6 +2,7 @@
   "manifests": [
     "./drupal.json",
     "./drops.json",
-    "./scaffold.json"
+    "./scaffold.json",
+    "./docs.json",
   ]
 }
