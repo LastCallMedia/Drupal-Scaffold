@@ -52,7 +52,10 @@
                 "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/master"
             },
             "manifests": [
-                "{{scaffold}}/manifest.json"
+                "{{scaffold}}/src/Resources/manifests/drupal.json",
+                "{{scaffold}}/src/Resources/manifests/drops.json",
+                "{{scaffold}}/src/Resources/manifests/scaffold.json",
+                "{{scaffold}}/src/Resources/manifests/docs.json"
             ]
         }
     },
