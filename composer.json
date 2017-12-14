@@ -31,7 +31,12 @@
         "phpunit/phpunit": ">=4.8.35 <5",
         "drush/drush": "^8.1",
         "lastcall/mannequin-drupal": "~1.0",
-        "lastcall/composer-upstream-files": "^1.1"
+        "lastcall/composer-upstream-files": "^1.1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Project\\": "src/"
+        }
     },
     "extra": {
         "installer-paths": {
@@ -47,7 +52,10 @@
                 "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/master"
             },
             "manifests": [
-                "{{scaffold}}/manifests/all.json"
+                "{{scaffold}}/src/Resources/manifests/drupal.json",
+                "{{scaffold}}/src/Resources/manifests/drops.json",
+                "{{scaffold}}/src/Resources/manifests/scaffold.json",
+                "{{scaffold}}/src/Resources/manifests/docs.json"
             ]
         }
     },
@@ -67,7 +75,9 @@
 
         "site:import": ["bin/refresh-local-pantheon", "cd web; php private/scripts/deploy-steps.php; cd -"],
 
-        "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
-        "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup"
+        "post-package-install": "Project\\ComposerHandler::postPackageInstall",
+        "post-package-update": "Project\\ComposerHandler::postPackageUpdate",
+        "post-create-project": "Project\\ComposerHandler::postCreateProject",
+        "pre-autoload-dump": "Project\\ComposerHandler::preAutoloadDump"
     }
 }
