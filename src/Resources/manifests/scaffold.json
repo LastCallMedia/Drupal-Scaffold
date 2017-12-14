@@ -8,6 +8,7 @@
     "../../../.mannequin.php": ".mannequin.php",
     "../../../.env.example": ".env.example",
     "../../../behat.yml": "behat.yml",
+    "../../../src/ComposerHandler.php": "src/ComposerHandler.php",
     "../../../docker/default.vcl": "docker/default.vcl",
     "../../../docker/drupal.env": "docker/drupal.env",
     "../../../docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
