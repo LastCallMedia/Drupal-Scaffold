@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffc5362cfe7c4d081489a2fcd776ed32",
+    "content-hash": "10ae4e688a68139d62e25731edd59d35",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4585,20 +4585,21 @@
         },
         {
             "name": "lastcall/composer-upstream-files",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LastCallMedia/Composer-Upstream-Files.git",
-                "reference": "48a7507cdaac561190b954888d2cc4f5649e98b5"
+                "reference": "9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/48a7507cdaac561190b954888d2cc4f5649e98b5",
-                "reference": "48a7507cdaac561190b954888d2cc4f5649e98b5",
+                "url": "https://api.github.com/repos/LastCallMedia/Composer-Upstream-Files/zipball/9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279",
+                "reference": "9aa7b71b8cbbbcccd2398e86b8871ab68bb4a279",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.1"
+                "composer-plugin-api": "^1.1",
+                "guzzlehttp/psr7": "^1.4"
             },
             "require-dev": {
                 "composer/composer": "^1.5",
@@ -4625,7 +4626,7 @@
                 }
             ],
             "description": "Composer command to update application files from various upstream sources.",
-            "time": "2017-12-02T21:59:44+00:00"
+            "time": "2017-12-12T00:43:32+00:00"
         },
         {
             "name": "lastcall/mannequin-core",

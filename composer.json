@@ -31,7 +31,7 @@
         "phpunit/phpunit": ">=4.8.35 <5",
         "drush/drush": "^8.1",
         "lastcall/mannequin-drupal": "~1.0",
-        "lastcall/composer-upstream-files": "^1.0"
+        "lastcall/composer-upstream-files": "^1.1"
     },
     "extra": {
         "installer-paths": {
@@ -43,57 +43,11 @@
         "patches": { },
         "upstream-files": {
             "tokens": {
-                "scaffold": "https://raw.githubusercontent.com/LastCallMedia/Drupal-Scaffold/master",
-                "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}",
-                "drops": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{{drupal/core.version}}"
+                "webroot": "./web"
             },
-            "files": {
-                "{{scaffold}}/.gitignore" : ".gitignore",
-                "{{scaffold}}/.artifact.gitignore" : ".artifact.gitignore",
-                "{{scaffold}}/.circleci/config.yml" : "./.circleci/config.yml",
-                "{{scaffold}}/.eslintignore": ".eslintignore",
-                "{{scaffold}}/.eslintrc": ".eslintrc",
-                "{{scaffold}}/.mannequin.php": ".mannequin.php",
-                "{{scaffold}}/.env.example": ".env.example",
-                "{{scaffold}}/behat.yml": "behat.yml",
-                "{{scaffold}}/docker/default.vcl": "docker/default.vcl",
-                "{{scaffold}}/docker/drupal.env": "docker/drupal.env",
-                "{{scaffold}}/docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
-                "{{scaffold}}/docker-compose.yml": "docker-compose.yml",
-                "{{scaffold}}/drush/drushrc.php": "drush/drushrc.php",
-                "{{scaffold}}/drush/policy.drush.inc": "drush/policy.drush.inc",
-                "{{scaffold}}/gulpconfig.js": "gulpconfig.js",
-                "{{scaffold}}/gulpfile.js": "gulpfile.js",
-                "{{scaffold}}/package.json": "package.json",
-                "{{scaffold}}/pantheon.yml": "pantheon.yml",
-                "{{scaffold}}/phpcs.xml.dist": "phpcs.xml.dist",
-                "{{scaffold}}/phpunit.xml.dist": "phpunit.xml.dist",
-                "{{scaffold}}/bin/create-artifact-environment-pantheon": "bin/create-artifact-environment-pantheon",
-                "{{scaffold}}/bin/json-to-bash": "bin/json-to-bash",
-                "{{scaffold}}/bin/prune-artifact-branches": "bin/prune-artifact-branches",
-                "{{scaffold}}/bin/prune-artifact-environments-pantheon": "bin/prune-artifact-environments-pantheon",
-                "{{scaffold}}/bin/refresh-local-pantheon": "bin/refresh-local-pantheon",
-                "{{scaffold}}/wd/.artifact.gitignore": "wd/.artifact.gitignore",
-                "{{scaffold}}/wd/.eslintrc": "wd/.eslintrc",
-                "{{scaffold}}/wd/.gitignore": "wd/.gitignore",
-                "{{scaffold}}/wd/package.json": "wd/package.json",
-                "{{scaffold}}/wd/wdio.conf.js": "wd/wdio.conf.js",
-                "{{scaffold}}/web/private/scripts/deploy-steps.php": "web/private/scripts/deploy-steps.php",
-                "{{scaffold}}/web/private/scripts/new-relic.php": "web/private/scripts/new-relic.php",
-                "{{scaffold}}/web/sites/default/settings.docker.php": "web/sites/default/settings.docker.php",
-                "{{drupal}}/.editorconfig": ".editorconfig",
-                "{{drupal}}/.gitattributes": ".gitattributes",
-                "{{drupal}}/.htaccess": "web/.htaccess",
-                "{{drupal}}/index.php": "web/index.php",
-                "{{drupal}}/update.php": "web/update.php",
-                "{{drupal}}/robots.txt": "web/robots.txt",
-                "{{drupal}}/web.config": "web/web.config",
-                "{{drupal}}/sites/default/default.settings.php": "web/sites/default/default.settings.php",
-                "{{drupal}}/sites/default/default.services.yml": "web/sites/default/default.services.yml",
-                "{{drupal}}/sites/example.settings.local.php": "web/sites/default/example.settings.local.php",
-                "{{drupal}}/sites/development.services.yml": "web/sites/default/development.services.yml",
-                "{{drops}}/sites/default/settings.pantheon.php": "web/sites/default/settings.pantheon.php"
-            }
+            "manifests": [
+                "manifests/self.json"
+            ]
         }
     },
     "scripts": {

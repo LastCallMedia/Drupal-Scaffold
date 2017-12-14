@@ -1,0 +1,6 @@
+{
+  "manifests": [
+    "drupal.json",
+    "self.json"
+  ]
+}
