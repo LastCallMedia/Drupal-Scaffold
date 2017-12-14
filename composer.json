@@ -46,7 +46,7 @@
                 "webroot": "./web"
             },
             "manifests": [
-                "manifests/self.json"
+                "manifests/all.json"
             ]
         }
     },

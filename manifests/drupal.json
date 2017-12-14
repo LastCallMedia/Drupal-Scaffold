@@ -1,7 +1,6 @@
 {
   "tokens": {
-    "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}",
-    "drops": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{{drupal/core.version}}"
+    "drupal": "https://raw.githubusercontent.com/drupal/drupal/{{drupal/core.version}}"
   },
   "files": {
     "{{drupal}}/.editorconfig": ".editorconfig",
@@ -15,6 +14,5 @@
     "{{drupal}}/sites/default/default.services.yml": "{{webroot}}/sites/default/default.services.yml",
     "{{drupal}}/sites/example.settings.local.php": "{{webroot}}/sites/default/example.settings.local.php",
     "{{drupal}}/sites/development.services.yml": "{{webroot}}/sites/default/development.services.yml",
-    "{{drops}}/sites/default/settings.pantheon.php": "{{webroot}}/sites/default/settings.pantheon.php"
   }
 }
