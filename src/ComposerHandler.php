@@ -11,6 +11,7 @@ namespace Project;
 use Drupal\Core\Composer\Composer as CoreScriptHandler;
 use Symfony\Component\Filesystem\Filesystem;
 use Composer\Script\Event;
+use Composer\Installer\PackageEvent;
 
 class ComposerHandler {
 
@@ -28,18 +29,18 @@ class ComposerHandler {
   /**
    * Fired on composer install for each installed package.
    *
-   * @param \Composer\Script\Event $event
+   * @param \Composer\Installer\PackageEvent $event
    */
-  public static function postPackageInstall(Event $event) {
+  public static function postPackageInstall(PackageEvent $event) {
     CoreScriptHandler::vendorTestCodeCleanup($event);
   }
 
   /**
    * Fired on composer update for each updated package.
    *
-   * @param \Composer\Script\Event $event
+   * @param \Composer\Installer\PackageEvent $event
    */
-  public static function postPackageUpdate(Event $event) {
+  public static function postPackageUpdate(PackageEvent $event) {
     CoreScriptHandler::vendorTestCodeCleanup($event);
   }
 
