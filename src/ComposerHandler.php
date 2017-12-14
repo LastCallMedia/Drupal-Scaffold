@@ -23,7 +23,11 @@ class ComposerHandler {
    * @param \Composer\Script\Event $event
    */
   public static function postCreateProject() {
-    (new Filesystem())->remove(__DIR__.'/../manifests');
+    (new Filesystem())->remove([
+      __DIR__.'/Resources/manifests',
+      __DIR__.'/../manifest.json'
+    ]);
+
   }
 
   /**
