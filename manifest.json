@@ -1,0 +1,8 @@
+{
+  "manifests": [
+    "./src/Resources/manifests/drupal.json",
+    "./src/Resources/manifests/drops.json",
+    "./src/Resources/manifests/scaffold.json",
+    "./src/Resources/manifests/docs.json"
+  ]
+}

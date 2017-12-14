@@ -1,0 +1,25 @@
+{
+    "files": [
+        "../../../docs/README.md",
+        "../../../docs/scaffold.md",
+        "../../../docs/workflow.md",
+        "../../../docs/recipes/adding-modules.md",
+        "../../../docs/recipes/setting-machine-token.md",
+        "../../../docs/tools/behat.md",
+        "../../../docs/tools/blackfire.md",
+        "../../../docs/tools/composer.md",
+        "../../../docs/tools/docker.md",
+        "../../../docs/tools/drush.md",
+        "../../../docs/tools/gulp.md",
+        "../../../docs/tools/eslint.md",
+        "../../../docs/tools/mannequin.md",
+        "../../../docs/tools/npm.md",
+        "../../../docs/tools/phpcs.md",
+        "../../../docs/tools/phpunit.md",
+        "../../../docs/tools/upstream-files.md",
+        "../../../docs/tools/varnish.md",
+        "../../../docs/tools/wdio.md",
+        "../../../docs/tools/xdebug.md",
+        "../../../docs/services/pantheon.md"
+    ]
+}

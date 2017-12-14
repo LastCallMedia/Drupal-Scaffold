@@ -1,8 +1,0 @@
-{
-  "manifests": [
-    "./drupal.json",
-    "./drops.json",
-    "./scaffold.json",
-    "./docs.json"
-  ]
-}
