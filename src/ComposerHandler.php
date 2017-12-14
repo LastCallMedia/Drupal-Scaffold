@@ -23,7 +23,6 @@ class ComposerHandler {
   public static function postCreateProject(Event $event) {
     (new Filesystem())->remove([
       __DIR__ . '/Resources/manifests',
-      __DIR__ . '/../manifest.json',
     ]);
 
   }
