@@ -3,6 +3,6 @@
     "./drupal.json",
     "./drops.json",
     "./scaffold.json",
-    "./docs.json",
+    "./docs.json"
   ]
 }
