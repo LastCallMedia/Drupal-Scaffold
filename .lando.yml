@@ -1,0 +1,65 @@
+name: lando-drupal-scaffold
+recipe: drupal8
+config:
+  webroot: web
+
+services:
+  # Use LCM Image.
+  appserver:
+    overrides:
+      services:
+        image: "lastcallmedia/php:7.0-dev"
+    build:
+      - cd $LANDO_MOUNT && composer install
+
+  # Node
+  nodeserver:
+    type: node:6
+    extras:
+      - apt-get update && apt-get install apt-transport-https
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      - apt-get update && apt-get install yarn
+    build:
+      - cd $LANDO_MOUNT && yarn install
+
+  # Redis
+  redis:
+    type: redis:3.2
+
+  # Selenium
+  selenium:
+    type: apache:custom
+    overrides:
+      services:
+        image: "selenium/standalone-chrome"
+
+  # Blackfire
+  blackfire:
+    type: apache:custom
+    overrides:
+      services:
+        image: "blackfire/blackfire"
+        environment:
+          # Set in .env if you want to use Blackfire.
+          BLACKFIRE_SERVER_ID:
+          # Set in .env if you want to use Blackfire.
+          BLACKFIRE_SERVER_TOKEN:
+
+# Tooling
+tooling:
+  node:
+    service: nodeserver
+    description: Run node commands
+    cmd:
+      - node
+  npm:
+    service: nodeserver
+    description: Run npm commands
+    cmd:
+      - npm
+  yarn:
+    service: nodeserver
+    description: Run yarn commands
+    cmd:
+      - yarn
