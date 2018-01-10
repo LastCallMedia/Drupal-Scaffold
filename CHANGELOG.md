@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
+### Changed
+* Fixed `composer site:import` command failing without returning a non-zero exit code.
+
+## [2.0.0] - 2017-12-14
 ### Changed
 * Enabled Drupal js behaviors in Mannequin by default.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
