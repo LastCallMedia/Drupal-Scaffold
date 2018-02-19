@@ -39,6 +39,7 @@ Upgrading an older project is a very manual process - once you start a project, 
 - [ ] Run `composer require --no-update lastcall/composer-upstream-files:^1.0` to add the `composer-upstream-files` package.
 - [ ] Add the `upstream-files` section of [`composer.json`](/composer.json) to your `composer.json` file.
 - [ ] Add the `scripts` section of [`composer.json`](/composer.json) to your `composer.json` file.
+- [ ] Add the `autoload` section of [`composer.json`](/composer.json) to your `composer.json` file.
 - [ ] Run `composer update lastcall/composer-upstream-files` to update your `composer.lock`
 - [ ] Run `composer upstream-files:update` to pull down the latest versions of all scaffold files and quasi-core files.  REVIEW CAREFULLY BEFORE COMMITTING - you will definitely need to revert or manually merge some of the files.
 - [ ] Run `yarn install` to install NPM dependencies and create a `yarn.lock` file.
