@@ -49,6 +49,7 @@ services:
       XDEBUG_CONFIG: # Optionally set in .env.
       BLACKFIRE_CLIENT_ID: # Optionally set in .env.
       BLACKFIRE_CLIENT_TOKEN: # Optionally set in .env.
+      COMPOSER_ALLOW_SUPERUSER: 1
     working_dir: /var/www
 
   mysql:
