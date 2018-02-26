@@ -43,7 +43,6 @@ Upgrading an older project is a very manual process - once you start a project, 
 - [ ] Run `composer update lastcall/composer-upstream-files` to update your `composer.lock`
 - [ ] Run `composer upstream-files:update` to pull down the latest versions of all scaffold files and quasi-core files.  REVIEW CAREFULLY BEFORE COMMITTING - you will definitely need to revert or manually merge some of the files.
 - [ ] Run `yarn install` to install NPM dependencies and create a `yarn.lock` file.
-- [ ] Run `yarn install` to install NPM dependencies and create a `yarn.lock` file.
 - [ ] Cleanup any leftover files: `rm -rf default.behat.local.yml ci package-lock.json backstop phantomas ci circle.yml .travis.yml docker-compose.debug.yml web/drush`
 - [ ] Open [`docker/drupal.env`](/docker/drupal.env) and set the environment variables there.
 - [ ] Copy [`.env.example`](/.env.example) to `.env` and optionally set the variables in this file. This file should not be committed.
