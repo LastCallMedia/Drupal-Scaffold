@@ -36,7 +36,7 @@ Upgrading From a Previous Version
 Upgrading an older project is a very manual process - once you start a project, the files are yours to customize.  However, we'll do our best to document the upgrade process:
 
 ### Upgrading to 2.0
-- [ ] Run `composer require --no-update lastcall/composer-upstream-files:^1.0 --dev` to add the `composer-upstream-files` package.
+- [ ] Run `composer require --no-update lastcall/composer-upstream-files:^1.1.1 --dev` to add the `composer-upstream-files` package.
 - [ ] Add the `upstream-files` section of [`composer.json`](/composer.json) to your `composer.json` file.
 - [ ] Add the `scripts` section of [`composer.json`](/composer.json) to your `composer.json` file.
 - [ ] Add the `autoload` section of [`composer.json`](/composer.json) to your `composer.json` file.
