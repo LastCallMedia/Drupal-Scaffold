@@ -32,7 +32,7 @@ default:
       goutte: ~
       # The base URL of the site.  If you are using the gulp tasks,
       # this URL is set in the gulpconfig, so leave this commented out.
-      # base_url: http://127.0.0.1:8888
+      base_url: http://nginx
       # Browser open command used for "Then show the last response"
       show_cmd: open %s
     Drupal\DrupalExtension:
