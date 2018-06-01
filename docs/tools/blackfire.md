@@ -1,4 +1,4 @@
-Behat
+Blackfire
 =====
 [Blackfire](https://blackfire.io) is a PHP profiling tool that can provide in-depth performance profiles of web requests and CLI.
 
