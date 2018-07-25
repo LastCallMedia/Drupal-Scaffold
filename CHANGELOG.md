@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Changed
+* Added basic form validation styling.
 * Enabled Drupal js behaviors in Mannequin by default.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 * Use `CACHE_HOST`, `CACHE_PORT`, `CACHE_PASSWORD` in `settings.docker.php` instead of REDIS_* equivalents.  This brings us into line with Pantheon's environment variables.
