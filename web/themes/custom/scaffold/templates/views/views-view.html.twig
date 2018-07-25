@@ -1,0 +1,80 @@
+{# @Component
+name: Views Default
+description: Default views template
+group: Drupal>Views
+samples:
+  Default:
+    id: 'mannequin-view'
+    display_id: 'page_1'
+    dom_id: 'domid1'
+    title: 'Mannequin View'
+    rows:
+      - content: ~rendered('<div>Example rows content 1</div>')
+      - content: ~rendered('<div>Example rows content 2</div>')
+      - content: ~rendered('<div>Example rows content 3</div>')
+    pager: ~sample('@scaffold/navigation/pager.html.twig#Extended')
+#}
+
+{%
+    set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+]
+%}
+<div{{ attributes|default(create_attribute()).addClass(classes) }}>
+    {{ title_prefix }}
+    {% if title %}
+        {{ title }}
+    {% endif %}
+    {{ title_suffix }}
+    {% if header %}
+        <div class="view-header">
+            {{ header }}
+        </div>
+    {% endif %}
+    {% if exposed %}
+        <div class="view-filters">
+            {{ exposed }}
+        </div>
+    {% endif %}
+    {% if attachment_before %}
+        <div class="attachment attachment-before">
+            {{ attachment_before }}
+        </div>
+    {% endif %}
+
+    {% if rows %}
+        <div class="view-content">
+            {{ rows }}
+        </div>
+    {% elseif empty %}
+        <div class="view-empty">
+            {{ empty }}
+        </div>
+    {% endif %}
+
+    {% if pager %}
+        {{ pager }}
+    {% endif %}
+    {% if attachment_after %}
+        <div class="attachment attachment-after">
+            {{ attachment_after }}
+        </div>
+    {% endif %}
+    {% if more %}
+        {{ more }}
+    {% endif %}
+    {% if footer %}
+        <div class="view-footer">
+            {{ footer }}
+        </div>
+    {% endif %}
+    {% if feed_icons %}
+        <div class="feed-icons">
+            {{ feed_icons }}
+        </div>
+    {% endif %}
+</div>
