@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
+### Changed
+* Fixed `composer site:import` command failing without returning a non-zero exit code.
+
+## [2.0.0] - 2017-12-14
 ### Changed
 * Remove unused portions of settings.php, prevent file_exists check for local settings on Pantheon environments by default.
 * Enabled Drupal js behaviors in Mannequin by default.
