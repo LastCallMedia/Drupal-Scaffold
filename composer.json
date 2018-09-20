@@ -73,7 +73,7 @@
         "test:behat": "behat",
         "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js",
 
-        "site:import": ["bin/refresh-local-pantheon", "cd web; php private/scripts/deploy-steps.php; cd -"],
+        "site:import": ["bin/refresh-local-pantheon", "cd web && php private/scripts/deploy-steps.php"],
 
         "post-package-install": "Project\\ComposerHandler::postPackageInstall",
         "post-package-update": "Project\\ComposerHandler::postPackageUpdate",
