@@ -1,0 +1,68 @@
+{# @Component
+name: Field Default
+description: Default field template
+group: Drupal>Field
+samples:
+  Default:
+    field_name: 'test-field'
+    field_type: 'text'
+    label_hidden: 0
+    label: 'Field label'
+    label_display: 'above'
+    multiple: false
+    items:
+      - content: ~rendered('<p>test field content 1</p>')
+  Multiple:
+    field_name: 'test-field'
+    field_type: 'text'
+    label_hidden: 0
+    label: 'Field label'
+    label_display: 'inline'
+    multiple: true
+    items:
+      - content: ~rendered('<p>test field content 1</p>')
+      - content: ~rendered('<p>test field content 2</p>')
+      - content: ~rendered('<p>test field content 3</p>')
+#}
+
+{%
+    set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    not label_hidden ? 'field--label-' ~ label_display,
+]
+%}
+{%
+    set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+]
+%}
+
+{% if label_hidden %}
+    {% if multiple %}
+        <div{{ attributes|default(create_attribute()).addClass(classes) }}>
+            {% for item in items %}
+                <div{{ item.attributes|default(create_attribute()) }}>{{ item.content }}</div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% for item in items %}
+            <div{{ attributes|default(create_attribute()).addClass(classes) }}>{{ item.content }}</div>
+        {% endfor %}
+    {% endif %}
+{% else %}
+    <div{{ attributes|default(create_attribute()).addClass(classes) }}>
+        <div{{ title_attributes|default(create_attribute()).addClass(title_classes) }}>{{ label }}</div>
+        {% if multiple %}
+        <div>
+            {% endif %}
+            {% for item in items %}
+                <div{{ item.attributes|default(create_attribute()) }}>{{ item.content }}</div>
+            {% endfor %}
+            {% if multiple %}
+        </div>
+        {% endif %}
+    </div>
+{% endif %}

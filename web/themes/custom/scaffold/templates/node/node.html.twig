@@ -1,0 +1,61 @@
+{# @Component
+name: Node Default
+description: Default node template
+group: Drupal>Node
+samples:
+  Default:
+    view_mode: 'full'
+    label: 'Node Title'
+    page: 1
+    node:
+      bundle: 'page'
+      promote: 1
+      published: 1
+    content:
+      body: ~rendered('<p>This content is just for example. It does not reflect any specific content type.</p>')
+  Teaser:
+    view_mode: 'teaser'
+    page: 0
+    label: 'Node Title'
+    node:
+      bundle: 'page'
+      promote: 1
+      published: 1
+    content:
+      body: ~rendered('<p>This content is just for example. It does not reflect any specific content type.</p>')
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.promote ? 'node--promoted',
+    node.sticky ? 'node--sticky',
+    not node.published ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes|default(create_attribute()).addClass(classes) }}>
+
+    {{ title_prefix }}
+    {% if not page %}
+        <h2{{ title_attributes|default(create_attribute()) }}>
+            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+    {% endif %}
+    {{ title_suffix }}
+
+    {% if display_submitted %}
+        <footer>
+            {{ author_picture }}
+            <div{{ author_attributes|default(create_attribute()) }}>
+                {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+                {{ metadata }}
+            </div>
+        </footer>
+    {% endif %}
+
+    <div{{ content_attributes|default(create_attribute()) }}>
+        {{ content }}
+    </div>
+</article>
