@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Changed
-* Added basic form validation styling.
+* Remove unused portions of settings.php, prevent file_exists check for local settings on Pantheon environments by default.
 * Enabled Drupal js behaviors in Mannequin by default.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 * Use `CACHE_HOST`, `CACHE_PORT`, `CACHE_PASSWORD` in `settings.docker.php` instead of REDIS_* equivalents.  This brings us into line with Pantheon's environment variables.
@@ -14,6 +14,7 @@
 * Disabled Varnish container by default, and moved Drupal to port 8080.  Varnish now runs on 8085 (when enabled).
 
 ### Added
+* Added basic form validation styling.
 * Add a default hash salt to settings.docker.php, overrideable using the `DRUPAL_HASH_SALT` environment variable.
 * Add a selenium container to the default Docker Compose stack. Selenium is a powerful front end testing and automation tool that allows for cross-browser testing, and replaces the deprecated PhantomJS.
 * Add `pantheon.yml` for configuring web docroot in Pantheon deployments.
