@@ -20,7 +20,7 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "~1.0",
         "hirak/prestissimo": "^0.3",
-        "drupal/core": "^8.4"
+        "drupal/core": "^8.6"
     },
     "require-dev": {
         "drupal/console": "^1.0.1",
@@ -73,7 +73,7 @@
         "test:behat": "behat",
         "test:wdio": "node_modules/.bin/wdio wd/wdio.conf.js",
 
-        "site:import": ["bin/refresh-local-pantheon", "cd web && php private/scripts/deploy-steps.php"],
+        "site:import": ["bin/refresh-local-pantheon", "cd web; php private/scripts/deploy-steps.php; cd -"],
 
         "post-package-install": "Project\\ComposerHandler::postPackageInstall",
         "post-package-update": "Project\\ComposerHandler::postPackageUpdate",
