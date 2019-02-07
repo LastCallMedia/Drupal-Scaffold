@@ -33,23 +33,31 @@ Everything below this line applies to scaffold projects that are already set up.
 
 Setting Up for Local Development
 --------------------------------
-Before you begin, you must have Docker and Docker Compose installed on your local machine.  For installation instructions, see the [Docker documentation](/docs/tools/docker.md).
+Setting Up for Local Development
+--------------------------------
+This project is built using Drupal Scaffold. Before you begin, you must have Docker and Docker Compose installed on your local machine. For installation instructions, see the [Drupal Scaffold - Docker documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
-2. If you haven't created and [set your Pantheon machine token](/docs/recipes/setting-machine-token.md), do that now.
-3. [Start](/docs/tools/docker.md#Running) the Docker environment and shell in:
+2. If you haven't created and [set your Pantheon machine token](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/recipes/setting-machine-token.md), do that now.
+3. [Start](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md#Running) the Docker environment and shell in:
     ```bash
     docker-compose up -d drupal
     docker-compose exec drupal bash
     ```
-3. Install [Composer](/docs/tools/composer.md#Running) dependencies:
+3. Install [Composer](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/composer.md#Running) dependencies:
     ```bash
     composer install
     ```
-4. Install [NPM](/docs/tools/npm.md#Running) dependencies:
+4. Install [NPM](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/npm.md#Running) dependencies:
     ```bash
     yarn install
-    ```
-5. Run `composer site:import` to pull down and import a copy of the site's database.
+    ``` 
+5. Run `composer site:import` to pull down and import a copy of the site's database. If Pantheon gives you an error here, make sure you followed Step 2 above correctly and that you're running Docker in a new terminal window
 
-See the documentation(/docs) for more information on how to use the tools and how to use this project. For more information on the Docker stack, see the [Docker documenation](/docs/tools/docker.md).
+6. Run `drupal site:mode  dev` to switch to dev configuration.
+
+7. Run `gulp build` (or `gulp watch`) and `drush cr` (from within the Drupal root at `/var/www/web`) to compile the theme.
+
+8. View your new local site in the browser at [http://localhost:8080/](http://localhost:8080/).
+
+See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/) for more information on how to use the tools and how to use this project. To find more information on the Docker stack, visit the [Docker documenation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
