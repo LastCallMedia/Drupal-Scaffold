@@ -24,7 +24,7 @@ volumes:
 
 services:
   drupal:
-    image: "lastcallmedia/php:7.0-dev"
+    image: "lastcallmedia/php:7.2-dev"
     ports:
       - "${DRUPAL_PORT:-8080}:80" # Debug port - remove if you use for production hosting
       - "${MANNEQUIN_PORT:-8081}:8081" # Debug port - remove if you use for production hosting.
