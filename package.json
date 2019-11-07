@@ -8,11 +8,11 @@
   "dependencies": {
     "eslint": "^4.12.1",
     "foundation-sites": "^6.4.3",
-    "gulp": "^3.9.1",
-    "gulp-help": "^1.6.1",
+    "gulp": "^4.0.0",
     "lastcall-artifact.sh": "^0.2.2",
-    "lastcall-gulp-drupal-tasks": "^2.0.0",
+    "lastcall-gulp-drupal-tasks": "^3.0.0-beta5",
     "lastcall-scaffold-webdriver": "file:wd",
+    "what-input": "^5.2.6",
     "yargs": "^9.0"
   },
   "scripts": {
