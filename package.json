@@ -11,9 +11,7 @@
     "gulp": "^4.0.0",
     "lastcall-artifact.sh": "^0.2.2",
     "lastcall-gulp-drupal-tasks": "^3.0.1",
-    "lastcall-scaffold-webdriver": "file:wd",
-    "what-input": "^5.2.6",
-    "yargs": "^9.0"
+    "what-input": "^5.2.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
