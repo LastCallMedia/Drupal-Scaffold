@@ -26,13 +26,5 @@
     "../../../bin/prune-artifact-branches": "bin/prune-artifact-branches",
     "../../../bin/prune-artifact-environments-pantheon": "bin/prune-artifact-environments-pantheon",
     "../../../bin/refresh-local-pantheon": "bin/refresh-local-pantheon",
-    "../../../wd/.artifact.gitignore": "wd/.artifact.gitignore",
-    "../../../wd/.eslintrc": "wd/.eslintrc",
-    "../../../wd/.gitignore": "wd/.gitignore",
-    "../../../wd/package.json": "wd/package.json",
-    "../../../wd/wdio.conf.js": "wd/wdio.conf.js",
-    "../../../web/private/scripts/deploy-steps.php": "{{webroot}}/private/scripts/deploy-steps.php",
-    "../../../web/private/scripts/new-relic.php": "{{webroot}}/private/scripts/new-relic.php",
-    "../../../web/sites/default/settings.docker.php": "{{webroot}}/sites/default/settings.docker.php"
   }
 }

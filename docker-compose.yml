@@ -68,9 +68,6 @@ services:
   redis:
     image: redis:3.2.4
 
-  selenium:
-    image: "selenium/standalone-chrome"
-
   blackfire:
     image: "blackfire/blackfire"
     environment:

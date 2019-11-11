@@ -12,6 +12,7 @@
 
 ### Removed
 * Removed Drupal Console. None of our team was using this project.
+* Removed Webdriver integration.  This component turned out to be too slow to use for visual regression testing and too difficult to maintain. We will be revisiting the visual regression testing concept in a future version. If you wish to continue using Webdriver, simply keep the `wd/` directory and the reference in `package.json`, `.circle/config.yml` and `docker-compose.yml`. Otherwise, these references may be removed.
 
 ## [2.0.0] - 2017-12-14
 ### Changed
