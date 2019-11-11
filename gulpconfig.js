@@ -8,7 +8,7 @@ module.exports = {
     theme: {
       src: docroot + '/themes/custom/scaffold/scss/**/*.scss',
       maps: '../maps',
-      prefix: {browsers: 'last 2 versions', cascade: false},
+      prefix: {cascade: false},
       dest: docroot + '/themes/custom/scaffold/dist/css',
       // Pass options to node-sass.
       sassOptions: {
@@ -38,7 +38,7 @@ module.exports = {
   },
   copy: {
     theme: {
-      src: [docroot + '/themes/custom/scaffold/images'],
+      src: [docroot + '/themes/custom/scaffold/images/*'],
       imagemin: false, // Requires gulp-imagemin package.
       dest: docroot + '/themes/custom/scaffold/dist/images'
     }
