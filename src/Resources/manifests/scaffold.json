@@ -1,6 +1,7 @@
 {
   "files": {
     "../../../.gitignore" : ".gitignore",
+    "../../../.browserslistrc": ".browserslistrc",
     "../../../.artifact.gitignore" : ".artifact.gitignore",
     "../../../.circleci/config.yml" : ".circleci/config.yml",
     "../../../.eslintignore": ".eslintignore",
