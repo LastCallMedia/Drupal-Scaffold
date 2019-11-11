@@ -18,12 +18,20 @@
 #   * TERMINUS_SITE
 #   * TERMINUS_SOURCE_ENVIRONMENT
 #
-version: 2
-jobs:
-  build:
-    working_directory: /var/www/code
+version: 2.1
+
+executors:
+  php:
     docker:
       - image: lastcallmedia/php:7.2-dev
+    environment:
+      GIT_AUTHOR_NAME: 'Last Call Media Automation'
+      GIT_AUTHOR_EMAIL: 'sysadmin@lastcallmedia.com'
+    working_directory: /var/www/code
+
+jobs:
+  build:
+    executor: php
     steps:
       - checkout
       - restore_cache:
@@ -94,12 +102,7 @@ jobs:
       - store_artifacts: {path: '/tmp/artifacts'}
 
   deploy:
-    working_directory: /var/www/code
-    docker:
-      - image: lastcallmedia/php:7.2-dev # Primary image
-        environment:
-          GIT_AUTHOR_NAME: 'Last Call Media Automation'
-          GIT_AUTHOR_EMAIL: 'sysadmin@lastcallmedia.com'
+    executor: php
     steps:
       - attach_workspace: {at: /var/www}
       - run: {name: 'Source environment variables', command: 'echo "source /var/www/code/docker/drupal.env" >> $BASH_ENV'}
