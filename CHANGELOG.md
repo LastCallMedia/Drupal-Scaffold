@@ -5,6 +5,7 @@
 * Fixed `composer site:import` command failing without returning a non-zero exit code.
 * Update to Drupal core > 8.7
 * Update to PHP 7.2.
+* Update to Gulp 4 via lastcall-gulp-drupal-tasks. Gulpfiles will need to be updated with the contents of [gulpfile.js](./gulpfile.js).
 
 ### Added
 * Added base node, block, field, and view templates that include unique classes to help with theming.
