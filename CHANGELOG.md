@@ -3,9 +3,15 @@
 ## Unreleased
 ### Changed
 * Fixed `composer site:import` command failing without returning a non-zero exit code.
+* Update to Drupal core > 8.7
+* Update to PHP 7.2.
 
 ### Added
 * Added base node, block, field, and view templates that include unique classes to help with theming.
+* Added zaporylie/composer-drupal-optimizations to make `composer update` possible without overriding composer memory limits.
+
+### Removed
+* Removed Drupal Console. None of our team was using this project.
 
 ## [2.0.0] - 2017-12-14
 ### Changed
