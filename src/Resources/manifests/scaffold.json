@@ -26,6 +26,6 @@
     "../../../bin/json-to-bash": "bin/json-to-bash",
     "../../../bin/prune-artifact-branches": "bin/prune-artifact-branches",
     "../../../bin/prune-artifact-environments-pantheon": "bin/prune-artifact-environments-pantheon",
-    "../../../bin/refresh-local-pantheon": "bin/refresh-local-pantheon",
+    "../../../bin/refresh-local-pantheon": "bin/refresh-local-pantheon"
   }
 }
