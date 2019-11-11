@@ -6,6 +6,7 @@
 * Update to Drupal core > 8.7
 * Update to PHP 7.2.
 * Update to Gulp 4 via lastcall-gulp-drupal-tasks. Gulpfiles will need to be updated with the contents of [gulpfile.js](./gulpfile.js).
+* Update to Circle 2.1 configuration. This configuration syntax allows the usage of "orbs" in the build.
 
 ### Added
 * Added base node, block, field, and view templates that include unique classes to help with theming.
