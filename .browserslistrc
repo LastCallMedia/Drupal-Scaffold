@@ -1,0 +1,4 @@
+# This file defines the browsers that are considered "supported" by this code.
+# It determines the configuration of tools like autoprefixer (for CSS vendor prefixes).
+
+last 2 versions
