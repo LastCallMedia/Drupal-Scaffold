@@ -28,5 +28,6 @@ package-lock.json
 # Other stuff you don't want to commit:
 *.log
 *.sql*
+.vscode
 .idea
 .DS_Store
