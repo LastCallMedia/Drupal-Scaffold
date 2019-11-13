@@ -10,6 +10,11 @@
  *
  */
 
+// Mark this as a "background" task in New Relic.
+if(function_exists('newrelic_background_job')) {
+  newrelic_background_job(TRUE);
+}
+
 /**
  * Run all database updates.
  *
