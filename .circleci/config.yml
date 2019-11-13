@@ -89,7 +89,7 @@ jobs:
       - run: {name: 'ESLint', command: 'node_modules/.bin/eslint -f junit . > /tmp/junit/eslint.xml'}
       - run: {name: 'PHPCS', command: 'vendor/bin/phpcs --report-junit=/tmp/junit/phpcs.xml --report-summary'}
       - run: {name: 'Mannequin Snapshot', command: 'vendor/bin/mannequin snapshot -o /tmp/artifacts/mannequin'}
-      - run: {name: 'Start Apache', command: 'docker-php-entrypoint', background: true}
+      - run: {name: 'Start Apache', command: 'docker-php-entrypoint apache2-foreground', background: true}
       - run: {name: 'Wait for MySQL', command: 'dockerize -wait tcp://localhost:3306 -timeout 10s'}
       - restore_cache: { name: 'Restore DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}'}
       - run: {name: 'Refresh Site', command: 'composer site:import -- -c /tmp/db-cache'}
