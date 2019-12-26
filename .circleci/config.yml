@@ -95,6 +95,7 @@ jobs:
       - run: {name: 'Refresh Site', command: 'composer site:import -- -c /tmp/db-cache'}
       - save_cache: {name: 'Save DB Cache', key: 'db-{{ checksum "/tmp/db-cache-indicator" }}', paths: ['/tmp/db-cache']}
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
+      - run: {name: 'Nightcrawler', command: 'node_modules/.bin/nightcrawler run --json /tmp/results/results.json --junit /tmp/results/junit/crawler.xml'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
       - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
