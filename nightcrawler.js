@@ -8,8 +8,6 @@ const myCrawler = new Crawler('My Crawler');
 myCrawler.on('setup', function (crawler) {
   // On setup, give the crawler a list of URLs to crawl.
   crawler.enqueue('http://localhost:8080/');
-  crawler.enqueue('http://localhost:8080/node/1');
-  crawler.enqueue('http://localhost:8080/basic_page');
 });
 
 // Collect additional data about each response.
