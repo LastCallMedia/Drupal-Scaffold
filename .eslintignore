@@ -7,3 +7,4 @@ web/themes/custom/*/dist
 web/modules/custom/*/dist
 vendor/
 node_modules
+backstop/
