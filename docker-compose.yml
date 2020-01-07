@@ -47,6 +47,7 @@ services:
       # TERMINUS_SOURCE_ENVIRONMENT: # Set in docker/drupal.env
       TERMINUS_MACHINE_TOKEN: # Optionally set in .env.
       XDEBUG_CONFIG: # Optionally set in .env.
+      XDEBUG_ENABLE: # Optionally sert in .env.
       BLACKFIRE_CLIENT_ID: # Optionally set in .env.
       BLACKFIRE_CLIENT_TOKEN: # Optionally set in .env.
       COMPOSER_ALLOW_SUPERUSER: 1
