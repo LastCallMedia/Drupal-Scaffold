@@ -9,7 +9,7 @@
     "eslint": "^4.12.1",
     "foundation-sites": "^6.4.3",
     "gulp": "^4.0.0",
-    "lastcall-artifact.sh": "^0.2.2",
+    "lastcall-artifact.sh": "^1.0.0",
     "lastcall-gulp-drupal-tasks": "^3.0.1",
     "what-input": "^5.2.6"
   },

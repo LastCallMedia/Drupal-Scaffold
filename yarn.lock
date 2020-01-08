@@ -1828,9 +1828,10 @@ last-run@^1.1.0:
     default-resolution "^2.0.0"
     es6-weak-map "^2.0.1"
 
-lastcall-artifact.sh@^0.2.2:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/lastcall-artifact.sh/-/lastcall-artifact.sh-0.2.3.tgz#eb001213a4ca0bb52b0cfc284e3501c87b7fc70e"
+lastcall-artifact.sh@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lastcall-artifact.sh/-/lastcall-artifact.sh-1.0.0.tgz#f3d251178df3fe9cea58cffec88c1bbda34aac98"
+  integrity sha512-0Or7RBeO9xj/EnkZXAIA00MUq5pBbQzD6nYUs3+K0e6O7hlcvshPv0rR+WHhELWcbfz21xYDhot7itRDC6HtWw==
 
 lastcall-gulp-drupal-tasks@^3.0.1:
   version "3.0.1"

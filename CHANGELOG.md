@@ -7,6 +7,7 @@
 * Update to PHP 7.2.
 * Update to Gulp 4 via lastcall-gulp-drupal-tasks. Gulpfiles will need to be updated with the contents of [gulpfile.js](./gulpfile.js).
 * Update to Circle 2.1 configuration. This configuration syntax allows the usage of "orbs" in the build.
+* Update to lastcall-artifact.sh to 1.0.0. Change binary name that gets called in CircleCI deploy script.
 
 ### Added
 * Added base node, block, field, and view templates that include unique classes to help with theming.
