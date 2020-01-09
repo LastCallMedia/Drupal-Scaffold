@@ -6,9 +6,24 @@ const Percent = Crawler.metrics.Percent;
 
 const myCrawler = new Crawler('My Crawler');
 
-myCrawler.on('setup', function (crawler) {
+// Use a base and urls from json file.
+// Location of the json file being used.
+const pages = require('./backstop/page');
+
+// Default localhost used.
+let base = 'http://localhost:8080';
+
+// Looping through each page in the json file for URLs.
+const urls = pages.map(function(page) {
+  return {
+    label: page.label,
+    url: `${base}${page.url}`,
+  }
+})
+
+myCrawler.on('setup', function(crawler) {
   // On setup, give the crawler a list of URLs to crawl.
-  crawler.enqueue('http://localhost:8080/');
+  urls.forEach(url => crawler.enqueue(url))
 });
 
 // Collect additional data about each response.
