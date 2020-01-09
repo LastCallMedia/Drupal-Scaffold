@@ -1,8 +1,19 @@
 name: drupal-scaffold
 recipe: drupal8
 config:
-  webroot: web
+  webroot: web #@docroot
   php: 7.2
   via: nginx
   drush: ^8
-
+services:
+  node:
+    type: node
+    build:
+      - yarn install
+    globals:
+      gulp-cli: latest
+tooling:
+  gulp:
+    service: node
+  yarn:
+    service: node
