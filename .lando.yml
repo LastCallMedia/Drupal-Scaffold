@@ -6,6 +6,9 @@ config:
   via: nginx
   drush: ^8
 services:
+  appserver:
+    build:
+      - composer install
   node:
     type: node
     build:
