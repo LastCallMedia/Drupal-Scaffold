@@ -51,7 +51,7 @@ This project is built using Drupal Scaffold. Before you begin, you must have Doc
 4. Install [NPM](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/npm.md#Running) dependencies:
     ```bash
     yarn install
-    ``` 
+    ```
 5. Run `composer site:import` to pull down and import a copy of the site's database. If Pantheon gives you an error here, make sure you followed Step 2 above correctly and that you're running Docker in a new terminal window
 
 6. Run `drupal site:mode  dev` to switch to dev configuration.
@@ -61,3 +61,16 @@ This project is built using Drupal Scaffold. Before you begin, you must have Doc
 8. View your new local site in the browser at [http://localhost:8080/](http://localhost:8080/).
 
 See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/) for more information on how to use the tools and how to use this project. To find more information on the Docker stack, visit the [Docker documenation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
+
+Testing
+--------
+### Nightcrawler
+Nightcrawler will run in CircleCI for each Pull Request, but if you want to test the PR locally use the following command
+```
+node_modules/.bin/nightcrawler crawl
+```
+### Backstop
+
+Backstop is only tested manually, see [documentation](/backstop/README.md) to test your branch.
+
+Both Nightcrawler and Backstop are using the same file to fetch URLs, if you want to add new pages to test the file is located [here](/backstop/page.json).
