@@ -20,3 +20,6 @@ tooling:
     service: node
   yarn:
     service: node
+  npm:
+    service: node
+    cmd: "echo 'NPM is disabled in favor of yarn'"
