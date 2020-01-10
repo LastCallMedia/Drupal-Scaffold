@@ -24,3 +24,15 @@ tooling:
   npm:
     service: node
     cmd: "echo 'NPM is disabled in favor of yarn'"
+  behat:
+    service: appserver
+    cmd: vendor/bin/behat
+  phpunit:
+    service: appserver
+    cmd: vendor/bin/phpunit
+  phpcs:
+    service: appserver
+    cmd: vendor/bin/phpcs
+  eslint:
+    service: node
+    cmd: node_modules/.bin/eslint

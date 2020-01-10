@@ -30,9 +30,8 @@ default:
   extensions:
     Behat\MinkExtension:
       goutte: ~
-      # The base URL of the site.  If you are using the gulp tasks,
-      # this URL is set in the gulpconfig, so leave this commented out.
-      # base_url: http://127.0.0.1:8888
+      # The base URL of the site.
+      base_url: "http://appserver_nginx" # internal nginx url. For testing with Lando, this should not have to be changed.
       # Browser open command used for "Then show the last response"
       show_cmd: open %s
     Drupal\DrupalExtension:
