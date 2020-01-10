@@ -97,7 +97,7 @@ jobs:
       - run: {name: 'Wait for Apache', command: 'dockerize -wait tcp://localhost:80 -timeout 5s'}
       # Run PHPUnit as www-data to support BrowserTestBase installing the site.
       - run: {name: 'Run PHPUnit', command: 'su -s /bin/bash www-data -c "vendor/bin/phpunit --log-junit=/tmp/junit/phpunit.xml"'}
-      - run: {name: 'Run Behat', command: 'vendor/bin/behat -f junit -o /tmp/junit'}
+      - run: {name: 'Run Behat', command: 'vendor/bin/behat --profile=ci -f junit -o /tmp/junit'}
       - store_test_results: { path: '/tmp/junit' }
       - store_artifacts: {path: '/tmp/artifacts'}
 

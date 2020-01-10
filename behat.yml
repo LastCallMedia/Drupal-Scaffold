@@ -49,3 +49,7 @@ default:
         error_message_selector: '.messages.messages--error'
         success_message_selector: '.messages.messages--status'
         warning_message_selector: '.messages.messages--warning'
+ci:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://127.0.0.1:8888"
