@@ -1,7 +1,9 @@
 Composer
 ========
 
-We recommend using [Composer](https://getcomposer.org) to manage all third party PHP code dependencies, include contributed Drupal modules and themes.  Composer comes pre-installed in the `drupal` container.
+We recommend using [Composer](https://getcomposer.org) to manage all third party PHP code dependencies, include contributed Drupal modules and themes.  Composer comes pre-installed with Lando.
+
+All commands below can be un as `lando composer ...` from the host machine as well.
 
 Installing a new Module/Theme/Library
 -------------------------------------
