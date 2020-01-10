@@ -5,6 +5,7 @@ config:
   php: 7.2
   via: nginx
   drush: ^8
+  xdebug: false
 services:
   appserver:
     build:

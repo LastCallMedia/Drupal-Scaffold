@@ -1,26 +1,22 @@
-XDebug
+Xdebug
 ======
 
-[XDebug](https://xdebug.org) is a remote debugging tool that allows you to pause execution of your code and view variables in real time. XDebug is available for debugging in the `drupal` container.
+[Xdebug](https://xdebug.org) is a remote debugging tool that allows you to pause execution of your code and view variables in real time. Xdebug is available for debugging in the `appserver` service within the Lando local development environment.
+
+While Xdebug is a great tool for debugging, it does add additional performance overhead. Because of this, Xdebug is _disabled_ by default in local environments. It's easy to enable though.
 
 Configuration
 -------------
-Create or update the `.env` file at the repository root to enter your XDebug configuration as an environment variable:
 
-```bash
-XDEBUG_CONFIG=remote_host=docker.for.mac.localhost
-```
-
-The example above assumes you are on a Mac, and configures XDebug to connect back to your Mac on port 9000 (the default) when a debugging session is started. See [this page](https://xdebug.org/docs/remote) for more information on the XDEBUG_CONFIG environment variable.
+Change the value from `xdebug: false` to `xdebug: true` in `.lando.yml` and run `lando rebuild` to enable Xdebug.
 
 Usage
 -----
 
-1. Using PHPStorm, add a new "PHP Remote Debug" configuration.
-2. Set breakpoints in your code.
-3. Visit the site in your browser, adding the XDEBUG_SESSION_START query parameter to the end of the URL.  Example: http://localhost:8080?XDEBUG_SESSION_START
-4. Step through code in your IDE.
+See the Lando documentation to configure Xdebug in your IDE.
+* [PHPStorm](https://docs.lando.dev/guides/lando-phpstorm.html) (bonus [youtube video](https://www.youtube.com/watch?v=sHNJxx0L9r0))
+* [VSCode](https://docs.lando.dev/guides/lando-with-vscode.html)
 
 Uninstalling
 ------------
-Xdebug is bundled with the [PHP Docker](https://github.com/LastCallMedia/PHP-Docker) container used for this project and can't be uninstalled.
+Change the value from `xdebug: true` to `xdebug: false` in `.lando.yml` and run `lando rebuild` to disable Xdebug.
