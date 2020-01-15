@@ -1,10 +1,29 @@
 
 const pages = require('./page');
+const environments = require('./environment');
+
+function parseOpt(optname, defaultValue = undefined) {
+  const matches = process.argv.filter(arg => arg.indexOf(`--${optname}=`) === 0);
+  return matches.length ? matches[0].replace(`--${optname}=`, '') : defaultValue
+}
+
+// Determine the proper environment to point at.
+const target = parseOpt('target', 'local');
+let environment;
+if(target in environments) {
+  environment = environments[target];
+}
+else if(target.match(/^http:/)) {
+  environment = {name: 'Local', url: target}
+}
+else {
+  throw new Error(`--target flag must be set to a known environment or a URL. ${target} is not known.`)
+}
 
 const scenarios = pages.map(function(page) {
   return {
     label: page.label,
-    url: `${process.env.BASE_URL}${page.url}`,
+    url: `${environment.url}${page.url}`,
     misMatchThreshold: 0.05,
   }
 });
