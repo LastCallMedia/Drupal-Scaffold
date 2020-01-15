@@ -9,21 +9,30 @@ const myCrawler = new Crawler('My Crawler');
 // Use a base and urls from json file.
 // Location of the json file being used.
 const pages = require('./backstop/page');
+const environments = require('./backstop/environment');
 
-// Default localhost used.
-let base = 'http://localhost:8080';
+function parseOpt(optname, defaultValue = undefined) {
+  const matches = process.argv.filter(arg => arg.indexOf(`--${optname}=`) === 0);
+  return matches.length ? matches[0].replace(`--${optname}=`, '') : defaultValue
+}
 
-// Looping through each page in the json file for URLs.
-const urls = pages.map(function(page) {
-  return {
-    label: page.label,
-    url: `${base}${page.url}`,
-  }
-})
+// Determine the proper environment to point at.
+const target = parseOpt('target', 'local');
+let environment;
+if(target in environments) {
+  environment = environments[target];
+}
+else if(target.match(/^http:/)) {
+  environment = {name: 'Local', url: target}
+}
+else {
+  throw new Error(`--target flag must be set to a known environment or a URL. ${target} is not known.`)
+}
 
 myCrawler.on('setup', function(crawler) {
-  // On setup, give the crawler a list of URLs to crawl.
-  urls.forEach(url => crawler.enqueue(url))
+  // On setup, give the crawler a list of URLs to crawl by combining the
+  // page URLs with the base URL.
+  pages.forEach(page => crawler.enqueue(`${environment.url}${page.url}`))
 });
 
 // Collect additional data about each response.
@@ -31,6 +40,9 @@ myCrawler.on('response.success', function (response, data) {
   data.statusMessage = response.statusMessage;
 });
 
+/**
+ * Analyze the data once it's been collected.
+ */
 myCrawler.on('analyze', function (crawlReport, analysis) {
   // On analysis, derive the metrics you need from the
   // array of collected data.
