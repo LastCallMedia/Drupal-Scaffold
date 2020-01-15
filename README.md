@@ -74,7 +74,7 @@ The option to switch environments can be used by adding the following to command
 Nightcrawler will run in CircleCI for each Pull Request, but if you want to test the PR locally use the following command
 
 ```
-$ node_modules/.bin/nightcrawler crawl
+$ docker-compose run drupal node_modules/.bin/nightcrawler crawl
 ```
 ### Backstop
 
