@@ -33,8 +33,7 @@ Everything below this line applies to scaffold projects that are already set up.
 
 Setting Up for Local Development
 --------------------------------
-Setting Up for Local Development
---------------------------------
+
 This project is built using Drupal Scaffold. Before you begin, you must have Docker and Docker Compose installed on your local machine. For installation instructions, see the [Drupal Scaffold - Docker documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
@@ -64,13 +63,19 @@ See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-
 
 Testing
 --------
+Both testing tools listed below are using the following JSON files for switching the environments and fetching the URLs for these testing tools. If any changes are needed make changes to the files below:
+
+- [Environments JSON](/backstop/environment.json)
+- [URLs JSON](/backstop/page.json)
+
+The option to switch environments can be used by adding the following to command `--target=prod`. It will always default to local if no target is being used.
+
 ### Nightcrawler
 Nightcrawler will run in CircleCI for each Pull Request, but if you want to test the PR locally use the following command
+
 ```
-node_modules/.bin/nightcrawler crawl
+$ node_modules/.bin/nightcrawler crawl
 ```
 ### Backstop
 
 Backstop is only tested manually, see [documentation](/backstop/README.md) to test your branch.
-
-Both Nightcrawler and Backstop are using the same file to fetch URLs, if you want to add new pages to test the file is located [here](/backstop/page.json).
