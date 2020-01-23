@@ -7,12 +7,10 @@ While Xdebug is a great tool for debugging, it does add additional performance o
 
 Configuration
 -------------
-
 Change the value from `xdebug: false` to `xdebug: true` in `.lando.yml` and run `lando rebuild` to enable Xdebug.
 
 Usage
 -----
-
 See the Lando documentation to configure Xdebug in your IDE.
 * [PHPStorm](https://docs.lando.dev/guides/lando-phpstorm.html) (bonus [youtube video](https://www.youtube.com/watch?v=sHNJxx0L9r0))
 * [VSCode](https://docs.lando.dev/guides/lando-with-vscode.html)
