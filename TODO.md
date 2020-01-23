@@ -3,7 +3,7 @@ TODO
 
 - [ ] BLACKFIRE: Enable Blackfire in Lando (see [this issue](https://github.com/lando/lando/issues/511) and [this gist](https://gist.github.com/tylerssn/8923149702d4a796c5e103412c2370c3))
     - Update Blackfire docs in docs/tools/blackfire.md
-- [ ] WDIO:
+- [x] WDIO:
     - Disable, remove WDIO configuration
     - Documentation at docs/tools/wdio.md
 - [ ] MANNEQUIN: 
