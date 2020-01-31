@@ -1,3 +1,9 @@
 [
-  {"label": "Homepage", "url": "/"}
+  {"label": "Homepage", "url": "/"},
+  {"label":  "ExampleSelector", "url":  "/",
+    "backstopSelectors": [
+      ".nav-header",
+      "document"
+    ]
+  }
 ]
