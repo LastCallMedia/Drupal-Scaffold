@@ -25,6 +25,7 @@ const scenarios = pages.map(function(page) {
     label: page.label,
     url: `${environment.url}${page.url}`,
     misMatchThreshold: 0.05,
+    selectors: page.backstopSelectors || []
   }
 });
 
@@ -40,6 +41,11 @@ module.exports = {
       "label": "tablet",
       "width": 1024,
       "height": 768
+    },
+    {
+      "label": "desktop",
+      "width": 1920,
+      "height": 1080
     }
   ],
   "scenarios": scenarios,
