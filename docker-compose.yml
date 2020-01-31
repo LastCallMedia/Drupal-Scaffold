@@ -70,7 +70,7 @@ services:
     image: redis:3.2.4
 
   backstop:
-    image: "backstopjs/backstopjs:v3.9.4"
+    image: "backstopjs/backstopjs:4.4.2"
     environment:
       BASE_URL: "http://drupal:80"
     volumes:
