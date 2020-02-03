@@ -1,0 +1,6 @@
+{
+  "local": {
+    "url": "http://drupal:80",
+    "name": "Local"
+  }
+}

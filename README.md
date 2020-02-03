@@ -33,8 +33,7 @@ Everything below this line applies to scaffold projects that are already set up.
 
 Setting Up for Local Development
 --------------------------------
-Setting Up for Local Development
---------------------------------
+
 This project is built using Drupal Scaffold. Before you begin, you must have Docker and Docker Compose installed on your local machine. For installation instructions, see the [Drupal Scaffold - Docker documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
@@ -51,7 +50,7 @@ This project is built using Drupal Scaffold. Before you begin, you must have Doc
 4. Install [NPM](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/npm.md#Running) dependencies:
     ```bash
     yarn install
-    ``` 
+    ```
 5. Run `composer site:import` to pull down and import a copy of the site's database. If Pantheon gives you an error here, make sure you followed Step 2 above correctly and that you're running Docker in a new terminal window
 
 6. Run `drupal site:mode  dev` to switch to dev configuration.
@@ -61,3 +60,22 @@ This project is built using Drupal Scaffold. Before you begin, you must have Doc
 8. View your new local site in the browser at [http://localhost:8080/](http://localhost:8080/).
 
 See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/) for more information on how to use the tools and how to use this project. To find more information on the Docker stack, visit the [Docker documenation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
+
+Testing
+--------
+Both testing tools listed below are using the following JSON files for switching the environments and fetching the URLs for these testing tools. If any changes are needed make changes to the files below:
+
+- [Environments JSON](/backstop/environment.json)
+- [URLs JSON](/backstop/page.json)
+
+The option to switch environments can be used by adding the following to command `--target=prod`. It will always default to local if no target is being used.
+
+### Nightcrawler
+Nightcrawler will run in CircleCI for each Pull Request, but if you want to test the PR locally use the following command
+
+```
+$ docker-compose run drupal node_modules/.bin/nightcrawler crawl
+```
+### Backstop
+
+Backstop is only tested manually, see [documentation](/backstop/README.md) to test your branch.
