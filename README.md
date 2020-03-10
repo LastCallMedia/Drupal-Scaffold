@@ -33,7 +33,7 @@ Everything below this line applies to scaffold projects that are already set up.
 
 Setting Up for Local Development
 --------------------------------
-This project is built using Drupal Scaffold. Before you begin, you must have Docker and Docker Compose installed on your local machine. For installation instructions, see the [Drupal Scaffold - Docker documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
+This project is built using Drupal Scaffold. Before you begin, you must have Lando installed on your local machine. For installation instructions, see the [Drupal Scaffold - Lando documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/lando.md).
 
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
 2. If you haven't created and [set your Pantheon machine token](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/recipes/setting-machine-token.md), do that now.
