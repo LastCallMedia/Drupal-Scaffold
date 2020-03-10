@@ -6,18 +6,18 @@ TODO
 - [x] WDIO:
     - Disable, remove WDIO configuration
     - Documentation at docs/tools/wdio.md
-- [ ] MANNEQUIN: 
-    - Add mannequin service to Lando config 
+- [x] MANNEQUIN:
+    - Add mannequin service to Lando config
     - Update Mannequin docs at docs/tools/mannequin.md
 - [x] VARNISH:
     - Determine if we still want a varnish service
     - [ ] If yes:
-        - add varnish service to .lando.yml 
+        - add varnish service to .lando.yml
     - [x] If no:
         - Remove docker/default.vcl, docs in docs/tools/varnish.md
-- [ ] DOCKER-COMPOSE: Since we're switching from docker-compose to lando it would be confusing to leave the docker-compose functionality in here, documented or not. We should remove config and references to the old docker-compose local infrastructure  
+- [ ] DOCKER-COMPOSE: Since we're switching from docker-compose to lando it would be confusing to leave the docker-compose functionality in here, documented or not. We should remove config and references to the old docker-compose local infrastructure
     - Remove `docker-compose.yml`
-    - Remove `docker` directory 
+    - Remove `docker` directory
 - [ ] LOCAL DEVELOPMENT TOOLS:
     - Determine if we need the `site-import` tooling in `appserver`
     - If yes:
