@@ -6,6 +6,9 @@ config:
   via: nginx
   drush: ^8
   xdebug: false
+proxy:
+  mannequin:
+    - mannequin.lndo.site
 services:
   appserver:
     build:
@@ -16,6 +19,11 @@ services:
       - yarn install
     globals:
       gulp-cli: latest
+  mannequin:
+    type: compose
+    services:
+      image: devwithlando/php:7.3-apache
+      command: docker-php-entrypoint /app/vendor/bin/mannequin start -c /app/.mannequin.php *:80
 tooling:
   gulp:
     service: node
