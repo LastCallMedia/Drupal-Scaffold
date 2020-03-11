@@ -23,7 +23,7 @@
 * Enabled Drupal js behaviors in Mannequin by default.
 * Remove dockerized settings in default.settings.php - this file will be used whenever KernelTestBase is executed, causing the site under test to pick up the Dockerized/local settings as it's own.
 * Use `CACHE_HOST`, `CACHE_PORT`, `CACHE_PASSWORD` in `settings.docker.php` instead of REDIS_* equivalents.  This brings us into line with Pantheon's environment variables.
-* Replace environment variables in the default CircleCI build: `PSITE` -> `TERMINUS_SITE`, `PSRCENV` -> `TERMINUS_SOURCE_ENVIRONMENT`, `PMACHINE` -> `TERMINUS_MACHINE_TOKEN`.  These variables will remain consistent with what we use in Docker.
+* Replace environment variables in the default CircleCI build: `PSITE` -> `TERMINUS_SITE`, `PSRCENV` -> `TERMINUS_ENV`, `PMACHINE` -> `TERMINUS_MACHINE_TOKEN`.  These variables will remain consistent with what we use in Docker.
 * Use `yarn` in all documentation, CircleCI steps.  Yarn is a drop-in replacement for `npm` that is much faster.
 * Configure ESLint through `.eslintignore` in repository root rather than custom Gulp configuration.
 * Configure PHPCS through `phpcs.xml.dist` in repository root rather than custom Gulp configuration.

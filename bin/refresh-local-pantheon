@@ -12,7 +12,7 @@ Refresh your local environment from Pantheon.
 Options:
   -h: Show help
   -i: Set the Pantheon site that will be used (defaults to TERMINUS_SITE).
-  -s: Set the Pantheon environment that will be used (defaults to TERMINUS_SOURCE_ENVIRONMENT/live)
+  -s: Set the Pantheon environment that will be used (defaults to TERMINUS_ENV/live)
   -c: Set the cache directory to work from.
   -n: Dry run (does not create environment).
 
@@ -29,7 +29,7 @@ error_out() {
 }
 
 site="$TERMINUS_SITE"
-source="${TERMINUS_SOURCE_ENVIRONMENT:-live}"
+source="${TERMINUS_ENV:-live}"
 cache="/tmp/site-import-cache"
 dryrun=0
 while getopts "hi:s:c:n" opt; do
@@ -43,7 +43,7 @@ while getopts "hi:s:c:n" opt; do
 done
 
 test -n "$site" || error_out "Site must be set using the -i flag or the TERMINUS_SITE environment variable" 1
-test -n "$source" || error_out "Source environment must be set using the -s flag or the TERMINUS_SOURCE_ENVIRONMENT environment variable" 1
+test -n "$source" || error_out "Source environment must be set using the -s flag or the TERMINUS_ENV environment variable" 1
 
 
 mkdir -p "$cache"

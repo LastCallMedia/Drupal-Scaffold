@@ -33,7 +33,7 @@ services:
     links:
       - mysql
       - redis
-    env_file: [docker/drupal.env]
+    env_file: [.env/drupal.env]
     environment:
       APACHE_DOCROOT: /var/www/web
       MYSQL_HOST: mysql
@@ -42,9 +42,9 @@ services:
       MYSQL_DATABASE: drupal
       CACHE_HOST: redis
       DOCKER_ENV: local
-      # SITE_NAME: # Set in docker/drupal.env
-      # TERMINUS_SITE: # Set in docker/drupal.env
-      # TERMINUS_SOURCE_ENVIRONMENT: # Set in docker/drupal.env
+      # SITE_NAME: # Set in .env/drupal.env
+      # TERMINUS_SITE: # Set in .env/drupal.env
+      # TERMINUS_ENV: # Set in .env/drupal.env
       TERMINUS_MACHINE_TOKEN: # Optionally set in .env.
       XDEBUG_CONFIG: # Optionally set in .env.
       XDEBUG_ENABLE: # Optionally sert in .env.

@@ -3,7 +3,7 @@
 web/sites/*/files
 web/sites/*/settings.local.php
 web/sites/simpletest/*
-.env
+.env/private.env
 docker-compose.override.yml
 
 # Contrib/external code:

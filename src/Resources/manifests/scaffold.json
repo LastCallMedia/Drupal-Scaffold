@@ -11,7 +11,7 @@
     "../../../behat.yml": "behat.yml",
     "../../../src/ComposerHandler.php": "src/ComposerHandler.php",
     "../../../docker/default.vcl": "docker/default.vcl",
-    "../../../docker/drupal.env": "docker/drupal.env",
+    "../../../.env/drupal.env": ".env/drupal.env",
     "../../../docker/mysql-extra.cnf": "docker/mysql-extra.cnf",
     "../../../docker-compose.yml": "docker-compose.yml",
     "../../../drush/drushrc.php": "drush/drushrc.php",
