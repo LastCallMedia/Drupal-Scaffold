@@ -22,8 +22,8 @@ $settings['file_scan_ignore_directories'] = ['node_modules', 'bower_components']
 require __DIR__.'/settings.pantheon.php';
 
 // Load environment-specific configuration overrides, if applicable.
-if(FALSE !== getenv('DOCKER_ENV') && file_exists(__DIR__ . '/settings.docker.php')) {
-  require __DIR__ . '/settings.docker.php';
+if((isset($_ENV['LANDO'])) && ($_ENV['LANDO'] === 'ON') && (file_exists(__DIR__ . '/settings.lando.php'))) {
+  require __DIR__ . '/settings.lando.php';
 }
 
 // Include an optional local settings override. Assumes Pantheon is production
