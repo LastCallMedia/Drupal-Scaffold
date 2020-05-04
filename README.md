@@ -16,7 +16,7 @@ Starting a New Project
     ```bash
     lando start
     ```
-- [ ] Install project's php and frontend dependencies 
+- [ ] Install project's php and frontend dependencies
     ```bash
     lando yarn install
     lando composer install
@@ -48,7 +48,7 @@ This project is built using Drupal Scaffold. Before you begin, you must have Lan
 4. Install [NPM](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/npm.md#Running) dependencies:
     ```bash
     lando yarn install
-    ``` 
+    ```
 5. Import a database
     ```bash
     # Download a copy of the database backups from the hosting environment and save it to the projectroot
@@ -61,4 +61,23 @@ This project is built using Drupal Scaffold. Before you begin, you must have Lan
 
 8. View your new local site in the browser at a url provided by lando when running `lando start`
 
-See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/) for more information on how to use the tools and how to use this project.
+See the [Drupal Scaffold documentation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/) for more information on how to use the tools and how to use this project. To find more information on the Docker stack, visit the [Docker documenation](https://github.com/LastCallMedia/Drupal-Scaffold/blob/master/docs/tools/docker.md).
+
+Testing
+--------
+Both testing tools listed below are using the following JSON files for switching the environments and fetching the URLs for these testing tools. If any changes are needed make changes to the files below:
+
+- [Environments JSON](/backstop/environment.json)
+- [URLs JSON](/backstop/page.json)
+
+The option to switch environments can be used by adding the following to command `--target=prod`. It will always default to local if no target is being used.
+
+### Nightcrawler
+Nightcrawler will run in CircleCI for each Pull Request, but if you want to test the PR locally use the following command
+
+```
+$ docker-compose run drupal node_modules/.bin/nightcrawler crawl
+```
+### Backstop
+
+Backstop is only tested manually, see [documentation](/backstop/README.md) to test your branch.

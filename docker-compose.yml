@@ -69,6 +69,15 @@ services:
   redis:
     image: redis:3.2.4
 
+  backstop:
+    image: "backstopjs/backstopjs:4.4.2"
+    environment:
+      BASE_URL: "http://drupal:80"
+    volumes:
+      - ./backstop:/src
+    shm_size: 1gb
+    entrypoint: [backstop, --config=/src/backstop.js]
+
   blackfire:
     image: "blackfire/blackfire"
     environment:

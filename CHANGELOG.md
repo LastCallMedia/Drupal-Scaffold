@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.1.0 - 2019-05-04
 ### Changed
 * Fixed `composer site:import` command failing without returning a non-zero exit code.
 * Update to Drupal core > 8.7

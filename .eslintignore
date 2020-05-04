@@ -1,3 +1,4 @@
+nightcrawler.js
 web/core
 web/modules/contrib
 web/themes/contrib
@@ -6,3 +7,4 @@ web/themes/custom/*/dist
 web/modules/custom/*/dist
 vendor/
 node_modules
+backstop/
