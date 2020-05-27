@@ -39,4 +39,3 @@ if(FALSE !== getenv('CACHE_HOST')) {
 //  $settings['cache']['bins']['config'] = 'cache.backend.chainedfast';
 //  $settings['cache']['bins']['discovery'] = 'cache.backend.chainedfast';
 }
-

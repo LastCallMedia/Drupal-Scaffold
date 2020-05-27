@@ -1,0 +1,79 @@
+name: drupal-scaffold
+recipe: drupal8
+config:
+  webroot: web #@docroot
+  php: 7.2
+  via: nginx
+  drush: ^8
+  xdebug: false
+env_file:
+  - .env/drupal.env
+  - .env/private.env
+proxy:
+  mannequin:
+    - mannequin.lndo.site
+services:
+  appserver:
+    build:
+      - composer install
+    build_as_root:
+      - .lando/init/terminus.sh
+      - .lando/init/blackfire.sh
+    overrides:
+      environment:
+        BLACKFIRE_CLIENT_ID:
+        BLACKFIRE_CLIENT_TOKEN:
+
+  node:
+    type: node
+    build:
+      - yarn install
+    globals:
+      gulp-cli: latest
+  mannequin:
+    type: compose
+    services:
+      image: devwithlando/php:7.3-apache
+      command: docker-php-entrypoint /app/vendor/bin/mannequin start -c /app/.mannequin.php *:80
+  blackfire:
+    type: compose
+    keys: false
+    app_mount: false
+    services:
+      image: "blackfire/blackfire"
+      user: root
+      command: blackfire-agent
+      environment:
+        BLACKFIRE_SERVER_ID: # Set in .env if you want to use Blackfire.
+        BLACKFIRE_SERVER_TOKEN: # Set in .env if you want to use Blackfire.
+        LANDO_DROP_USER: blackfire
+
+tooling:
+  gulp:
+    service: node
+  yarn:
+    service: node
+  npm:
+    service: node
+    cmd: "echo 'NPM is disabled in favor of yarn'"
+  behat:
+    service: appserver
+    cmd: vendor/bin/behat
+  phpunit:
+    service: appserver
+    cmd: vendor/bin/phpunit
+  phpcs:
+    service: appserver
+    cmd: vendor/bin/phpcs
+  eslint:
+    service: node
+    cmd: node_modules/.bin/eslint
+  terminus:
+    service: appserver
+  latest_db_pantheon:
+    service: appserver
+    description: Updates the database from the latest Pantheon backup
+    cmd: bin/refresh-local-pantheon
+  blackfire:
+    service: appserver
+    user: root

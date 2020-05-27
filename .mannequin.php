@@ -14,13 +14,14 @@ $drupalExtension = new DrupalExtension([
   'drupal_root' => __DIR__.'/web',
   'twig_options' => [
     'auto_reload' => TRUE,
-  ]
+  ],
 ]);
 
 $config = MannequinConfig::create()
   ->addExtension($drupalExtension)
   ->setGlobalCss([
     'web/themes/custom/scaffold/dist/css/style.css',
+    'web/core/themes/stable/css/system/components/hidden.module.css',
   ])
   ->setGlobalJs([
     'web/core/assets/vendor/jquery/jquery.min.js',

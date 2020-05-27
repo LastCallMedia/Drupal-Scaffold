@@ -9,12 +9,7 @@ Drush configuration and extra commands can be added in the `drush/` directory in
 
 Running
 -------
-Inside of the `drupal` container, Drush is already installed. You can run it just by typing `drush`.  Examples:
-* `drush uli` - Generate a one time login link.
-* `drush en page_cache` - Enable the page cache module.
-
-Uninstalling
-------------
-1. Run `composer remove --dev drush/drush`.
-2. Run `git rm drush/`
-3. Commit changes.
+Drush comes preinstalled in the `appserver` service of the Lando development environment.
+You can run it from the host machine by typing `lando drush`.  Examples:
+* `lando drush uli` - Generate a one time login link.
+* `lando drush en page_cache` - Enable the page cache module.
