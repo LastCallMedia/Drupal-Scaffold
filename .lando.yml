@@ -16,14 +16,14 @@ services:
   appserver:
     build:
       - composer install
-    config:
-      conf: .lando/init/php.ini
     build_as_root:
       - .lando/init/terminus.sh
       - .lando/init/blackfire.sh
-    run_as_root:
-      # TODO: This doesn't seem to run at the correct time to ensure that blackfire-agent is running after a service rebuild.
-      - "/etc/init.d/blackfire-agent restart"
+    overrides:
+      environment:
+        BLACKFIRE_CLIENT_ID:
+        BLACKFIRE_CLIENT_TOKEN:
+
   node:
     type: node
     build:
@@ -35,6 +35,19 @@ services:
     services:
       image: devwithlando/php:7.3-apache
       command: docker-php-entrypoint /app/vendor/bin/mannequin start -c /app/.mannequin.php *:80
+  blackfire:
+    type: compose
+    keys: false
+    app_mount: false
+    services:
+      image: "blackfire/blackfire"
+      user: root
+      command: blackfire-agent
+      environment:
+        BLACKFIRE_SERVER_ID: # Set in .env if you want to use Blackfire.
+        BLACKFIRE_SERVER_TOKEN: # Set in .env if you want to use Blackfire.
+        LANDO_DROP_USER: blackfire
+
 tooling:
   gulp:
     service: node
