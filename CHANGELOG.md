@@ -31,6 +31,7 @@
 * Disabled Varnish container by default, and moved Drupal to port 8080.  Varnish now runs on 8085 (when enabled).
 
 ### Added
+* Added basic form validation styling.
 * Add a default hash salt to settings.docker.php, overrideable using the `DRUPAL_HASH_SALT` environment variable.
 * Add a selenium container to the default Docker Compose stack. Selenium is a powerful front end testing and automation tool that allows for cross-browser testing, and replaces the deprecated PhantomJS.
 * Add `pantheon.yml` for configuring web docroot in Pantheon deployments.

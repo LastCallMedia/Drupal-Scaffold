@@ -1,0 +1,44 @@
+$form-error-red: #e62600;
+$form-error-dark-red: #a51b00;
+
+.field--widget-options-buttons > fieldset > legend > span.form-required,
+label.form-required {
+  &:after {
+    content: '*';
+    color: $form-error-red;
+    display: inline;
+    padding-left: rem-calc(3);
+  }
+}
+
+.form-item {
+  .description.error {
+    margin-top: 0;
+    color: $form-error-dark-red;
+  }
+  input,
+  textarea,
+  select {
+    &.error {
+      border-width: 1px;
+      border-color: $form-error-red;
+      background-color: hsla(15, 75%, 97%, 1);
+      box-shadow: inset 0 5px 5px -5px #b8b8b8;
+      color: $form-error-dark-red;
+      &:focus {
+        border-color: $form-error-red;
+        outline: 0;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05), 0 0 2px 0 $form-error-red;
+        background-color: #fcf4f2;
+      }
+    }
+  }
+
+  textarea.error + .cke {
+    border-width: 1px;
+    border-color: $form-error-red;
+    .cke_contents {
+      background-color: hsla(15, 75%, 97%, 1);
+    }
+  }
+}
